@@ -1,10 +1,9 @@
 package Concrete;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
+import java.util.Map.Entry;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import LockerClasses.ReentrantLockerUnlocker;
@@ -208,8 +207,8 @@ public class Station extends ReentrantLockerUnlocker{
 				return -1;
 			}
 				
-			Iterator iter = availablePlatformsSet.iterator();
-			int platformNumber = (int)iter.next();
+			Iterator<Integer> iter = availablePlatformsSet.iterator();
+			int platformNumber = iter.next();
 			iter.remove(); //removing platform from hashset
 			
 			writeUnlock(availablePlatformsSetLock);
@@ -227,11 +226,11 @@ public class Station extends ReentrantLockerUnlocker{
 		String str = "[";
 		if(!trainPlatformMap.isEmpty())
 		{
-			Iterator iter = trainPlatformMap.entrySet().iterator();
+			Iterator<Entry<Integer, Train>> iter = trainPlatformMap.entrySet().iterator();
 			while (iter.hasNext()) 
 			{
-				Map.Entry pair = (Map.Entry)iter.next();
-				String trainName = ((Train) pair.getValue()).getName();
+				Map.Entry<Integer, Train> pair = (Map.Entry<Integer, Train>)iter.next();
+				String trainName = pair.getValue().getName();
 				str += pair.getKey() + " : " + trainName + ", ";
 			}
 		}

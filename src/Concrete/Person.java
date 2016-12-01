@@ -2,6 +2,7 @@ package Concrete;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class Person implements Runnable {
@@ -145,15 +146,15 @@ public class Person implements Runnable {
 					if(checkThreadInterruption())
 						break;
 					
-					Iterator iter = trainPlatformMap.entrySet().iterator();
+					Iterator<Entry<Integer, Train>> iter = trainPlatformMap.entrySet().iterator();
 					
 					if(checkThreadInterruption())
 						break;
 					
 					while (iter.hasNext() && !checkThreadInterruption()) 
 					{
-						Map.Entry pair = (Map.Entry)iter.next();
-						Train trainFromStationSet = ((Train) pair.getValue());
+						Map.Entry<Integer, Train> pair = (Map.Entry<Integer, Train>)iter.next();
+						Train trainFromStationSet = pair.getValue();
 						
 						//System.out.println("inside iterator : " + trainFromStationSet.getName());
 						

@@ -1,8 +1,5 @@
 package Concrete;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import LockerClasses.ReentrantLockerUnlocker;
@@ -297,7 +294,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				numberOfTrips++;
 			}
 			
-			int numberOfExistingPersonsInTrain = getNumberOfPersons();
+			//int numberOfExistingPersonsInTrain = getNumberOfPersons();
 			
 			//open train doors
 			openDoors();

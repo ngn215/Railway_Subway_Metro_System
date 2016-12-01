@@ -24,6 +24,10 @@ Station lets person know that train has arrived. Station tells train whether vac
 
 Line contains multiple stations. Train goes to the stations in the order defined by the line. Lines can be used to represent slow / express trains or different routes altogether.
 
+## Intersection
+
+This class is work in progress.
+
 ## Notes
 
 Currently in the input files I have used stations from Western line (Mumbai Suburban Railway) and Central line (Mumbai Suburban Railway).

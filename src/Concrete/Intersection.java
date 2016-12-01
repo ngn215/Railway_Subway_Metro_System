@@ -2,6 +2,8 @@ package Concrete;
 
 public class Intersection {
 
+	//WORK IN PROGRESS
+	
 	String name;
 	Line line1;
 	Line line2;

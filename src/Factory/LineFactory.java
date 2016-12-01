@@ -2,11 +2,11 @@ package Factory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import Concrete.Line;
@@ -58,7 +58,7 @@ public class LineFactory {
 				if (!lineFromFile.equals("") && !lineFromFile.startsWith("-"))
 				{
 					List<Station> stationsList = new ArrayList<Station>();
-					String[] tokensFromLine = lineFromFile.split(",");
+					String[] tokensFromLine = lineFromFile.split(DELIMITER);
 					
 					for(int i=0; i<tokensFromLine.length; i++)
 					{
@@ -91,112 +91,6 @@ public class LineFactory {
 		}
 	}
 	
-/*	public static List<String> getStationsWesternSlowLine()
-	{		
-		List<String> stationsWesternLineList = Arrays.asList(
-										"Churchgate",
-										"Marine Lines",
-										"Charni Road",
-										"Grant Road",
-										"Mumbai Central",
-										"Mahalaxmi",
-										"Lower Parel",
-										"Elphinstone Road",
-										"Dadar",
-										"Matunga",
-										"Mahim",
-										"Bandra",
-										"Khar Road",
-										"Santacruz",
-										"Vile Parle",
-										"Andheri",
-										"Jogeshwari",
-										"Goregaon",
-										"Malad",
-										"Kandivali",
-										"Borivali",
-										"Dahisar",
-										"Mira Road",
-										"Bhayandar",
-										"Naigaon",
-										"Vasai Road",
-										"Nala Sopara",
-										"Virar",
-										"Vaitarna",
-										"Saphale",
-										"Kelve Road",
-										"Palghar",
-										"Umroli",
-										"Boisar",
-										"Vangaon",
-										"Dahanu Road"
-										);
-		
-		return stationsWesternLineList;
-	}
-	
-	public static List<String> getStationsCentralSlowLine()
-	{
-		List<String> stationsCentralLineList = Arrays.asList(
-												"Masjid",
-												"Sandhurst Road",
-												"Byculla",
-												"Chinchpokli",
-												"Currey Road",
-												"Parel",
-												"Dadar",
-												"Matunga",
-												"Sion",
-												"Kurla",
-												"Vidyavihar",
-												"Ghatkopar",
-												"Vikhroli",
-												"Kanjurmarg",
-												"Bhandup",
-												"Nahur",
-												"Mulund",
-												"Thane",
-												"Kalwa",
-												"Mumbra",
-												"Diva",
-												"Kopar",
-												"Dombivli",
-												"Thakurli",
-												"Kalyan"
-												);
-		
-		return stationsCentralLineList;
-	}
-	
-	public static List<String> getStationsWesternFastLine()
-	{		
-		List<String> stationsWesternLineList = Arrays.asList(
-										"Churchgate",
-										"Dadar",
-										"Bandra",
-										"Andheri",
-										"Borivali",
-										"Virar",
-										"Dahanu Road"
-										);
-		
-		return stationsWesternLineList;
-	}
-	
-	public static List<String> getStationsCentralFastLine()
-	{
-		List<String> stationsCentralLineList = Arrays.asList(
-												"Masjid",
-												"Dadar",
-												"Ghatkopar",
-												"Thane",
-												"Dombivli",
-												"Kalyan"
-												);
-		
-		return stationsCentralLineList;
-	}*/
-	
 	public static String getLineName(Station sourceStationName, Station destinationStationName)
 	{
 		if(linesMap.isEmpty()) 
@@ -205,10 +99,10 @@ public class LineFactory {
 			return null;
 		}
 		
-		Iterator iter = linesMap.entrySet().iterator();
+		Iterator<Entry<String, Line>> iter = linesMap.entrySet().iterator();
 		while (iter.hasNext()) 
 		{
-			Map.Entry pair = (Map.Entry)iter.next();
+			Map.Entry<String,Line> pair = (Map.Entry<String,Line>)iter.next();
 			Line line = (Line) pair.getValue();
 			
 			//System.out.println(line.hasStation(sourceStationName) + " " + line.hasStation(sourceStationName));
