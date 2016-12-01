@@ -1,0 +1,14 @@
+----------------------------------------------------------------------
+--This txt file contains the lines list
+--format is linename followed by stationnames in order (no spaces)
+--<LineName>,<StationName1>,<StationName2>....
+--To add comments use prefix text with "-"
+----------------------------------------------------------------------
+
+WesternSlow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Dahisar,Mira Road,Bhayandar,Naigaon,Vasai Road,Nala Sopara,Virar,Vaitarna,Saphale,Kelve Road,Palghar,Umroli,Boisar,Vangaon,Dahanu Road
+
+CentralSlow,Masjid,Sandhurst Road,Byculla,Chinchpokli,Currey Road,Parel,Sion,Kurla,Vidyavihar,Ghatkopar,Vikhroli,Kanjurmarg,Bhandup,Nahur,Mulund,Thane,Kalwa,Mumbra,Diva,Kopar,Dombivli,Thakurli,Kalyan
+
+WesternFast,Churchgate,Dadar,Bandra,Andheri,Borivali,Virar,Dahanu Road
+
+CentralFast,Masjid,Dadar,Ghatkopar,Thane,Dombivli,Kalyan

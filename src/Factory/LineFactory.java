@@ -1,10 +1,13 @@
 package Factory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import Concrete.Line;
 import Concrete.Station;
@@ -12,6 +15,8 @@ import Concrete.Station;
 public class LineFactory {
 	
 	private static HashMap<String, Line> linesMap = new HashMap<String, Line>();
+	private final static String LINESLISTINPUTFILE = "InputFiles/LinesList.txt";
+	private final static String DELIMITER = ",";
 	
 	public LineFactory()
 	{
@@ -20,45 +25,7 @@ public class LineFactory {
 	
 	private void populateLinesMap()
 	{
-		populateSlowLines();
-		populateExpressLines();
-	}
-	
-	private void populateSlowLines()
-	{
-		populateLineMap("WesternSlow");
-		populateLineMap("CentralSlow");
-	}
-	
-	private void populateExpressLines()
-	{
-		populateLineMap("WesternFast");
-		populateLineMap("CentralFast");
-	}
-	
-	private void populateLineMap(String lineName)
-	{
-		List<String> stationsList = null;
-		List<Station> stations = null;
-		
-		if (lineName.equals("WesternSlow"))
-			stationsList = getStationsWesternSlowLine();
-		else if (lineName.equals("CentralSlow"))
-			stationsList = getStationsCentralSlowLine();
-		else if (lineName.equals("WesternFast"))
-			stationsList = getStationsWesternFastLine();
-		else if (lineName.equals("CentralFast"))
-			stationsList = getStationsCentralFastLine();
-			
-		stations = new ArrayList<Station>();
-		
-		for(int i=0; i<stationsList.size(); i++)
-		{			
-			stations.add(StationFactory.getStationInstance(stationsList.get(i)));
-		}
-		
-		Line line = new Line(lineName, stations);
-		linesMap.put(lineName, line);
+		getLinesListFromInputFile();
 	}
 	
 	public static Line getLineInstance(String lineName)
@@ -74,7 +41,57 @@ public class LineFactory {
 		}
 	}
 	
-	public static List<String> getStationsWesternSlowLine()
+	private static void getLinesListFromInputFile()
+	{
+		Path path = null;
+		Scanner scanner = null;
+		
+		String lineName = null;
+		
+		try
+		{
+			path = Paths.get(LINESLISTINPUTFILE);
+			scanner =  new Scanner(path);
+			while (scanner.hasNextLine())
+		    {
+				String lineFromFile = scanner.nextLine();
+				if (!lineFromFile.equals("") && !lineFromFile.startsWith("-"))
+				{
+					List<Station> stationsList = new ArrayList<Station>();
+					String[] tokensFromLine = lineFromFile.split(",");
+					
+					for(int i=0; i<tokensFromLine.length; i++)
+					{
+						if (i==0)
+						{
+							lineName = tokensFromLine[i];
+							//System.out.println("Line name : " + lineName);
+						}
+						else
+						{
+							Station stationInstance = StationFactory.getStationInstance(tokensFromLine[i]);
+							stationsList.add(stationInstance);
+							//System.out.println(tokensFromLine[i]);
+						}
+					}
+					
+					Line line = new Line(lineName, stationsList);
+					linesMap.put(lineName, line);
+					//line.printStationsList();
+				}
+		    }      
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		finally
+		{
+			scanner.close();
+		}
+	}
+	
+/*	public static List<String> getStationsWesternSlowLine()
 	{		
 		List<String> stationsWesternLineList = Arrays.asList(
 										"Churchgate",
@@ -178,7 +195,7 @@ public class LineFactory {
 												);
 		
 		return stationsCentralLineList;
-	}
+	}*/
 	
 	public static String getLineName(Station sourceStationName, Station destinationStationName)
 	{

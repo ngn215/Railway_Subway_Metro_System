@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------------
+--This is the Stations List
+--New stations can be added directly below current list
+--The text following "-" is ignored by stations parser and can be used to add comments.
+--Blank lines are also ignored by the parser
+--Note : comment and station cannot be placed in the same line.
+---------------------------------------------------------------------------------------
+Churchgate
+Marine Lines
+Charni Road
+Grant Road
+Mumbai Central
+Mahalaxmi
+Lower Parel
+Elphinstone Road
+Dadar
+Matunga
+Mahim
+Bandra
+Khar Road
+Santacruz
+Vile Parle
+Andheri
+Jogeshwari
+Goregaon
+Malad
+Kandivali
+Borivali
+Dahisar
+Mira Road
+Bhayandar
+Naigaon
+Vasai Road
+Nala Sopara
+Virar
+Vaitarna
+Saphale
+Kelve Road
+Palghar
+Umroli
+Boisar
+Vangaon
+Dahanu Road
+------------------
+Masjid
+Sandhurst Road
+Byculla
+Chinchpokli
+Currey Road
+Parel
+Sion
+Kurla
+Vidyavihar
+Ghatkopar
+Vikhroli
+Kanjurmarg
+Bhandup
+Nahur
+Mulund
+Thane
+Kalwa
+Mumbra
+Diva
+Kopar
+Dombivli
+Thakurli
+Kalyan

@@ -6,13 +6,13 @@ import java.util.List;
 public class Line {
 	
 	String name;
-	List<Station> stations;
+	List<Station> stationsList;
 	private HashMap<Station, Integer> stationsHashMap = new HashMap<Station, Integer>();
 	
-	public Line(String name, List<Station> stations)
+	public Line(String name, List<Station> stationsList)
 	{
 		this.name = name;
-		this.stations = stations;
+		this.stationsList = stationsList;
 		
 		buildHashMap();
 	}
@@ -21,18 +21,22 @@ public class Line {
 		return name;
 	}
 
+	public List<Station> getStationsList() {
+		return stationsList;
+	}
+
 	private void buildHashMap()
 	{
-		for(int i=0; i < stations.size(); i++)
-			stationsHashMap.put(stations.get(i), i);
+		for(int i=0; i < stationsList.size(); i++)
+			stationsHashMap.put(stationsList.get(i), i);
 	}
 	
 	public Station getFirstStation(boolean directionUp)
 	{
 		if (directionUp)
-			return stations.get(0);
+			return stationsList.get(0);
 		else
-			return stations.get(stations.size() - 1);
+			return stationsList.get(stationsList.size() - 1);
 	}
 	
 	public Station getNextStation(Station station, boolean directionUp)
@@ -43,17 +47,17 @@ public class Line {
 			
 			if (directionUp)
 			{
-				if (currentIndex < stations.size() - 1)
-					return stations.get(currentIndex + 1);
+				if (currentIndex < stationsList.size() - 1)
+					return stationsList.get(currentIndex + 1);
 				else
-					return stations.get(currentIndex - 1);
+					return stationsList.get(currentIndex - 1);
 			}
 			else
 			{
 				if (currentIndex > 0)
-					return stations.get(currentIndex - 1);
+					return stationsList.get(currentIndex - 1);
 				else
-					return stations.get(currentIndex + 1);
+					return stationsList.get(currentIndex + 1);
 			}
 		}
 		
@@ -68,7 +72,7 @@ public class Line {
 			
 			if (directionUp)
 			{
-				if (currentIndex == stations.size() - 1)
+				if (currentIndex == stationsList.size() - 1)
 					return true;
 				else
 					return false;
@@ -108,6 +112,15 @@ public class Line {
 			return true;
 		else
 			return false;
+	}
+	
+	public void printStationsList()
+	{
+		System.out.println("Printing stations list for line : " + this.name);
+		for(Station station : stationsList)
+		{
+			System.out.println(station.getName());
+		}
 	}
 
 }

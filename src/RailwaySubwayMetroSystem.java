@@ -130,7 +130,7 @@ public class RailwaySubwayMetroSystem {
 		
 		while(i <= personsCount)
 		{
-			List<String> westernLineStationsList = LineFactory.getStationsWesternSlowLine();
+			List<Station> westernLineStationsList = LineFactory.getLineInstance("WesternSlow").getStationsList();
 			int listSize = westernLineStationsList.size();
 			
 			int index1 = rn.nextInt(listSize);
@@ -138,8 +138,8 @@ public class RailwaySubwayMetroSystem {
 			
 			if (index1 != index2)
 			{
-				Station sourceStation = StationFactory.getStationInstance(westernLineStationsList.get(index1));
-				Station destinationStation = StationFactory.getStationInstance(westernLineStationsList.get(index2));
+				Station sourceStation = westernLineStationsList.get(index1);
+				Station destinationStation = westernLineStationsList.get(index2);
 				
 				Person person = new Person("P" + i, sourceStation, destinationStation);
 				sourceStation.enterStation(person);
