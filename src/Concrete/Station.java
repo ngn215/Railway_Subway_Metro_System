@@ -107,23 +107,27 @@ public class Station extends ReentrantLockerUnlocker{
 		//get both write locks here. because this step needs to update both structures to free the platform
 		writeLock(availablePlatformsSetLock);
 		writeLock(trainPlatformMapLock);
+		//we also need persons in platform lock so that persons entering the train do not concurrently try to access set
+		//when we are trying to iterate through set and interrupt the person threads
+		writeLock(personsInPlatformSetLock);
 		
 		//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
 		
 		availablePlatformsSet.add(platformNumber);
 		trainPlatformMap.remove(platformNumber);
 		
-		HashSet<Person> personsInPlatformSetClone = (HashSet<Person>) personsInPlatformSet.clone();
-		for (Person person : personsInPlatformSetClone)
+		//HashSet<Person> personsInPlatformSetClone = (HashSet<Person>) personsInPlatformSet.clone();
+		for (Person person : personsInPlatformSet)
 		{
 			//only interrupt running threads
 			if (person.getThread().getState() != Thread.State.WAITING)
 			{
-				System.out.println("Station : " + this.name + " is " + "Interrupting person : " + person.getName());
+				System.out.println("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
 				person.getThread().interrupt();
 			}
 		}
 		
+		writeUnlock(personsInPlatformSetLock);
 		writeUnlock(trainPlatformMapLock);
 		writeUnlock(availablePlatformsSetLock);
 	}
@@ -141,45 +145,6 @@ public class Station extends ReentrantLockerUnlocker{
 			this.notifyAll();
 		}
 	}
-	
-	/*private void announce(Train train)
-	{
-		readLock(personsInPlatformSetLock);
-		boolean isEmpty = personsInPlatformSet.isEmpty();
-		readUnlock(personsInPlatformSetLock);
-		
-		//if there are people in platform
-		if(!isEmpty)
-		{
-			writeLock(personsInPlatformSetLock);
-			
-			//check here again because another could have modified set by the time obtain the write lock.
-			if (personsInPlatformSet.isEmpty())
-			{
-				writeUnlock(personsInPlatformSetLock);
-				return;
-			}
-			
-			Iterator iter = personsInPlatformSet.iterator();
-			while(iter.hasNext())
-			{
-				Person person = (Person)iter.next();
-				if (person.canTakeThisTrain(train))
-				{
-					if(train.enterTrain(person)) //if train has vacancy then this will return true
-					{	
-						person.enterTrain(train);
-						iter.remove();
-					}
-					else //if there is no vacancy then break
-						break;
-				}
-			}
-			
-			writeUnlock(personsInPlatformSetLock);
-		}
-		
-	}*/
 	
 	public int noOfPersonsInStation()
 	{
