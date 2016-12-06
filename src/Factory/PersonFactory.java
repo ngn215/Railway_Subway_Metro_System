@@ -1,5 +1,7 @@
 package Factory;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -19,36 +21,53 @@ public class PersonFactory {
 	{
 		int i = 1;
 		Random rn = new Random();
+		PrintWriter writer = null;	
 		
-		while(i <= personsCount)
+		try
 		{
-			List<Station> westernLineStationsList = LineFactory.getLineInstance("WesternSlow").getStationsList();
-			int listSize = westernLineStationsList.size();
-			
-			int index1 = rn.nextInt(listSize);
-			int index2 = rn.nextInt(listSize);
-			
-			if (index1 != index2)
+		    writer = new PrintWriter("Logs/PersonsList.txt", "UTF-8");
+		    
+			while(i <= personsCount)
 			{
-				Station sourceStation = westernLineStationsList.get(index1);
-				Station destinationStation = westernLineStationsList.get(index2);
+				List<Station> westernLineStationsList = LineFactory.getLineInstance("WesternSlow").getStationsList();
+				int listSize = westernLineStationsList.size();
 				
-				Person person = new Person("P" + i, sourceStation, destinationStation);
-				sourceStation.enterStation(person);
+				int index1 = rn.nextInt(listSize);
+				int index2 = rn.nextInt(listSize);
 				
-				String lineName = LineFactory.getLineName(sourceStation, destinationStation);
-				person.setTrainLine(lineName);
-				person.setTrainDirectionUp(LineFactory.getDirection(lineName, sourceStation, destinationStation));
+				if (index1 != index2)
+				{
+					Station sourceStation = westernLineStationsList.get(index1);
+					Station destinationStation = westernLineStationsList.get(index2);
+					
+					Person person = new Person("P" + i, sourceStation, destinationStation);
+					sourceStation.enterStation(person);
+					
+					writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
+					
+					String lineName = LineFactory.getLineName(sourceStation, destinationStation);
+					person.setTrainLine(lineName);
+					person.setTrainDirectionUp(LineFactory.getDirection(lineName, sourceStation, destinationStation));
+					
+					persons.add(person);
+					
+					Thread thread = new Thread(person, "T" + person.getName());
+					person.setThread(thread);
+					
+					thread.start();
+				}
 				
-				persons.add(person);
-				
-				Thread thread = new Thread(person, "T" + person.getName());
-				person.setThread(thread);
-				
-				thread.start();
+				i++;
 			}
-			
-			i++;
+		} //end try
+		catch (IOException e) 
+		{
+		   System.out.println(e);
+		}
+		finally
+		{
+			if (writer != null)
+				writer.close();
 		}
 	}
 	
