@@ -18,12 +18,17 @@ public class LineFactory {
 	private final static String LINESLISTINPUTFILE = "InputFiles/LinesList.txt";
 	private final static String DELIMITER = ",";
 	
-	public LineFactory()
+	private LineFactory()
+	{
+		//do nothing
+	}
+	
+	public static void initializeFactory()
 	{
 		populateLinesMap();
 	}
 	
-	private void populateLinesMap()
+	private static void populateLinesMap()
 	{
 		getLinesListFromInputFile();
 	}

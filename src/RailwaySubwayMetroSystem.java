@@ -1,20 +1,16 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
 
-import Concrete.Intersection;
+//import Concrete.Intersection;
 import Concrete.Line;
 import Concrete.Person;
-import Concrete.Station;
 import Concrete.Train;
 import Factory.LineFactory;
+import Factory.PersonFactory;
 import Factory.StationFactory;
 
 public class RailwaySubwayMetroSystem {
 
-	HashSet<Person> persons = new HashSet<Person>();
+	//HashSet<Person> persons = new HashSet<Person>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,18 +18,18 @@ public class RailwaySubwayMetroSystem {
 		RailwaySubwayMetroSystem railwaySubwaysystem = new RailwaySubwayMetroSystem();
 		ArrayList<Train> trains = new ArrayList<Train>();
 		
-		//initialize stationfactory. this will populate hashmap
-		StationFactory stationFactory = new StationFactory();
+		//initialize StationFactory.
+		StationFactory.initializeFactory();
 		
-		LineFactory lineFactory = new LineFactory();
+		LineFactory.initializeFactory();
 		Line westernSlowLine = LineFactory.getLineInstance("WesternSlow");
-		Line centralSlowLine = LineFactory.getLineInstance("CentralSlow");
+		//Line centralSlowLine = LineFactory.getLineInstance("CentralSlow");
 		Line westernFastLine = LineFactory.getLineInstance("WesternFast");
-		Line centralFastLine = LineFactory.getLineInstance("CentralFast");
+		//Line centralFastLine = LineFactory.getLineInstance("CentralFast");
 		
-		Intersection westernCentralIntersection = new Intersection("Western-Central1", westernSlowLine, centralSlowLine, "Dadar");
+		//Intersection westernCentralIntersection = new Intersection("Western-Central1", westernSlowLine, centralSlowLine, "Dadar");
 		
-		railwaySubwaysystem.addPersons(10000);
+		PersonFactory.randomlyGeneratePersons(10000);
 		
 		Train w1 = new Train("W1", westernSlowLine, true, 1000);        
 		railwaySubwaysystem.startTrain(w1);
@@ -104,7 +100,7 @@ public class RailwaySubwayMetroSystem {
 			}
 			
 			int countOfPeopleNotReachedDestination = 0;
-			for(Person person : persons)
+			for(Person person : PersonFactory.getPersons())
 			{
 				if (!person.hasReachedDestination())
 				{
@@ -123,7 +119,7 @@ public class RailwaySubwayMetroSystem {
 		}
 	}
 	
-	public void addPersons(int personsCount)
+	/*public void addPersons(int personsCount)
 	{
 		int i = 1;
 		Random rn = new Random();
@@ -158,6 +154,6 @@ public class RailwaySubwayMetroSystem {
 			
 			i++;
 		}
-	}
+	}*/
 
 }

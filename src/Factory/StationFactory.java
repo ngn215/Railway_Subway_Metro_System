@@ -14,7 +14,12 @@ public class StationFactory {
 	private static HashMap<String, Station> stationsHashMap = new HashMap<String, Station>();
 	private final static String STATIONSLISTINPUTFILE = "InputFiles/StationsList.txt";
 	
-	public StationFactory()
+	private StationFactory()
+	{
+		//do nothing
+	}
+	
+	public static void initializeFactory()
 	{
 		populateStationsHashMap();
 	}
