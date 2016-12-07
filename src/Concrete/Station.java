@@ -113,16 +113,13 @@ public class Station extends ReentrantLockerUnlocker{
 		
 		//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
 		
-		availablePlatformsSet.add(platformNumber);
-		trainPlatformMap.remove(platformNumber);
-		
-		//HashSet<Person> personsInPlatformSetClone = (HashSet<Person>) personsInPlatformSet.clone();
+		//Interrupting persons first
 		for (Person person : personsInPlatformSet)
 		{
 			//only interrupt running threads
 			if (person.getThread().getState() != Thread.State.WAITING)
 			{
-				System.out.println("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
+				//System.out.println("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
 				person.getThread().interrupt();
 			}
 		}
@@ -209,11 +206,7 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		readLock(trainPlatformMapLock);
 		
-		HashMap<Integer, Train> trainPlatformMapClone = null;
-		if(!trainPlatformMap.isEmpty())
-		{
-			trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone();
-		}
+		HashMap<Integer, Train> trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone();
 		
 		readUnlock(trainPlatformMapLock);
 		
