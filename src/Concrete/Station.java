@@ -124,6 +124,9 @@ public class Station extends ReentrantLockerUnlocker{
 			}
 		}
 		
+		availablePlatformsSet.add(platformNumber);
+		trainPlatformMap.remove(platformNumber);
+		
 		writeUnlock(personsInPlatformSetLock);
 		writeUnlock(trainPlatformMapLock);
 		writeUnlock(availablePlatformsSetLock);
