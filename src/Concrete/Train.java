@@ -338,4 +338,11 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		System.out.println("*** TRIP COMPLETED : " + name + " " + getDirectionName());
 	}
 	
+	public void startTrain()
+	{
+		System.out.println("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---");
+		Thread thread = new Thread(this, "T" + this.name);
+		thread.start();
+	}
+	
 }
