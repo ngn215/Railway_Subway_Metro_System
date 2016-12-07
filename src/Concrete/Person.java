@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 
 public class Person implements Runnable {
@@ -133,44 +134,60 @@ public class Person implements Runnable {
 			{
 				boolean canTakeThisTrain = false;
 				synchronized(sourceStation)
-				{
-					try {
-						sourceStation.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					HashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
-					
-					if(checkThreadInterruption())
-						break;
-					
-					Iterator<Entry<Integer, Train>> iter = trainPlatformMap.entrySet().iterator();
-					
-					if(checkThreadInterruption())
-						break;
-					
-					while (iter.hasNext() && !checkThreadInterruption()) 
+				{					
+					try
 					{
-						Map.Entry<Integer, Train> pair = (Map.Entry<Integer, Train>)iter.next();
-						Train trainFromStationSet = pair.getValue();
-						
-						//System.out.println("inside iterator : " + trainFromStationSet.getName());
-						
-						if(checkThreadInterruption())
-							break;
-
-						canTakeThisTrain = canTakeThisTrain(trainFromStationSet);
+						sourceStation.wait();
 						
 						if(checkThreadInterruption())
 							break;
 						
-						if (canTakeThisTrain && enterTrain(trainFromStationSet))
+						HashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
+						
+						if(checkThreadInterruption() || trainPlatformMap.isEmpty())
+							break;
+						
+						Set<Entry<Integer, Train>> entrySet = trainPlatformMap.entrySet();
+						
+						if(checkThreadInterruption() || entrySet == null)
+							break;
+						
+						Iterator<Entry<Integer, Train>> iter = entrySet.iterator();
+						
+						if(checkThreadInterruption())
+							break;
+						
+						while (iter.hasNext() && !checkThreadInterruption()) 
 						{
-							inTrain = true;
-							//System.out.println("Thread : " + thread.getName() + " has entered train.");
+							Map.Entry<Integer, Train> pair = null;
+							
+							pair = (Map.Entry<Integer, Train>)iter.next();
+							
+							if(checkThreadInterruption() || pair == null)
+								break;
+							
+							Train trainFromStationSet = pair.getValue();
+							
+							if(checkThreadInterruption())
+								break;
+	
+							canTakeThisTrain = canTakeThisTrain(trainFromStationSet);
+							
+							if(checkThreadInterruption())
+								break;
+							
+							if (canTakeThisTrain && enterTrain(trainFromStationSet))
+							{
+								inTrain = true;
+								//System.out.println("Thread : " + thread.getName() + " has entered train.");
+							}
 						}
+					}//end try block
+					catch(Exception e)
+					{
+						System.out.println("<< EXCEPTION in Person while waiting for train>>");
+						//System.out.println(e);
+						e.printStackTrace();
 					}
 				}			
 			}
@@ -180,27 +197,31 @@ public class Person implements Runnable {
 			{
 				synchronized(train)
 				{
-					try {
-						train.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					boolean isTrainAtDestination = false;
-					
-					if (checkThreadInterruption())
-						break;
-					
-					isTrainAtDestination = checkIfTrainAtDestination();
-					
-					if (checkThreadInterruption())
-						break;
-					
-					if (isTrainAtDestination && exitTrain())
+					try 
 					{
-						inTrain = false;
-						//System.out.println("Thread : " + thread.getName() + " has exited from train");
+						train.wait();
+					
+						boolean isTrainAtDestination = false;
+						
+						if (checkThreadInterruption())
+							break;
+						
+						isTrainAtDestination = checkIfTrainAtDestination();
+						
+						if (checkThreadInterruption())
+							break;
+						
+						if (isTrainAtDestination && exitTrain())
+						{
+							inTrain = false;
+							//System.out.println("Thread : " + thread.getName() + " has exited from train");
+						}
+					}
+					catch(Exception e)
+					{
+						System.out.println("<< EXCEPTION in Person while in train>>");
+						//System.out.println(e);
+						e.printStackTrace();
 					}
 				}
 			}
@@ -210,8 +231,8 @@ public class Person implements Runnable {
 	
 	private boolean checkThreadInterruption()
 	{
-		if (Thread.currentThread().isInterrupted())
-			System.out.println("Person : " + this.name + " has been interrupted.");
+		//if (Thread.currentThread().isInterrupted())
+			//System.out.println("Person : " + this.name + " has been interrupted.");
 		
 		return Thread.currentThread().isInterrupted();
 	}
