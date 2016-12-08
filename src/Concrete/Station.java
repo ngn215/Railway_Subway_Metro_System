@@ -48,7 +48,7 @@ public class Station extends ReentrantLockerUnlocker{
 		readLock(personsInPlatformSetLock);
 		readLock(trainPlatformMapLock);
 		
-		System.out.println("STATION STATUS : " + this.name + " Persons : " + this.personsInPlatformSet.size() + " Trains : " + this.trainPlatformMap);
+		System.out.println("STATION STATUS : " + this.name + ", Persons : " + this.personsInPlatformSet.size() + ", Trains : " + this.trainPlatformMap);
 		//System.out.println("Persons counter : " + counter);
 		
 		readUnlock(personsInPlatformSetLock);
