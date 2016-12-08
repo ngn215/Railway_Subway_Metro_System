@@ -185,7 +185,7 @@ public class Person implements Runnable {
 					}//end try block
 					catch(Exception e)
 					{
-						System.out.println("<< EXCEPTION in Person while waiting for train>>");
+						System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
 						//System.out.println(e);
 						e.printStackTrace();
 					}
@@ -219,7 +219,7 @@ public class Person implements Runnable {
 					}
 					catch(Exception e)
 					{
-						System.out.println("<< EXCEPTION in Person while in train>>");
+						System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
 						//System.out.println(e);
 						e.printStackTrace();
 					}
