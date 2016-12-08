@@ -17,51 +17,33 @@ public class PersonFactory {
 		return persons;
 	}
 	
-	public static void randomlyGeneratePersons(int personsCount)
+	public static void randomlyGeneratePersons(int personsCount, String lineName)
 	{
 		int i = 1;
 		Random rn = new Random();
 		PrintWriter writer = null;	
-		List<Station> westernLineStationsList = LineFactory.getLineInstance("WesternSlow").getStationsList();
-		List<Station> centralLineStationsList = LineFactory.getLineInstance("CentralSlow").getStationsList();
-		int listSize;
+		List<Station> stationsList = LineFactory.getLineInstance(lineName).getStationsList();
+		int listSize = stationsList.size();
 		
-		boolean flip = true; //flag to decide whether we are adding person to werstern or central line
 		try
 		{
 		    writer = new PrintWriter("Logs/PersonsList.txt", "UTF-8");
 		    
 			while(i <= personsCount)
 			{
-				if (flip)
-					listSize = westernLineStationsList.size();
-				else
-					listSize = centralLineStationsList.size();
-				
 				int index1 = rn.nextInt(listSize);
 				int index2 = rn.nextInt(listSize);
 				
 				if (index1 != index2)
-				{
-					Station sourceStation, destinationStation;
-					
-					if (flip)
-					{
-						sourceStation = westernLineStationsList.get(index1);
-						destinationStation = westernLineStationsList.get(index2);
-					}
-					else
-					{
-						sourceStation = centralLineStationsList.get(index1);
-						destinationStation = centralLineStationsList.get(index2);
-					}
+				{					
+					Station sourceStation = stationsList.get(index1);
+					Station destinationStation = stationsList.get(index2);
 					
 					Person person = new Person("P" + i, sourceStation, destinationStation);
 					sourceStation.enterStation(person);
 					
 					writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
 					
-					String lineName = LineFactory.getLineName(sourceStation, destinationStation);
 					person.setTrainLine(lineName);
 					person.setTrainDirectionUp(LineFactory.getDirection(lineName, sourceStation, destinationStation));
 					
@@ -74,7 +56,6 @@ public class PersonFactory {
 				}
 				
 				i++;
-				flip = !flip;
 			}
 		} //end try
 		catch (IOException e) 
