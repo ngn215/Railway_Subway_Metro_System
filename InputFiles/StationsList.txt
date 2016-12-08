@@ -5,6 +5,7 @@
 --Blank lines are also ignored by the parser
 --Note : comment and station cannot be placed in the same line.
 ---------------------------------------------------------------------------------------
+------WESTERN------
 Churchgate
 Marine Lines
 Charni Road
@@ -41,13 +42,17 @@ Umroli
 Boisar
 Vangaon
 Dahanu Road
-------------------
+-------------------
+------CENTRAL------
+Chhatrapati Shivaji Terminus
 Masjid
 Sandhurst Road
 Byculla
 Chinchpokli
 Currey Road
 Parel
+Dadar
+Matunga
 Sion
 Kurla
 Vidyavihar
@@ -65,3 +70,32 @@ Kopar
 Dombivli
 Thakurli
 Kalyan
+-------------------
+------HARBOR1------
+Sandhurst Road
+Dockyard Road
+Reay Road
+Cotton Green
+Sewri
+Wadala Road
+Guru Tegh Bahadur Nagar
+Chunabhatti
+Kurla
+Tilak Nagar
+Chembur
+Govandi
+Mankhurd
+Vashi
+Sanpada
+Juinagar
+Nerul
+Seawoods-Darave
+CBD Belapur
+Kharghar
+Mansarovar
+Khandeshwar
+Panvel
+-------------------
+------HARBOR2------
+King's Circle
+Oshiwara
