@@ -18,7 +18,7 @@ public class TrainStatus implements Runnable {
 	
 	public void getTrainsStatus()
 	{		
-		Thread thread = new Thread(this, "StatusThread");
+		Thread thread = new Thread(this, "TrainStatusThread");
 		thread.start();
 	}
 
@@ -42,7 +42,7 @@ public class TrainStatus implements Runnable {
 				train.getTrainStatus();
 			}
 			
-			//below code can be moved to station and person status
+			//below code can be moved to person status
 			
 			/*int countOfPeopleNotReachedDestination = 0;
 			for(Person person : PersonFactory.getPersons())
@@ -54,11 +54,6 @@ public class TrainStatus implements Runnable {
 				}
 			}
 			System.out.println("PERSON STATUS : number of persons yet to reach destination : " + countOfPeopleNotReachedDestination);*/
-			
-//			for(String station : StationFactory.getStationsArray())
-//			{
-//				StationFactory.getStationInstance(station).getStatus();
-//			}
 			
 			System.out.println("-------------------------------------------------------------------");
 		}
