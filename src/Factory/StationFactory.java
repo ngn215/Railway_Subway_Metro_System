@@ -11,7 +11,8 @@ import Concrete.Station;
 
 public class StationFactory {
 
-	private static HashMap<String, Station> stationsHashMap = new HashMap<String, Station>();
+	private static HashMap<String, Station> stationsMap = new HashMap<String, Station>();
+	private static List<Station> stationsList = new ArrayList<Station>();
 	private final static String STATIONSLISTINPUTFILE = "InputFiles/StationsList.txt";
 	
 	private StationFactory()
@@ -19,15 +20,25 @@ public class StationFactory {
 		//do nothing
 	}
 	
+	public static HashMap<String, Station> getStationsMap() 
+	{
+		return stationsMap;
+	}
+	
+	public static List<Station> getStationsList()
+	{
+		return stationsList;
+	}
+
 	public static void initializeFactory()
 	{
-		populateStationsHashMap();
+		populateStationsMapAndList();
 	}
 	
 	public static Station getStationInstance(String stationName)
 	{
-		if (stationsHashMap.containsKey(stationName))
-			return stationsHashMap.get(stationName);
+		if (stationsMap.containsKey(stationName))
+			return stationsMap.get(stationName);
 		else
 		{
 			System.out.println("ERROR : Station Name not in map");
@@ -40,16 +51,25 @@ public class StationFactory {
 		return new Station(stationName, numberOfPlatforms);
 	}
 	
-	private static void populateStationsHashMap()
+	private static void populateStationsMapAndList()
 	{
 		List<String> stations = getStationsListFromInputFile();
 		
-		for(String station : stations)
+		for(String stationName : stations)
 		{
-			if(station.equals("Dadar") || station.equals("Matunga"))
-				stationsHashMap.put(station, createStationInstance(station, 5));
+			Station station;
+			if(stationName.equals("Dadar") || stationName.equals("Matunga"))
+			{
+				station = createStationInstance(stationName, 5);
+				stationsMap.put(stationName, station);
+			}
 			else
-				stationsHashMap.put(station, createStationInstance(station, 2));
+			{
+				station = createStationInstance(stationName, 2);
+				stationsMap.put(stationName, station);
+			}
+			
+			stationsList.add(station);
 		}
 	}
 	
