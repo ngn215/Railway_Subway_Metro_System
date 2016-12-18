@@ -3,7 +3,6 @@ package Factory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ public class PersonFactory {
 
 	private static List<Person> personsList= new ArrayList<Person>();
 	
-	public static List<Person> getPersons() {
+	public static List<Person> getPersonsList() {
 		return personsList;
 	}
 	
