@@ -6,26 +6,28 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import Factory.CustomLoggerFactory;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
 public class Station extends ReentrantLockerUnlocker{
 	
 	private String name;
-	int numberOfPlatforms;
-	HashMap<Integer, Train> trainPlatformMap = new HashMap<Integer, Train>();
-	HashSet<Integer> availablePlatformsSet = new HashSet<Integer>();
-	HashSet<Person> personsInPlatformSet = new HashSet<Person>();
+	private int numberOfPlatforms;
+	private HashMap<Integer, Train> trainPlatformMap = new HashMap<Integer, Train>();
+	private HashSet<Integer> availablePlatformsSet = new HashSet<Integer>();
+	private HashSet<Person> personsInPlatformSet = new HashSet<Person>();
 	//static int counter = 0;
 	private static final ReentrantReadWriteLock trainPlatformMapLock = new ReentrantReadWriteLock(true);
 	private static final ReentrantReadWriteLock availablePlatformsSetLock = new ReentrantReadWriteLock(true);
 	private static final ReentrantReadWriteLock personsInPlatformSetLock = new ReentrantReadWriteLock(true);
-
+	private AsynchronousLogger asyncLogger;
 	
 	public Station(String name, int numberOfPlatforms)
 	{
 		this.name = name;
 		this.numberOfPlatforms = numberOfPlatforms;
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 		
 		initializeAvailablePlatformsHashMap();
 	}
@@ -58,18 +60,18 @@ public class Station extends ReentrantLockerUnlocker{
 	public void enterStation(Person person)
 	{
 		//if person has not yet reached destination then add to set
-		if (this.name != person.destinationStation.name)
+		if (this.name != person.getDestinationStation().name)
 		{	
 			writeLock(personsInPlatformSetLock);
 			
-			//System.out.println("*** PERSON : " + person.name + " is entering " + name + " station. His destination is " + person.destinationStation);
+			asyncLogger.log("*** PERSON : " + person.getName() + " is entering " + name + " station. His destination is " + person.getDestinationStation().getName());
 			personsInPlatformSet.add(person);
 			
 			writeUnlock(personsInPlatformSetLock);
 		}
 		else //person has reached destination. remove him from set.
 		{
-			//System.out.println("*** PERSON : " + person.name + " has reached his destination " + person.destinationStation);
+			asyncLogger.log("Person : " + person.getName() + " has reached his destination " + person.getDestinationStation().getName());
 			exitStation(person);
 			//counter++;
 		}
@@ -79,7 +81,7 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		writeLock(personsInPlatformSetLock);
 		
-		//System.out.println("*** PERSON : " + person.name + " is exiting station ");
+		asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
 		personsInPlatformSet.remove(person);
 		
 		writeUnlock(personsInPlatformSetLock);
@@ -91,7 +93,7 @@ public class Station extends ReentrantLockerUnlocker{
 		writeLock(availablePlatformsSetLock);
 		writeLock(trainPlatformMapLock);
 		
-		//System.out.println("Train : " + train.getName() + " entering station : " + name + " " + System.currentTimeMillis());
+		asyncLogger.log("Train : " + train.getName() + " entering station : " + name);
 		
 		availablePlatformsSet.remove(platformNumber);
 		writeUnlock(availablePlatformsSetLock);
@@ -119,7 +121,7 @@ public class Station extends ReentrantLockerUnlocker{
 			//only interrupt running threads
 			if (person.getThread().getState() != Thread.State.WAITING)
 			{
-				//System.out.println("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
+				asyncLogger.log("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
 				person.getThread().interrupt();
 			}
 		}
