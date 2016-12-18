@@ -2,6 +2,7 @@ package Factory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -11,10 +12,10 @@ import Concrete.Station;
 
 public class PersonFactory {
 
-	private static HashSet<Person> persons = new HashSet<Person>();
+	private static List<Person> personsList= new ArrayList<Person>();
 	
-	public static HashSet<Person> getPersons() {
-		return persons;
+	public static List<Person> getPersons() {
+		return personsList;
 	}
 	
 	public static void randomlyGeneratePersons(int personsCount, String lineName)
@@ -47,7 +48,7 @@ public class PersonFactory {
 					person.setTrainLine(lineName);
 					person.setTrainDirectionUp(LineFactory.getDirection(lineName, sourceStation, destinationStation));
 					
-					persons.add(person);
+					personsList.add(person);
 					
 					Thread thread = new Thread(person, "T" + person.getName());
 					person.setThread(thread);
