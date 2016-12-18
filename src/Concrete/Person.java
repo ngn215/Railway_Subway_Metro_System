@@ -5,19 +5,21 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import Factory.CustomLoggerFactory;
+
 
 public class Person implements Runnable {
 
-	String name;
-	int weight;
-	Station sourceStation;
-	Station destinationStation;
-	String trainLine;
-	boolean trainDirectionUp;
-	boolean reachedDestination;
-	Train train;
-	boolean inTrain;
+	private String name;
+	private Station sourceStation;
+	private Station destinationStation;
+	private String trainLine;
+	private boolean trainDirectionUp;
+	private boolean reachedDestination;
+	private Train train;
+	private boolean inTrain;
 	private Thread thread;
+	private AsynchronousLogger asyncLogger;
 	
 	public Person(String name, Station sourceStation, Station destinationStation)
 	{
@@ -27,6 +29,7 @@ public class Person implements Runnable {
 		
 		this.reachedDestination = false;
 		this.inTrain = false;
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 
 	public synchronized void getPersonStatus()
@@ -39,6 +42,14 @@ public class Person implements Runnable {
 	
 	public String getTrainLine() {
 		return trainLine;
+	}
+
+	public Station getSourceStation() {
+		return sourceStation;
+	}
+
+	public Station getDestinationStation() {
+		return destinationStation;
 	}
 
 	public void setTrainLine(String trainLine) {
@@ -128,7 +139,7 @@ public class Person implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		while (true)
+		while (!reachedDestination)
 		{
 			if (!inTrain) //waiting for train
 			{
@@ -185,9 +196,10 @@ public class Person implements Runnable {
 					}//end try block
 					catch(Exception e)
 					{
-						System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
+						//System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
 						//System.out.println(e);
-						e.printStackTrace();
+						//e.printStackTrace();
+						asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while waiting for train>>" + " " + e, true);
 					}
 				}			
 			}
@@ -219,9 +231,10 @@ public class Person implements Runnable {
 					}
 					catch(Exception e)
 					{
-						System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
+						//System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
 						//System.out.println(e);
-						e.printStackTrace();
+						//e.printStackTrace();
+						asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while in train>>" + " " + e, true);
 					}
 				}
 			}
@@ -231,8 +244,10 @@ public class Person implements Runnable {
 	
 	private boolean checkThreadInterruption()
 	{
+		//logging this was causing problems because during process of logging if another train interrupts this person thread
+		//then it raises interrupted exception in asyncLogger. Station class makes the interrupt call but train initiates it.
 		//if (Thread.currentThread().isInterrupted())
-			//System.out.println("Person : " + this.name + " has been interrupted.");
+			//asyncLogger.log("Person : " + this.name + " has been interrupted.");
 		
 		return Thread.currentThread().isInterrupted();
 	}
