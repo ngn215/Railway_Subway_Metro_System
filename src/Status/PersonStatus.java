@@ -3,18 +3,18 @@ package Status;
 import java.util.ArrayList;
 import java.util.List;
 
-import Concrete.Train;
-import Factory.TrainFactory;
+import Concrete.Person;
+import Concrete.Station;
 import Interface.StatusInterface;
 
-public class TrainStatus implements StatusInterface,Runnable {
+public class PersonStatus implements StatusInterface,Runnable{
 
-	private List<Train> trains = new ArrayList<Train>();
+	private List<Person> personsList = new ArrayList<Person>();
 	private int refreshIntervalms;
 	
-	public TrainStatus(List<Train> trains)
+	public PersonStatus(List<Person> personsList)
 	{
-		this.trains = trains;
+		this.personsList = personsList;
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class TrainStatus implements StatusInterface,Runnable {
 		
 		setRefreshIntervalms(refreshIntervalms);
 		
-		Thread thread = new Thread(this, "TrainStatusThread");
+		Thread thread = new Thread(this, "PersonStatusThread");
 		thread.start();
 	}
 	
@@ -33,12 +33,12 @@ public class TrainStatus implements StatusInterface,Runnable {
 		
 		this.refreshIntervalms = refreshIntervalms;
 	}
-
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		while(TrainFactory.areTrainsRunning())
+		while(true)
 		{
 			try {
 				Thread.sleep(refreshIntervalms);
@@ -47,17 +47,18 @@ public class TrainStatus implements StatusInterface,Runnable {
 				e.printStackTrace();
 			}
 			
-			System.out.println("------------------------T-R-A-I-N---S-T-A-T-U-S-------------------------");
+			System.out.println("------------------P-E-R-S-O-N---S-T-A-T-U-S---------------------");
 			
-			for(Train train : trains)
+			int numberOfPeopleYetToReachDestination = 0;
+			for(Person person : personsList)
 			{
-				//only get status for running trains
-				if (train.isRunning())
-					train.getTrainStatus();
+				if(!person.hasReachedDestination())
+					numberOfPeopleYetToReachDestination++;
 			}
+			
+			System.out.println("Number of people yet to reach destination : " + numberOfPeopleYetToReachDestination);
 			
 			System.out.println("-------------------------------------------------------------------");
 		}
-		
-	}	
+	}
 }
