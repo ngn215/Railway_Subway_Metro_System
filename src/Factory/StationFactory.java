@@ -61,14 +61,17 @@ public class StationFactory {
 			if(stationName.equals("Dadar") || stationName.equals("Matunga"))
 			{
 				station = createStationInstance(stationName, 5);
-				stationsMap.put(stationName, station);
+			}
+			else if(stationName.equals("Churchgate") || stationName.equals("Chhatrapati Shivaji Terminus") 
+					|| stationName.equals("Kalyan"))
+			{
+				station = createStationInstance(stationName, 3);
 			}
 			else
 			{
 				station = createStationInstance(stationName, 2);
-				stationsMap.put(stationName, station);
 			}
-			
+			stationsMap.put(stationName, station);
 			stationsList.add(station);
 		}
 	}
