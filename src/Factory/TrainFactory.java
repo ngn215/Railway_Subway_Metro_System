@@ -8,7 +8,7 @@ import Concrete.Train;
 
 public class TrainFactory {
 
-	private static List<Train> trains = new ArrayList<Train>();
+	private static List<Train> trainsList = new ArrayList<Train>();
 	
 	private TrainFactory()
 	{
@@ -17,16 +17,16 @@ public class TrainFactory {
 	
 	public static List<Train> getTrainsList()
 	{
-		return trains;
+		return trainsList;
 	}
 	
-	public static Train getTrainInstance(String name, String lineName, String direction, int speed, boolean start)
+	public static Train createTrainInstance(String name, String lineName, String direction, int speed, boolean start)
 	{
 		Line line = LineFactory.getLineInstance(lineName);
 		boolean directionUp = direction.equals("Up") ? true : false;
 		
 		Train train = new Train(name, line, directionUp, speed);        
-		trains.add(train);
+		trainsList.add(train);
 		
 		if (start)
 			startTrain(train);
@@ -37,5 +37,16 @@ public class TrainFactory {
 	public static void startTrain(Train train)
 	{
 		train.startTrain();
+	}
+	
+	public static boolean areTrainsRunning()
+	{
+		for(Train train : trainsList)
+		{
+			if (train.isRunning())
+				return true;
+		}
+		
+		return false;
 	}
 }
