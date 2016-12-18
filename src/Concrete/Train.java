@@ -46,6 +46,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		return name;
 	}
 	
+	public Station getCurrentStation() {
+		return currentStation;
+	}
+
 	public String getLineName() {
 		return line.name;
 	}

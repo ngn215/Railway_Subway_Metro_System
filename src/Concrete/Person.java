@@ -92,7 +92,7 @@ public class Person implements Runnable {
 	
 	public boolean checkIfTrainAtDestination()
 	{		
-		if (train.getCurrentStation().equals(destinationStation.getName()))
+		if (train.getCurrentStation().getName().equals(destinationStation.getName()))
 		{
 			return true;
 		}
