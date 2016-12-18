@@ -45,10 +45,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public String getName() {
 		return name;
 	}
-	
-	public Station getCurrentStation() {
-		return currentStation;
-	}
 
 	public String getLineName() {
 		return line.name;
@@ -67,6 +63,11 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public String getDirectionName()
 	{
 		return directionUp ? "^" : "v";
+	}
+	
+	public String getCurrentStationName() 
+	{
+		return currentStation.getName();
 	}
 	
 	private boolean vacancyAvailable()
@@ -123,7 +124,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void getTrainStatus()
 	{
-		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + currentStation.getName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + numberOfTrips);
+		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + numberOfTrips);
 	}
 	
 	public void openDoors()
@@ -191,7 +192,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				return false;
 			}
 			
-			if (!person.getDestinationStation().getName().equals(currentStation.getName()))
+			if (!person.getDestinationStation().getName().equals(getCurrentStationName()))
 			{
 				asyncLogger.log("ERR : Person is getting out at wrong station.", true);
 			}
@@ -204,7 +205,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			noOfPeopleExitingTrain++;
 			
-			asyncLogger.log("Person : " + person.getName() + " exiting train : " + this.name + " at station : " + currentStation.getName());
+			asyncLogger.log("Person : " + person.getName() + " exiting train : " + this.name + " at station : " + getCurrentStationName());
 		}
 		catch(Exception e)
 		{
@@ -240,7 +241,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			noOfPeopleEnteringTrain++;
 			
-			asyncLogger.log("Person : " + person.getName() + " entering train : " + this.name + " from station : " + currentStation.getName());
+			asyncLogger.log("Person : " + person.getName() + " entering train : " + this.name + " from station : " + getCurrentStationName());
 		}
 		catch(Exception e)
 		{
@@ -330,7 +331,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			asyncLogger.log("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain 
 							+ " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " 
-							+ " at station " + currentStation.getName());
+							+ " at station " + getCurrentStationName());
 			
 			//reset values
 			noOfPeopleEnteringTrain = 0;

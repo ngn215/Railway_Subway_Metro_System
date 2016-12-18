@@ -92,7 +92,7 @@ public class Person implements Runnable {
 	
 	public boolean checkIfTrainAtDestination()
 	{		
-		if (train.getCurrentStation().getName().equals(destinationStation.getName()))
+		if (train.getCurrentStationName().equals(destinationStation.getName()))
 		{
 			return true;
 		}
@@ -108,8 +108,8 @@ public class Person implements Runnable {
 		{
 			this.train = train;
 			
-			if (!train.getCurrentStation().equals(sourceStation.getName()))
-				System.out.println("Person : " + name + " at " + sourceStation.getName() + " is entering Train : " + train.getName() + " located at " + train.getCurrentStation());
+			if (!train.getCurrentStationName().equals(sourceStation.getName()))
+				System.out.println("Person : " + name + " at " + sourceStation.getName() + " is entering Train : " + train.getName() + " located at " + train.getCurrentStationName());
 			
 			return true;
 		}
