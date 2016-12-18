@@ -2,6 +2,7 @@ package Concrete;
 import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import Factory.CustomLoggerFactory;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
@@ -11,16 +12,18 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private Line line;
 	private boolean directionUp;
 	private int speed;
-	Station currentStation;
-	int currentPlatformNumber;
-	int numberOfTrips;
+	private Station currentStation;
+	private int currentPlatformNumber;
+	private int numberOfTrips;
 	private final int capacity = 1000;
-	HashSet<Person> personsSet;
+	private HashSet<Person> personsSet;
 	private boolean doorsOpen;
 	private static final ReentrantReadWriteLock personsSetLock = new ReentrantReadWriteLock(true);
 	private static final ReentrantReadWriteLock doorsLock = new ReentrantReadWriteLock(true);
-	int noOfPeopleEnteringTrain = 0;
-	int noOfPeopleExitingTrain = 0;
+	private int noOfPeopleEnteringTrain;
+	private int noOfPeopleExitingTrain;
+	private final Thread thread;
+	private AsynchronousLogger asyncLogger;
 	
 	public Train(String name, Line line, boolean directionUp, int speed)
 	{
@@ -32,6 +35,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		this.personsSet = new HashSet<Person>();
 		this.numberOfTrips = 0;
 		//this.currentStation = line.getFirstStation(directionUp);
+		this.thread = new Thread(this, "T" + name);
+		this.noOfPeopleEnteringTrain = 0;
+		this.noOfPeopleExitingTrain = 0;
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 
 	}
 	
@@ -43,11 +50,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		return line.name;
 	}
 
-	public String getCurrentStation()
-	{
-		return this.currentStation.getName();
-	}	
-	
 	public boolean getDirection() 
 	{
 		return directionUp;
@@ -98,7 +100,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void reverseDirection()
 	{
-		//System.out.println("--- " + this.getName() + " Reversing Direction" + " ---");
+		asyncLogger.log("--- " + name + " Reversing Direction" + " ---");
 		directionUp = !directionUp;
 	}
 	
@@ -117,7 +119,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void getTrainStatus()
 	{
-		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStation() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + numberOfTrips);
+		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + currentStation.getName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + numberOfTrips);
 	}
 	
 	public void openDoors()
@@ -134,7 +136,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	{	
 		writeLock(doorsLock);
 		
-		//System.out.println("Train : " + name + " closing doors" + " " + System.currentTimeMillis());
+		//asyncLogger.log("Train : " + this.name + " closing doors");
 		doorsOpen = false;
 		
 		writeUnlock(doorsLock);
@@ -185,8 +187,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				return false;
 			}
 			
-			if (!person.destinationStation.getName().equals(currentStation.getName()))
-				System.out.println("ERR : Person is getting out at wrong station.");
+			if (!person.getDestinationStation().getName().equals(currentStation.getName()))
+			{
+				asyncLogger.log("ERR : Person is getting out at wrong station.", true);
+			}
 			
 			//exit from train
 			personsSet.remove(person);
@@ -195,6 +199,8 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			currentStation.enterStation(person);
 			
 			noOfPeopleExitingTrain++;
+			
+			asyncLogger.log("Person : " + person.getName() + " exiting train : " + this.name + " at station : " + currentStation.getName());
 		}
 		catch(Exception e)
 		{
@@ -229,6 +235,8 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			personsSet.add(person);
 			
 			noOfPeopleEnteringTrain++;
+			
+			asyncLogger.log("Person : " + person.getName() + " entering train : " + this.name + " from station : " + currentStation.getName());
 		}
 		catch(Exception e)
 		{
@@ -261,7 +269,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			while (platformNumber == -1)
 			{
-				System.out.println("*** Station : " + nextStation.getName() + " not available...." + this.name + " waiting..." + " " + nextStation.printListOfTrainsInPlatforms());
+				asyncLogger.log("*** Station : " + nextStation.getName() + " not available...." + this.name + " waiting..." + " " + nextStation.printListOfTrainsInPlatforms(), true);
 				
 				try {
 					Thread.sleep(1000);
@@ -273,7 +281,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				platformNumber = nextStation.checkPlatformAvailabilty();
 				
 				if (platformNumber != -1)
-					System.out.println("*** Found Empty platform : "+ platformNumber + " for " + this.name);
+					asyncLogger.log("*** Found Empty platform : "+ platformNumber + " for " + this.name, true);
 			}
 			
 			moveTo(nextStation, platformNumber);
@@ -294,7 +302,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				numberOfTrips++;
 			}
 			
-			//int numberOfExistingPersonsInTrain = getNumberOfPersons();
+			int numberOfExistingPersonsInTrain = getNumberOfPersons();
 			
 			//open train doors
 			openDoors();
@@ -307,7 +315,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			//wait for people to enter train
 			try {
-				Thread.sleep(200);
+				Thread.sleep(100);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -316,9 +324,13 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			//close train doors
 			closeDoors();
 			
-			//System.out.println("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain + " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " + " at station " + this.getCurrentStation());
-			//noOfPeopleEnteringTrain = 0;
-			//noOfPeopleExitingTrain = 0;
+			asyncLogger.log("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain 
+							+ " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " 
+							+ " at station " + currentStation.getName());
+			
+			//reset values
+			noOfPeopleEnteringTrain = 0;
+			noOfPeopleExitingTrain = 0;
 			
 			//System.out.println(this.getName() + " " + this.getDirection() + " "+ this.getCurrentStation());
 			try {
@@ -331,18 +343,34 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			currentPlatformNumber = platformNumber;
 		}
 		
+		//System.out.println("Train run complete");
+		
 	}
 	
 	public void tripComplete()
 	{
-		System.out.println("*** TRIP COMPLETED : " + name + " " + getDirectionName());
+		asyncLogger.log("*** TRIP COMPLETED : " + name + " " + getDirectionName(), true);
 	}
 	
 	public void startTrain()
+	{	
+		if (!thread.isAlive())
+		{
+			asyncLogger.log("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---", true);
+			thread.start();
+		}
+		else
+		{
+			asyncLogger.log("--- Train : " + this.name + " ( " + this.getLineName() + " ) " + " is already running !!", true);
+		}
+	}
+	
+	public boolean isRunning()
 	{
-		System.out.println("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---");
-		Thread thread = new Thread(this, "T" + this.name);
-		thread.start();
+		if (thread.isAlive())
+			return true;
+			
+		return false;
 	}
 	
 }
