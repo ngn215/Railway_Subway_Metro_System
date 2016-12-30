@@ -1,11 +1,14 @@
 package Factory;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Station;
 
 
@@ -14,6 +17,7 @@ public class StationFactory {
 	private static HashMap<String, Station> stationsMap = new HashMap<String, Station>();
 	private static List<Station> stationsList = new ArrayList<Station>();
 	private final static String STATIONSLISTINPUTFILE = "InputFiles/StationsList.txt";
+	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	private StationFactory()
 	{
@@ -96,9 +100,10 @@ public class StationFactory {
 				}
 		    }      
 		}
-		catch(Exception e)
+		catch(InputMismatchException | IOException e)
 		{
-			System.out.println(e);
+			asyncLogger.log(e.toString(), true);
+			e.printStackTrace();
 		}
 		finally
 		{
