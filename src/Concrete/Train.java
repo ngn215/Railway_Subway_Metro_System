@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
+import Factory.CustomThreadFactory;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
@@ -35,7 +36,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		this.personsSet = new HashSet<Person>();
 		this.numberOfTrips = 0;
 		//this.currentStation = line.getFirstStation(directionUp);
-		this.thread = new Thread(this, "T" + name);
+		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Train");//new Thread(this, "T" + name);
 		this.noOfPeopleEnteringTrain = 0;
 		this.noOfPeopleExitingTrain = 0;
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
@@ -207,10 +208,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			
 			asyncLogger.log("Person : " + person.getName() + " exiting train : " + this.name + " at station : " + getCurrentStationName());
 		}
-		catch(Exception e)
-		{
-			System.out.println("Exception : " + e);
-		}
 		finally
 		{
 			writeUnlock(personsSetLock);
@@ -242,10 +239,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			noOfPeopleEnteringTrain++;
 			
 			asyncLogger.log("Person : " + person.getName() + " entering train : " + this.name + " from station : " + getCurrentStationName());
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception : " + e);
 		}
 		finally
 		{
@@ -359,7 +352,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void startTrain()
 	{	
-		if (!thread.isAlive())
+		if (!isRunning())
 		{
 			asyncLogger.log("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---", true);
 			thread.start();
