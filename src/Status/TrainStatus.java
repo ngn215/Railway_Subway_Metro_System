@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Concrete.Train;
+import Factory.CustomThreadFactory;
 import Factory.TrainFactory;
 import Interface.StatusInterface;
 
@@ -23,7 +24,7 @@ public class TrainStatus implements StatusInterface,Runnable {
 		
 		setRefreshIntervalms(refreshIntervalms);
 		
-		Thread thread = new Thread(this, "TrainStatusThread");
+		Thread thread = CustomThreadFactory.getThread(this, "TrainStatusThread", "TrainStatus");
 		thread.start();
 	}
 	
