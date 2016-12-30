@@ -1,4 +1,5 @@
 package Concrete;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -6,6 +7,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Factory.CustomLoggerFactory;
+import Factory.CustomThreadFactory;
+import Factory.LineFactory;
 
 
 public class Person implements Runnable {
@@ -18,7 +21,7 @@ public class Person implements Runnable {
 	private boolean reachedDestination;
 	private Train train;
 	private boolean inTrain;
-	private Thread thread;
+	private final Thread thread;
 	private AsynchronousLogger asyncLogger;
 	
 	public Person(String name, Station sourceStation, Station destinationStation)
@@ -29,6 +32,9 @@ public class Person implements Runnable {
 		
 		this.reachedDestination = false;
 		this.inTrain = false;
+		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
+		this.trainDirectionUp = LineFactory.getDirection(trainLine, sourceStation, destinationStation);
+		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Person");
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 
@@ -52,24 +58,12 @@ public class Person implements Runnable {
 		return destinationStation;
 	}
 
-	public void setTrainLine(String trainLine) {
-		this.trainLine = trainLine;
-	}
-
 	public boolean isDirectionUp() {
 		return trainDirectionUp;
-	}
-
-	public void setTrainDirectionUp(boolean trainDirectionUp) {
-		this.trainDirectionUp = trainDirectionUp;
 	}
 	
 	public Thread getThread() {
 		return thread;
-	}
-
-	public void setThread(Thread thread) {
-		this.thread = thread;
 	}
 	
 	public boolean hasReachedDestination() {
@@ -194,7 +188,7 @@ public class Person implements Runnable {
 							}
 						}
 					}//end try block
-					catch(Exception e)
+					catch(InterruptedException|ConcurrentModificationException e)
 					{
 						//System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
 						//System.out.println(e);
@@ -229,7 +223,7 @@ public class Person implements Runnable {
 							//System.out.println("Thread : " + thread.getName() + " has exited from train");
 						}
 					}
-					catch(Exception e)
+					catch(InterruptedException|ConcurrentModificationException e)
 					{
 						//System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
 						//System.out.println(e);
@@ -250,5 +244,13 @@ public class Person implements Runnable {
 			//asyncLogger.log("Person : " + this.name + " has been interrupted.");
 		
 		return Thread.currentThread().isInterrupted();
+	}
+	
+	public void startPersonThread()
+	{	
+		if (!thread.isAlive())
+		{
+			thread.start();
+		}
 	}
 }
