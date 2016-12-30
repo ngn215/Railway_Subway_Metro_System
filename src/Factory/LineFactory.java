@@ -3,10 +3,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 import Concrete.Line;
@@ -14,7 +11,8 @@ import Concrete.Station;
 
 public class LineFactory {
 	
-	private static HashMap<String, Line> linesMap = new HashMap<String, Line>();
+	private final static HashMap<String, Line> linesMap = new HashMap<String, Line>();
+	private final static List<Line> linesList = new ArrayList<Line>();
 	private final static String LINESLISTINPUTFILE = "InputFiles/LinesList.txt";
 	private final static String DELIMITER = ",";
 	
@@ -44,6 +42,11 @@ public class LineFactory {
 			System.out.println("ERROR : " + lineName + " not initialized !!");
 			return null;
 		}
+	}
+	
+	public static List<Line> getLinesList()
+	{
+		return linesList;
 	}
 	
 	private static void getLinesListFromInputFile()
@@ -82,6 +85,7 @@ public class LineFactory {
 					
 					Line line = new Line(lineName, stationsList);
 					linesMap.put(lineName, line);
+					linesList.add(line);
 					//line.printStationsList();
 				}
 		    }      
@@ -98,23 +102,18 @@ public class LineFactory {
 	
 	public static String getLineName(Station sourceStationName, Station destinationStationName)
 	{
-		if(linesMap.isEmpty()) 
+		if(linesList.isEmpty()) 
 		{
-			System.out.println("ERROR : linesMap not initialized !!");
+			System.out.println("ERROR : lines have not been initialized !!");
 			return null;
 		}
 		
-		Iterator<Entry<String, Line>> iter = linesMap.entrySet().iterator();
-		while (iter.hasNext()) 
+		for(Line line : linesList) 
 		{
-			Map.Entry<String,Line> pair = (Map.Entry<String,Line>)iter.next();
-			Line line = (Line) pair.getValue();
-			
 			//System.out.println(line.hasStation(sourceStationName) + " " + line.hasStation(sourceStationName));
 			
 			if (line.hasStation(sourceStationName) && line.hasStation(destinationStationName))
 				return line.getName();
-			
 		}
 		
 		return null;
