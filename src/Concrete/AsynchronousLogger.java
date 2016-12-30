@@ -26,14 +26,15 @@ public class AsynchronousLogger implements Runnable {
 		//sb.append(" ");
 		//sb.append(System.currentTimeMillis());
 		
+		if (printToConsole)
+        {
+        	System.out.println(message);
+        }
+        
+        String dateStr = getFormattedDate();
+		
 		try 
 		{
-            if (printToConsole)
-            {
-            	System.out.println(message);
-            }
-            
-            String dateStr = getFormattedDate();
             sharedQueue.put(dateStr + " \t " + message);
         } 
 		catch (InterruptedException ex) {
@@ -69,7 +70,7 @@ public class AsynchronousLogger implements Runnable {
 	            		writer.println(text);
 	        }
 		}
-		catch (Exception e) 
+		catch (InterruptedException e) 
 		{
 			Logger.getLogger(AsynchronousLogger.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -86,7 +87,8 @@ public class AsynchronousLogger implements Runnable {
 			return new PrintWriter(logFileName, "UTF-8");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			Logger.getLogger(AsynchronousLogger.class.getName()).log(Level.SEVERE, null, e);
 		}
 		
 		return null;
