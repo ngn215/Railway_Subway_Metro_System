@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -14,16 +15,13 @@ import Status.TrainStatus;
 
 public class RailwaySubwayMetroSystem {
 
-	private static AsynchronousLogger asyncLogger;
+	private static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		try
 		{
-			//get asynchronous logger instance
-			asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
-			
 			//initialize single thread executor service
 			ExecutorService executor = Executors.newSingleThreadExecutor();
 			
@@ -82,8 +80,8 @@ public class RailwaySubwayMetroSystem {
 		catch(Exception e)
 		{
 			asyncLogger.log("Exception in main class" , true);
-			asyncLogger.log(e.toString());
 			e.printStackTrace();
+			asyncLogger.log(Arrays.toString(e.getStackTrace()));
 		}
 	}
 	
@@ -99,7 +97,7 @@ public class RailwaySubwayMetroSystem {
 		}
 		catch (InterruptedException e) 
 		{
-		    System.err.println("Tasks interrupted");
+		    asyncLogger.log("Tasks interrupted" , true);
 		}
 		finally 
 		{
