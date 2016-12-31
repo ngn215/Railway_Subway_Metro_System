@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class LockFactory {
 	
-	private static int lockCount = 0;
+	private volatile static int lockCount = 0;
 
 	public static ReentrantReadWriteLock getReentrantReadWriteLockInstance(boolean fair)
 	{
