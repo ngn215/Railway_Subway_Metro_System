@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
+import Factory.LockFactory;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
@@ -18,15 +19,18 @@ public class Station extends ReentrantLockerUnlocker{
 	private HashSet<Integer> availablePlatformsSet = new HashSet<Integer>();
 	private HashSet<Person> personsInPlatformSet = new HashSet<Person>();
 	//static int counter = 0;
-	private static final ReentrantReadWriteLock trainPlatformMapLock = new ReentrantReadWriteLock(true);
-	private static final ReentrantReadWriteLock availablePlatformsSetLock = new ReentrantReadWriteLock(true);
-	private static final ReentrantReadWriteLock personsInPlatformSetLock = new ReentrantReadWriteLock(true);
-	private AsynchronousLogger asyncLogger;
+	private final ReentrantReadWriteLock trainPlatformMapLock;
+	private final ReentrantReadWriteLock availablePlatformsSetLock;
+	private final ReentrantReadWriteLock personsInPlatformSetLock;
+	private final AsynchronousLogger asyncLogger;
 	
 	public Station(String name, int numberOfPlatforms)
 	{
 		this.name = name;
 		this.numberOfPlatforms = numberOfPlatforms;
+		this.trainPlatformMapLock = LockFactory.getReentrantReadWriteLockInstance(true);
+		this.availablePlatformsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
+		this.personsInPlatformSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 		
 		initializeAvailablePlatformsHashMap();
