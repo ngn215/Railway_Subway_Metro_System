@@ -56,7 +56,7 @@ public class AsynchronousLogger implements Runnable {
 	@Override
 	public void run() {
 		
-		System.out.println("Starting " + AsynchronousLogger.class.getName() + "...");
+		//System.out.println("Starting " + AsynchronousLogger.class.getName() + "...");
 		writer = createLogFile(LOGFILENAME);
 		
 		try
