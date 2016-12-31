@@ -1,6 +1,5 @@
 package Status;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,9 +12,9 @@ import Interface.StatusInterface;
 
 public class TrainStatus implements StatusInterface,Runnable {
 
-	private List<Train> trains = new ArrayList<Train>();
-	private int refreshIntervalms;
+	private final List<Train> trains;
 	private final AsynchronousLogger asyncLogger;
+	private int refreshIntervalms;
 	
 	public TrainStatus(List<Train> trains)
 	{

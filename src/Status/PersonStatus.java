@@ -1,6 +1,5 @@
 package Status;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +14,9 @@ import Interface.StatusInterface;
 
 public class PersonStatus implements StatusInterface,Runnable{
 
-	private List<Person> personsList = new ArrayList<Person>();
-	private int refreshIntervalms;
+	private final List<Person> personsList;
 	private final AsynchronousLogger asyncLogger;
+	private int refreshIntervalms;
 	
 	public PersonStatus(List<Person> personsList)
 	{

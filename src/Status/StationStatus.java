@@ -1,6 +1,5 @@
 package Status;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,9 +11,9 @@ import Interface.StatusInterface;
 
 public class StationStatus implements StatusInterface,Runnable{
 
-	private List<Station> stationsList = new ArrayList<Station>();
-	private int refreshIntervalms;
+	private final List<Station> stationsList;
 	private final AsynchronousLogger asyncLogger;
+	private int refreshIntervalms;
 	
 	public StationStatus(List<Station> stationsList)
 	{

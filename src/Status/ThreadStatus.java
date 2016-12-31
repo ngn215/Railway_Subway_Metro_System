@@ -9,8 +9,8 @@ import Interface.StatusInterface;
 
 public class ThreadStatus implements StatusInterface, Runnable {
 
-	private int refreshIntervalms;
 	private final AsynchronousLogger asyncLogger;
+	private int refreshIntervalms;
 	
 	public ThreadStatus()
 	{
