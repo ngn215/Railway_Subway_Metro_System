@@ -1,9 +1,12 @@
 package Status;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Train;
+import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
 import Factory.TrainFactory;
 import Interface.StatusInterface;
@@ -12,10 +15,12 @@ public class TrainStatus implements StatusInterface,Runnable {
 
 	private List<Train> trains = new ArrayList<Train>();
 	private int refreshIntervalms;
+	private final AsynchronousLogger asyncLogger;
 	
 	public TrainStatus(List<Train> trains)
 	{
 		this.trains = trains;
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 	
 	@Override
@@ -46,6 +51,7 @@ public class TrainStatus implements StatusInterface,Runnable {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				asyncLogger.log(Arrays.toString(e.getStackTrace()));
 			}
 			
 			System.out.println("------------------------T-R-A-I-N---S-T-A-T-U-S-------------------------");

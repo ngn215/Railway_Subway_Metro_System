@@ -1,15 +1,20 @@
 package Status;
 
+import java.util.Arrays;
+
+import Concrete.AsynchronousLogger;
+import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
 import Interface.StatusInterface;
 
 public class ThreadStatus implements StatusInterface, Runnable {
 
 	private int refreshIntervalms;
+	private final AsynchronousLogger asyncLogger;
 	
 	public ThreadStatus()
 	{
-		
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 	
 	@Override
@@ -41,6 +46,7 @@ public class ThreadStatus implements StatusInterface, Runnable {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				asyncLogger.log(Arrays.toString(e.getStackTrace()));
 			}
 			
 			System.out.println("-----------------T-H-R-E-A-D-----S-T-A-T-U-S-------------------");
