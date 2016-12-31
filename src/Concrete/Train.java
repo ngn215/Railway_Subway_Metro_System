@@ -24,7 +24,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private int noOfPeopleEnteringTrain;
 	private int noOfPeopleExitingTrain;
 	private final Thread thread;
-	private AsynchronousLogger asyncLogger;
+	private final AsynchronousLogger asyncLogger;
 	
 	public Train(String name, Line line, boolean directionUp, int speed)
 	{
@@ -88,18 +88,34 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public int noOfVacanciesAvailable()
 	{
-		readLock(personsSetLock);
-		int noOfPersons = personsSet.size();
-		readUnlock(personsSetLock);
+		int noOfPersons = 0;
+		
+		try
+		{
+			readLock(personsSetLock);
+			noOfPersons = personsSet.size();
+		}
+		finally
+		{
+			readUnlock(personsSetLock);
+		}		
 		
 		return capacity - noOfPersons;
 	}
 	
 	public int getNumberOfPersons()
 	{
-		readLock(personsSetLock);
-		int noOfPersons = personsSet.size();
-		readUnlock(personsSetLock);
+		int noOfPersons = 0;
+		
+		try
+		{
+			readLock(personsSetLock);
+			noOfPersons = personsSet.size();
+		}
+		finally
+		{
+			readUnlock(personsSetLock);
+		}
 		
 		return noOfPersons;
 	}
@@ -130,22 +146,32 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void openDoors()
 	{	
-		writeLock(doorsLock);
-		
-		//System.out.println("Train : " + name + " openining doors" + " " + System.currentTimeMillis());
-		doorsOpen = true;
-		
-		writeUnlock(doorsLock);
+		try
+		{
+			writeLock(doorsLock);
+			
+			//System.out.println("Train : " + name + " openining doors" + " " + System.currentTimeMillis());
+			doorsOpen = true;
+		}
+		finally
+		{		
+			writeUnlock(doorsLock);
+		}
 	}
 	
 	public void closeDoors()
 	{	
-		writeLock(doorsLock);
+		try
+		{
+			writeLock(doorsLock);
 		
-		//asyncLogger.log("Train : " + this.name + " closing doors");
-		doorsOpen = false;
-		
-		writeUnlock(doorsLock);
+			//asyncLogger.log("Train : " + this.name + " closing doors");
+			doorsOpen = false;
+		}
+		finally
+		{
+			writeUnlock(doorsLock);
+		}
 	} 
 	
 	private boolean areDoorsOpen()
