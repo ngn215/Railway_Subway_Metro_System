@@ -37,20 +37,20 @@ public class RailwaySubwayMetroSystem {
 			PersonFactory.randomlyGeneratePersons(2000, "HarborAndheri");
 			PersonFactory.closePersonsListFile();
 			
-			TrainFactory.createTrainInstance("W1", "WesternSlow", "Up", 1000, true);
-			TrainFactory.createTrainInstance("W2", "WesternFast", "Up", 500, true);
-			TrainFactory.createTrainInstance("C1", "CentralSlow", "Up", 1000, true);
-			TrainFactory.createTrainInstance("C2", "CentralFast", "Down", 100, true);
+			TrainFactory.createTrainInstance("W1", "WesternSlow", "Up", 1000, true, 20);
+			TrainFactory.createTrainInstance("W2", "WesternFast", "Up", 500, true, 20);
+			TrainFactory.createTrainInstance("C1", "CentralSlow", "Up", 1000, true, 20);
+			TrainFactory.createTrainInstance("C2", "CentralFast", "Down", 100, true, 20);
 			
 			Thread.sleep(3000);
 			
-			TrainFactory.createTrainInstance("W3", "WesternSlow", "Down", 1500, true);
-			TrainFactory.createTrainInstance("C3", "CentralSlow", "Up", 1500, true);
+			TrainFactory.createTrainInstance("W3", "WesternSlow", "Down", 1500, true, 20);
+			TrainFactory.createTrainInstance("C3", "CentralSlow", "Up", 1500, true, 20);
 			
 			Thread.sleep(3000);
 			
-			TrainFactory.createTrainInstance("W3", "HarborPanvel", "Down", 1500, true);
-			TrainFactory.createTrainInstance("C3", "HarborAndheri", "Up", 1500, true);
+			TrainFactory.createTrainInstance("W3", "HarborPanvel", "Down", 1500, true, 20);
+			TrainFactory.createTrainInstance("C3", "HarborAndheri", "Up", 1500, true, 20);
 			
 			TrainStatus trainStatus = new TrainStatus(TrainFactory.getTrainsList());
 			trainStatus.getStatus(60000);

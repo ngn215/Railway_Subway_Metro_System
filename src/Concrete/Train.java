@@ -27,14 +27,16 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private final ReentrantReadWriteLock doorsLock;
 	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
+	private final int totalTrips;
 	
-	public Train(String name, Line line, boolean directionUp, int speed)
+	public Train(String name, Line line, boolean directionUp, int speed, int totalTrips)
 	{
 		this.name = name;
 		this.line = line;
 		this.directionUp = directionUp;
 		this.speed = speed;
 		this.capacity = 1000;
+		this.totalTrips = totalTrips;
 		
 		this.personsSet = new HashSet<Person>();
 		this.numberOfTrips = 0;
@@ -324,8 +326,8 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			{
 				this.reverseDirection();		
 				
-				//stop after 10 trips
-				if (numberOfTrips == 10)
+				//stop after totalTrips
+				if (numberOfTrips > totalTrips)
 				{
 					tripComplete();
 					break;
