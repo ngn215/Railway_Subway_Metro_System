@@ -1,11 +1,14 @@
 package Status;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Line;
 import Concrete.Person;
+import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
 import Factory.LineFactory;
 import Interface.StatusInterface;
@@ -14,10 +17,12 @@ public class PersonStatus implements StatusInterface,Runnable{
 
 	private List<Person> personsList = new ArrayList<Person>();
 	private int refreshIntervalms;
+	private final AsynchronousLogger asyncLogger;
 	
 	public PersonStatus(List<Person> personsList)
 	{
 		this.personsList = personsList;
+		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 	
 	@Override
@@ -48,6 +53,7 @@ public class PersonStatus implements StatusInterface,Runnable{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				asyncLogger.log(Arrays.toString(e.getStackTrace()));
 			}
 			
 			System.out.println("------------------P-E-R-S-O-N---S-T-A-T-U-S---------------------");
