@@ -15,8 +15,8 @@ import Concrete.Station;
 
 public class StationFactory {
 
-	private static HashMap<String, Station> stationsMap = new HashMap<String, Station>();
-	private static List<Station> stationsList = new ArrayList<Station>();
+	private final static HashMap<String, Station> stationsMap = new HashMap<String, Station>();
+	private final static List<Station> stationsList = new ArrayList<Station>();
 	private final static String STATIONSLISTINPUTFILE = "InputFiles/StationsList.txt";
 	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	

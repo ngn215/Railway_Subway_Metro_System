@@ -8,7 +8,7 @@ import Concrete.Train;
 
 public class TrainFactory {
 
-	private static List<Train> trainsList = new ArrayList<Train>();
+	private final static List<Train> trainsList = new ArrayList<Train>();
 	
 	private TrainFactory()
 	{

@@ -13,7 +13,7 @@ public class CustomThreadFactory {
 	//https://examples.javacodegeeks.com/core-java/util/concurrent/threadfactory/java-util-concurrent-threadfactory-example/
 			
 	private static int threadCount = 0;
-	private static HashMap<String,List<Thread>> entityThreadMap = new HashMap<String,List<Thread>>();
+	private static final HashMap<String,List<Thread>> entityThreadMap = new HashMap<String,List<Thread>>();
 	
 	private CustomThreadFactory()
 	{
