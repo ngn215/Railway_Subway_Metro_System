@@ -28,9 +28,11 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		this.name = name;
 		this.numberOfPlatforms = numberOfPlatforms;
+		
 		this.trainPlatformMapLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		this.availablePlatformsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		this.personsInPlatformSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
+		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 		
 		initializeAvailablePlatformsHashMap();
