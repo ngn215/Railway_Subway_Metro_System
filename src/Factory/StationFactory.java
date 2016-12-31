@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class StationFactory {
 			return stationsMap.get(stationName);
 		else
 		{
-			System.out.println("ERROR : Station Name not in map");
+			asyncLogger.log("ERROR : Station Name not in map", true);
 			return null;
 		}
 	}
@@ -102,8 +103,9 @@ public class StationFactory {
 		}
 		catch(InputMismatchException | IOException e)
 		{
-			asyncLogger.log(e.toString(), true);
+			System.out.println(e);
 			e.printStackTrace();
+			asyncLogger.log(Arrays.toString(e.getStackTrace()));
 		}
 		finally
 		{

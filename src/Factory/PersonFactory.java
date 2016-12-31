@@ -4,9 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Person;
 import Concrete.Station;
 
@@ -16,6 +18,7 @@ public class PersonFactory {
 	private final static String PERSONSLISTFILE = "Logs/PersonsList.txt";
 	private final static String ENCODINGFILE = "UTF-8";
 	private final static PrintWriter writer = createPersonsListFile(PERSONSLISTFILE, ENCODINGFILE);
+	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	private PersonFactory()
 	{
@@ -65,6 +68,7 @@ public class PersonFactory {
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			asyncLogger.log(Arrays.toString(e.getStackTrace()));
 		}
 		
 		return writer;

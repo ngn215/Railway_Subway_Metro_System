@@ -2,10 +2,12 @@ package Factory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Line;
 import Concrete.Station;
 
@@ -15,6 +17,7 @@ public class LineFactory {
 	private final static List<Line> linesList = new ArrayList<Line>();
 	private final static String LINESLISTINPUTFILE = "InputFiles/LinesList.txt";
 	private final static String DELIMITER = ",";
+	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	private LineFactory()
 	{
@@ -39,7 +42,7 @@ public class LineFactory {
 		}
 		else
 		{
-			System.out.println("ERROR : " + lineName + " not initialized !!");
+			asyncLogger.log("ERROR : " + lineName + " not initialized !!", true);
 			return null;
 		}
 	}
@@ -93,6 +96,8 @@ public class LineFactory {
 		catch(Exception e)
 		{
 			System.out.println(e);
+			e.printStackTrace();
+			asyncLogger.log(Arrays.toString(e.getStackTrace()));
 		}
 		finally
 		{
@@ -104,7 +109,7 @@ public class LineFactory {
 	{
 		if(linesList.isEmpty()) 
 		{
-			System.out.println("ERROR : lines have not been initialized !!");
+			asyncLogger.log("ERROR : lines have not been initialized !!", true);
 			return null;
 		}
 		
@@ -123,7 +128,7 @@ public class LineFactory {
 	{
 		if(linesMap.isEmpty() || !linesMap.containsKey(lineName))
 		{
-			System.out.println("ERROR : " + lineName + " is not initialized in the map");
+			asyncLogger.log("ERROR : " + lineName + " is not initialized in the map", true);
 			return false;
 		}
 		
