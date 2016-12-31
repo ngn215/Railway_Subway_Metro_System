@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
+import Factory.LockFactory;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
@@ -20,8 +21,8 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private final int capacity = 1000;
 	private HashSet<Person> personsSet;
 	private boolean doorsOpen;
-	private static final ReentrantReadWriteLock personsSetLock = new ReentrantReadWriteLock(true);
-	private static final ReentrantReadWriteLock doorsLock = new ReentrantReadWriteLock(true);
+	private final ReentrantReadWriteLock personsSetLock;
+	private final ReentrantReadWriteLock doorsLock;
 	private int noOfPeopleEnteringTrain;
 	private int noOfPeopleExitingTrain;
 	private final Thread thread;
@@ -40,6 +41,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Train");//new Thread(this, "T" + name);
 		this.noOfPeopleEnteringTrain = 0;
 		this.noOfPeopleExitingTrain = 0;
+		
+		this.personsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
+		this.doorsLock = LockFactory.getReentrantReadWriteLockInstance(true);
+		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 
 	}
