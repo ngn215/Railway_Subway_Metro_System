@@ -45,8 +45,14 @@ public class PersonStatus implements StatusInterface,Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		
+		int numberOfPeopleYetToReachDestination;
+		HashMap<String, Integer> linePeopleMap = new HashMap<String, Integer>();
+		
 		while(true)
 		{
+			numberOfPeopleYetToReachDestination = 0;
+			linePeopleMap.clear();
+			
 			try {
 				Thread.sleep(refreshIntervalms);
 			} catch (InterruptedException e) {
@@ -56,9 +62,6 @@ public class PersonStatus implements StatusInterface,Runnable{
 			}
 			
 			System.out.println("------------------P-E-R-S-O-N---S-T-A-T-U-S---------------------");
-			
-			int numberOfPeopleYetToReachDestination = 0;
-			HashMap<String, Integer> linePeopleMap = new HashMap<String, Integer>();
 			
 			//populating map with zero values
 			for(Line line : LineFactory.getLinesList())
