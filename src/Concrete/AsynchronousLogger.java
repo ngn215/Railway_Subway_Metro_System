@@ -13,11 +13,20 @@ import java.util.logging.Logger;
 
 public class AsynchronousLogger implements Runnable {
 	
-	private final static String LOGFILENAME = "Logs/LogFile.log";
-	private final static BlockingQueue<String> sharedQueue = new LinkedBlockingQueue<String>();
-	private PrintWriter writer;
-	private boolean shutdown = false;
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	private final String LOGFILENAME;
+	private final BlockingQueue<String> sharedQueue;
+	private final PrintWriter writer;
+	private final SimpleDateFormat sdf;
+	private boolean shutdown;
+	
+	public AsynchronousLogger()
+	{
+		this.LOGFILENAME = "Logs/LogFile.log";
+		this.sharedQueue = new LinkedBlockingQueue<String>();
+		this.writer = createLogFile(LOGFILENAME);
+		this.sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		this.shutdown = false;
+	}
 	
 	public void log(String message, boolean printToConsole)
 	{
@@ -57,7 +66,6 @@ public class AsynchronousLogger implements Runnable {
 	public void run() {
 		
 		//System.out.println("Starting " + AsynchronousLogger.class.getName() + "...");
-		writer = createLogFile(LOGFILENAME);
 		
 		try
 		{
