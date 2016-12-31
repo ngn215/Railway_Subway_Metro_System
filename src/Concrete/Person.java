@@ -22,7 +22,7 @@ public class Person implements Runnable {
 	private Train train;
 	private boolean inTrain;
 	private final Thread thread;
-	private AsynchronousLogger asyncLogger;
+	private final AsynchronousLogger asyncLogger;
 	
 	public Person(String name, Station sourceStation, Station destinationStation)
 	{

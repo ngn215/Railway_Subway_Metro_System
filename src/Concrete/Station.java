@@ -14,10 +14,10 @@ import LockerClasses.ReentrantLockerUnlocker;
 public class Station extends ReentrantLockerUnlocker{
 	
 	private String name;
-	private int numberOfPlatforms;
-	private HashMap<Integer, Train> trainPlatformMap = new HashMap<Integer, Train>();
-	private HashSet<Integer> availablePlatformsSet = new HashSet<Integer>();
-	private HashSet<Person> personsInPlatformSet = new HashSet<Person>();
+	private final int numberOfPlatforms;
+	private final HashMap<Integer, Train> trainPlatformMap;
+	private final HashSet<Integer> availablePlatformsSet;
+	private final HashSet<Person> personsInPlatformSet;
 	//static int counter = 0;
 	private final ReentrantReadWriteLock trainPlatformMapLock;
 	private final ReentrantReadWriteLock availablePlatformsSetLock;
@@ -28,6 +28,9 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		this.name = name;
 		this.numberOfPlatforms = numberOfPlatforms;
+		this.trainPlatformMap = new HashMap<Integer, Train>();
+		this.availablePlatformsSet = new HashSet<Integer>();
+		this.personsInPlatformSet = new HashSet<Person>();
 		
 		this.trainPlatformMapLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		this.availablePlatformsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);

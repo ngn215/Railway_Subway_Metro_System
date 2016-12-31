@@ -14,17 +14,17 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private String name;
 	private Line line;
 	private boolean directionUp;
-	private int speed;
 	private Station currentStation;
 	private int currentPlatformNumber;
 	private int numberOfTrips;
-	private final int capacity = 1000;
-	private HashSet<Person> personsSet;
 	private boolean doorsOpen;
-	private final ReentrantReadWriteLock personsSetLock;
-	private final ReentrantReadWriteLock doorsLock;
 	private int noOfPeopleEnteringTrain;
 	private int noOfPeopleExitingTrain;
+	private final int speed;
+	private final int capacity;
+	private final HashSet<Person> personsSet;
+	private final ReentrantReadWriteLock personsSetLock;
+	private final ReentrantReadWriteLock doorsLock;
 	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
 	
@@ -34,6 +34,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		this.line = line;
 		this.directionUp = directionUp;
 		this.speed = speed;
+		this.capacity = 1000;
 		
 		this.personsSet = new HashSet<Person>();
 		this.numberOfTrips = 0;
@@ -54,7 +55,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	}
 
 	public String getLineName() {
-		return line.name;
+		return line.getName();
 	}
 
 	public boolean getDirection() 

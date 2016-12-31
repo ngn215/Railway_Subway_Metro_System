@@ -5,14 +5,15 @@ import java.util.List;
 
 public class Line {
 	
-	String name;
-	List<Station> stationsList;
-	private HashMap<Station, Integer> stationsHashMap = new HashMap<Station, Integer>();
+	private String name;
+	private final List<Station> stationsList;
+	private final HashMap<Station, Integer> stationsHashMap;
 	
 	public Line(String name, List<Station> stationsList)
 	{
 		this.name = name;
 		this.stationsList = stationsList;
+		this.stationsHashMap = new HashMap<Station, Integer>();
 		
 		buildHashMap();
 	}
