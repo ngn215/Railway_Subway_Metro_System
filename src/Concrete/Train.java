@@ -1,4 +1,5 @@
 package Concrete;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -300,6 +301,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					asyncLogger.log(Arrays.toString(e.getStackTrace()));
 				}
 				
 				platformNumber = nextStation.checkPlatformAvailabilty();
@@ -340,9 +342,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			//wait for people to enter train
 			try {
 				Thread.sleep(100);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e.printStackTrace();
+				asyncLogger.log(Arrays.toString(e.getStackTrace()));
 			}
 			
 			//close train doors
@@ -362,6 +365,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				asyncLogger.log(Arrays.toString(e.getStackTrace()));
 			}
 		
 			currentPlatformNumber = platformNumber;
