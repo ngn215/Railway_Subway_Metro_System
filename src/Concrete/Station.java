@@ -56,14 +56,19 @@ public class Station extends ReentrantLockerUnlocker{
 	
 	public void getStatus()
 	{
-		readLock(personsInPlatformSetLock);
-		readLock(trainPlatformMapLock);
+		try
+		{
+			readLock(personsInPlatformSetLock);
+			readLock(trainPlatformMapLock);
 		
-		System.out.println("STATION STATUS : " + this.name + ", Persons : " + this.personsInPlatformSet.size() + ", Trains : " + this.trainPlatformMap);
-		//System.out.println("Persons counter : " + counter);
-		
-		readUnlock(personsInPlatformSetLock);
-		readUnlock(trainPlatformMapLock);
+			System.out.println("STATION STATUS : " + this.name + ", Persons : " + this.personsInPlatformSet.size() + ", Trains : " + this.trainPlatformMap);
+			//System.out.println("Persons counter : " + counter);
+		}
+		finally
+		{
+			readUnlock(personsInPlatformSetLock);
+			readUnlock(trainPlatformMapLock);
+		}
 	}
 	
 	public void enterStation(Person person)
@@ -71,12 +76,17 @@ public class Station extends ReentrantLockerUnlocker{
 		//if person has not yet reached destination then add to set
 		if (this.name != person.getDestinationStation().name)
 		{	
-			writeLock(personsInPlatformSetLock);
+			try
+			{
+				writeLock(personsInPlatformSetLock);
 			
-			asyncLogger.log("*** PERSON : " + person.getName() + " is entering " + name + " station. His destination is " + person.getDestinationStation().getName());
-			personsInPlatformSet.add(person);
-			
-			writeUnlock(personsInPlatformSetLock);
+				asyncLogger.log("*** PERSON : " + person.getName() + " is entering " + name + " station. His destination is " + person.getDestinationStation().getName());
+				personsInPlatformSet.add(person);
+			}
+			finally
+			{
+				writeUnlock(personsInPlatformSetLock);
+			}
 		}
 		else //person has reached destination. remove him from set.
 		{
@@ -88,57 +98,72 @@ public class Station extends ReentrantLockerUnlocker{
 	
 	public void exitStation(Person person)
 	{
-		writeLock(personsInPlatformSetLock);
-		
-		asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
-		personsInPlatformSet.remove(person);
-		
-		writeUnlock(personsInPlatformSetLock);
+		try
+		{
+			writeLock(personsInPlatformSetLock);
+			
+			asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
+			personsInPlatformSet.remove(person);
+		}
+		finally
+		{
+			writeUnlock(personsInPlatformSetLock);
+		}
 	}
 	
 	public void enterStationPlatform(Train train, int platformNumber)
 	{
-		//get both write locks here. because this step needs to update both structures to enter the platform
-		writeLock(availablePlatformsSetLock);
-		writeLock(trainPlatformMapLock);
+		try
+		{
+			//get both write locks here. because this step needs to update both structures to enter the platform
+			writeLock(availablePlatformsSetLock);
+			writeLock(trainPlatformMapLock);
+			
+			asyncLogger.log("Train : " + train.getName() + " entering station : " + name);
 		
-		asyncLogger.log("Train : " + train.getName() + " entering station : " + name);
+			availablePlatformsSet.remove(platformNumber);
 		
-		availablePlatformsSet.remove(platformNumber);
-		writeUnlock(availablePlatformsSetLock);
-		
-		trainPlatformMap.put(platformNumber, train);
-		writeUnlock(trainPlatformMapLock);
+			trainPlatformMap.put(platformNumber, train);
+		}
+		finally
+		{
+			writeUnlock(availablePlatformsSetLock);
+			writeUnlock(trainPlatformMapLock);
+		}
 	}
 	
 	public void exitStationPlatform(Train train)
 	{
 		int platformNumber = train.getCurrentPlatformNumber();
-		
-		//get both write locks here. because this step needs to update both structures to free the platform
-		writeLock(availablePlatformsSetLock);
-		writeLock(trainPlatformMapLock);
-		//we also need persons in platform lock so that persons entering the train do not concurrently try to access set
-		//when we are trying to iterate through set and interrupt the person threads
-		writeLock(personsInPlatformSetLock);
-		
-		//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
-		
-		//Interrupting persons first
-		for (Person person : personsInPlatformSet)
+		try
 		{
-			if (person.interruptThread())
+			//get both write locks here. because this step needs to update both structures to free the platform
+			writeLock(availablePlatformsSetLock);
+			writeLock(trainPlatformMapLock);
+			//we also need persons in platform lock so that persons entering the train do not concurrently try to access set
+			//when we are trying to iterate through set and interrupt the person threads
+			writeLock(personsInPlatformSetLock);
+			
+			//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
+			
+			//Interrupting persons first
+			for (Person person : personsInPlatformSet)
 			{
-				asyncLogger.log("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
+				if (person.interruptThread())
+				{
+					asyncLogger.log("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
+				}
 			}
+			
+			availablePlatformsSet.add(platformNumber);
+			trainPlatformMap.remove(platformNumber);
 		}
-		
-		availablePlatformsSet.add(platformNumber);
-		trainPlatformMap.remove(platformNumber);
-		
-		writeUnlock(personsInPlatformSetLock);
-		writeUnlock(trainPlatformMapLock);
-		writeUnlock(availablePlatformsSetLock);
+		finally
+		{
+			writeUnlock(personsInPlatformSetLock);
+			writeUnlock(trainPlatformMapLock);
+			writeUnlock(availablePlatformsSetLock);
+		}
 	}
 	
 	public void trainReadyForPeopleIntake()
@@ -157,35 +182,57 @@ public class Station extends ReentrantLockerUnlocker{
 	
 	public int noOfPersonsInStation()
 	{
-		readLock(personsInPlatformSetLock);
-		int size = personsInPlatformSet.size();
-		readUnlock(personsInPlatformSetLock);
+		Integer size = null;
+		
+		try
+		{
+			readLock(personsInPlatformSetLock);
+			size = personsInPlatformSet.size();
+		}
+		finally
+		{
+			readUnlock(personsInPlatformSetLock);
+		}
 		
 		return size;
 	}
 	
 	public int checkPlatformAvailabilty()
 	{
-		readLock(availablePlatformsSetLock);
-		boolean isEmpty = availablePlatformsSet.isEmpty();
-		readUnlock(availablePlatformsSetLock);
+		Boolean isEmpty = null;
+		Integer platformNumber = null;
+		
+		try
+		{
+			readLock(availablePlatformsSetLock);
+			isEmpty = availablePlatformsSet.isEmpty();
+		}
+		finally
+		{
+			readUnlock(availablePlatformsSetLock);
+		}
 		
 		if(!isEmpty)
 		{
-			writeLock(availablePlatformsSetLock);
-			
-			//check here again because another could have modified set by the time we obtain the writelock
-			if (availablePlatformsSet.isEmpty())
+			try
+			{
+				writeLock(availablePlatformsSetLock);
+				
+				//check here again because another could have modified set by the time we obtain the writelock
+				if (availablePlatformsSet.isEmpty())
+				{
+					writeUnlock(availablePlatformsSetLock);
+					return -1;
+				}
+					
+				Iterator<Integer> iter = availablePlatformsSet.iterator();
+				platformNumber = iter.next();
+				iter.remove(); //removing platform from hashset
+			}
+			finally
 			{
 				writeUnlock(availablePlatformsSetLock);
-				return -1;
 			}
-				
-			Iterator<Integer> iter = availablePlatformsSet.iterator();
-			int platformNumber = iter.next();
-			iter.remove(); //removing platform from hashset
-			
-			writeUnlock(availablePlatformsSetLock);
 			
 			return platformNumber;
 		}
@@ -195,32 +242,46 @@ public class Station extends ReentrantLockerUnlocker{
 	
 	public String printListOfTrainsInPlatforms()
 	{
-		readLock(trainPlatformMapLock);
+		String str = "";
 		
-		String str = "[";
-		if(!trainPlatformMap.isEmpty())
+		try
 		{
-			Iterator<Entry<Integer, Train>> iter = trainPlatformMap.entrySet().iterator();
-			while (iter.hasNext()) 
+			readLock(trainPlatformMapLock);
+			
+			str = "[";
+			if(!trainPlatformMap.isEmpty())
 			{
-				Map.Entry<Integer, Train> pair = (Map.Entry<Integer, Train>)iter.next();
-				String trainName = pair.getValue().getName();
-				str += pair.getKey() + " : " + trainName + ", ";
+				Iterator<Entry<Integer, Train>> iter = trainPlatformMap.entrySet().iterator();
+				while (iter.hasNext()) 
+				{
+					Map.Entry<Integer, Train> pair = (Map.Entry<Integer, Train>)iter.next();
+					String trainName = pair.getValue().getName();
+					str += pair.getKey() + " : " + trainName + ", ";
+				}
 			}
 		}
-		
-		readUnlock(trainPlatformMapLock);
+		finally
+		{
+			readUnlock(trainPlatformMapLock);
+		}
 		
 		return str + "]";
 	}
 	
 	public HashMap<Integer, Train> getTrainsInPlatforms()
 	{
-		readLock(trainPlatformMapLock);
+		HashMap<Integer, Train> trainPlatformMapClone;
 		
-		HashMap<Integer, Train> trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone();
+		try
+		{
+			readLock(trainPlatformMapLock);
 		
-		readUnlock(trainPlatformMapLock);
+			trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone();
+		}
+		finally
+		{
+			readUnlock(trainPlatformMapLock);
+		}
 		
 		return trainPlatformMapClone;
 	}
