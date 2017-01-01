@@ -131,6 +131,9 @@ public class Person implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		
+		//enter station when thread first starts
+		sourceStation.enterStation(this);
+		
 		while (!reachedDestination)
 		{
 			if (!inTrain) //waiting for train

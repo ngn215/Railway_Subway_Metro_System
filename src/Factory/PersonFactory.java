@@ -48,7 +48,6 @@ public class PersonFactory {
 				Station destinationStation = stationsList.get(index2);
 				
 				Person person = new Person("P" + (i + currentPersonsCount), sourceStation, destinationStation);
-				sourceStation.enterStation(person);
 				
 				writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
 				
