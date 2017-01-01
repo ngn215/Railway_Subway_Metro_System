@@ -21,6 +21,7 @@ public class Person implements Runnable {
 	private boolean reachedDestination;
 	private Train train;
 	private boolean inTrain;
+	private volatile boolean isInterrupted;
 	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
 	
@@ -30,6 +31,7 @@ public class Person implements Runnable {
 		this.sourceStation = sourceStation;
 		this.destinationStation = destinationStation;
 		
+		this.isInterrupted = false;
 		this.reachedDestination = false;
 		this.inTrain = false;
 		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
@@ -136,114 +138,140 @@ public class Person implements Runnable {
 		while (!reachedDestination)
 		{
 			if (!inTrain) //waiting for train
-			{
-				boolean canTakeThisTrain = false;
-				synchronized(sourceStation)
-				{					
-					try
+			{							
+				try
+				{
+					synchronized(sourceStation)
 					{
+						setInterruptFlag();
+						
+						//waiting for station to announce
 						sourceStation.wait();
 						
-						if(checkThreadInterruption())
-							break;
+						resetInterruptFlag();
 						
-						HashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
-						
-						if(checkThreadInterruption() || trainPlatformMap.isEmpty())
-							break;
-						
-						Set<Entry<Integer, Train>> entrySet = trainPlatformMap.entrySet();
-						
-						if(checkThreadInterruption() || entrySet == null)
-							break;
-						
-						Iterator<Entry<Integer, Train>> iter = entrySet.iterator();
-						
-						if(checkThreadInterruption())
-							break;
-						
-						while (iter.hasNext() && !checkThreadInterruption()) 
-						{
-							Map.Entry<Integer, Train> pair = null;
-							
-							pair = (Map.Entry<Integer, Train>)iter.next();
-							
-							if(checkThreadInterruption() || pair == null)
-								break;
-							
-							Train trainFromStationSet = pair.getValue();
-							
-							if(checkThreadInterruption())
-								break;
-	
-							canTakeThisTrain = canTakeThisTrain(trainFromStationSet);
-							
-							if(checkThreadInterruption())
-								break;
-							
-							if (canTakeThisTrain && enterTrain(trainFromStationSet))
-							{
-								inTrain = true;
-								//System.out.println("Thread : " + thread.getName() + " has entered train.");
-							}
-						}
-					}//end try block
-					catch(InterruptedException|ConcurrentModificationException e)
-					{
-						//System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
-						//System.out.println(e);
-						//e.printStackTrace();
-						asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while waiting for train>>" + " " + e, true);
+						doWhenNotInTrain();
 					}
-				}			
+					
+				}//end try block
+				catch(InterruptedException|ConcurrentModificationException e)
+				{
+					//if (e instanceof InterruptedException)
+						//setInterruptFlag();
+					
+					//System.out.println("<< EXCEPTION in Person : " + this.name + " while waiting for train>>");
+					//System.out.println(e);
+					//e.printStackTrace();
+					asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while waiting for train>>" + " " + e, false);
+				}		
 			}
 			
 			//when in train
 			if (inTrain)
 			{
-				synchronized(train)
+				try 
 				{
-					try 
+					synchronized(train)
 					{
+						setInterruptFlag();
+						
+						//waiting for train to announce
 						train.wait();
+						
+						resetInterruptFlag();
+						
+						doWhenInTrain();
+					}
+				}//end try block
+				catch(InterruptedException|ConcurrentModificationException e)
+				{
+					//if (e instanceof InterruptedException)
+						//setInterruptFlag();
 					
-						boolean isTrainAtDestination = false;
-						
-						if (checkThreadInterruption())
-							break;
-						
-						isTrainAtDestination = checkIfTrainAtDestination();
-						
-						if (checkThreadInterruption())
-							break;
-						
-						if (isTrainAtDestination && exitTrain())
-						{
-							inTrain = false;
-							//System.out.println("Thread : " + thread.getName() + " has exited from train");
-						}
-					}
-					catch(InterruptedException|ConcurrentModificationException e)
-					{
-						//System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
-						//System.out.println(e);
-						//e.printStackTrace();
-						asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while in train>>" + " " + e, true);
-					}
+					//System.out.println("<< EXCEPTION in Person : " + this.name + " while in train>>");
+					//System.out.println(e);
+					//e.printStackTrace();
+					asyncLogger.log("<< EXCEPTION in Person : " + this.name + " while in train>>" + " " + e, false);
 				}
 			}
 			
 		} //end of while(true)
 	}
 	
-	private boolean checkThreadInterruption()
+	private void doWhenNotInTrain()
 	{
-		//logging this was causing problems because during process of logging if another train interrupts this person thread
-		//then it raises interrupted exception in asyncLogger. Station class makes the interrupt call but train initiates it.
-		//if (Thread.currentThread().isInterrupted())
-			//asyncLogger.log("Person : " + this.name + " has been interrupted.");
+		if(checkThreadInterruption())
+			return;
 		
-		return Thread.currentThread().isInterrupted();
+		boolean canTakeThisTrain = false;
+		
+		HashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
+		
+		if(checkThreadInterruption() || trainPlatformMap.isEmpty())
+			return;
+		
+		Set<Entry<Integer, Train>> entrySet = trainPlatformMap.entrySet();
+		
+		if(checkThreadInterruption() || entrySet == null)
+			return;
+		
+		Iterator<Entry<Integer, Train>> iter = entrySet.iterator();
+		
+		if(checkThreadInterruption())
+			return;
+		
+		while (iter.hasNext() && !checkThreadInterruption()) 
+		{
+			Map.Entry<Integer, Train> pair = null;
+			
+			pair = (Map.Entry<Integer, Train>)iter.next();
+			
+			if(checkThreadInterruption() || pair == null)
+				return;
+			
+			Train trainFromStationSet = pair.getValue();
+			
+			if(checkThreadInterruption())
+				return;
+
+			canTakeThisTrain = canTakeThisTrain(trainFromStationSet);
+			
+			if(checkThreadInterruption())
+				return;
+			
+			if (canTakeThisTrain && enterTrain(trainFromStationSet))
+			{
+				inTrain = true;
+				return;
+				//System.out.println("Thread : " + thread.getName() + " has entered train.");
+			}
+		}
+	}
+	
+	private void doWhenInTrain()
+	{
+		boolean isTrainAtDestination = false;
+		
+		if (checkThreadInterruption())
+			return;
+		
+		isTrainAtDestination = checkIfTrainAtDestination();
+		
+		if (checkThreadInterruption())
+			return;
+		
+		if (isTrainAtDestination && exitTrain())
+		{
+			inTrain = false;
+			return;
+			//System.out.println("Thread : " + thread.getName() + " has exited from train");
+		}
+	}
+	
+	private boolean checkThreadInterruption()
+	{		
+		return (Thread.currentThread().isInterrupted() || isInterrupted); //we should check both because in interrupt() method we first call
+																			//thread.interrupt() and then set interrupt flag;
 	}
 	
 	public void startPersonThread()
@@ -252,5 +280,28 @@ public class Person implements Runnable {
 		{
 			thread.start();
 		}
+	}
+	
+	public boolean interruptThread()
+	{
+		//only interrupt uninterrupted persons
+		if (thread.getState() != Thread.State.WAITING && !isInterrupted)
+		{
+			setInterruptFlag();
+			thread.interrupt();
+			return true;
+		}
+
+		return false;
+	}
+	
+	private void resetInterruptFlag()
+	{
+		isInterrupted = false;
+	}
+	
+	private void setInterruptFlag()
+	{
+		isInterrupted = true;
 	}
 }
