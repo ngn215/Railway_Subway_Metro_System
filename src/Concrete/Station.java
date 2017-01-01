@@ -127,11 +127,9 @@ public class Station extends ReentrantLockerUnlocker{
 		//Interrupting persons first
 		for (Person person : personsInPlatformSet)
 		{
-			//only interrupt running threads
-			if (person.getThread().getState() != Thread.State.WAITING)
+			if (person.interruptThread())
 			{
 				asyncLogger.log("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
-				person.getThread().interrupt();
 			}
 		}
 		
