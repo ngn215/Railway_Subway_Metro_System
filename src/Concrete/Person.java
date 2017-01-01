@@ -64,10 +64,6 @@ public class Person implements Runnable {
 		return trainDirectionUp;
 	}
 	
-	public Thread getThread() {
-		return thread;
-	}
-	
 	public boolean hasReachedDestination() {
 		return reachedDestination;
 	}
