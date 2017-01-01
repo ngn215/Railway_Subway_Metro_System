@@ -20,10 +20,12 @@ public class RailwaySubwayMetroSystem {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		ExecutorService executor = null;
+		
 		try
 		{
 			//initialize single thread executor service
-			ExecutorService executor = Executors.newSingleThreadExecutor();
+			executor = Executors.newSingleThreadExecutor();
 			
 			//submit execute request
 			executor.execute(asyncLogger);
@@ -74,14 +76,16 @@ public class RailwaySubwayMetroSystem {
 				Thread.sleep(3000);
 			}
 			
-			shutdownExecutorService(executor);
-			
 		}
 		catch(Exception e)
 		{
 			asyncLogger.log("Exception in main class" , true);
 			e.printStackTrace();
 			asyncLogger.log(Arrays.toString(e.getStackTrace()));
+		}
+		finally
+		{
+			shutdownExecutorService(executor);
 		}
 	}
 	
