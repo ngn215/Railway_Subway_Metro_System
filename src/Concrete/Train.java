@@ -150,7 +150,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void getTrainStatus()
 	{
-		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + numberOfTrips);
+		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + (numberOfTrips - 1));
 	}
 	
 	public void openDoors()
