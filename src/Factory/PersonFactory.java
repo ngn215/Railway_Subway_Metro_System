@@ -32,6 +32,7 @@ public class PersonFactory {
 	public static void randomlyGeneratePersons(int personsCount, String lineName)
 	{
 		int i = 1;
+		int currentPersonsCount = personsList.size();
 		Random rn = new Random();
 		List<Station> stationsList = LineFactory.getLineInstance(lineName).getStationsList();
 		int listSize = stationsList.size();
@@ -46,7 +47,7 @@ public class PersonFactory {
 				Station sourceStation = stationsList.get(index1);
 				Station destinationStation = stationsList.get(index2);
 				
-				Person person = new Person("P" + i, sourceStation, destinationStation);
+				Person person = new Person("P" + (i + currentPersonsCount), sourceStation, destinationStation);
 				sourceStation.enterStation(person);
 				
 				writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
