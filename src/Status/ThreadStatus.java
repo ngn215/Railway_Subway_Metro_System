@@ -1,20 +1,22 @@
 package Status;
 
-import java.util.Arrays;
-
 import Concrete.AsynchronousLogger;
 import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
+import Factory.ExecutorServiceFactory;
+import Interface.CustomExecutorServiceInterface;
 import Interface.StatusInterface;
 
-public class ThreadStatus implements StatusInterface, Runnable {
+public class ThreadStatus implements StatusInterface, Runnable, CustomExecutorServiceInterface {
 
 	private final AsynchronousLogger asyncLogger;
 	private int refreshIntervalms;
+	private boolean shutDown;
 	
 	public ThreadStatus()
 	{
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+		this.shutDown = false;
 	}
 	
 	@Override
@@ -23,9 +25,8 @@ public class ThreadStatus implements StatusInterface, Runnable {
 		
 		setRefreshIntervalms(refreshIntervalms);
 		
-		Thread thread = CustomThreadFactory.getThread(this, "ThreadStatusThread", "ThreadStatus");
-		thread.start();
-		
+		ExecutorServiceFactory.createAndExecuteSingleThreadExecutor(this);
+		Thread.currentThread().setName("ThreadStatusThread");		
 	}
 
 	@Override
@@ -39,26 +40,32 @@ public class ThreadStatus implements StatusInterface, Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		while(CustomThreadFactory.areThreadsAlive(true))
+		try
 		{
-			try {
+			while(CustomThreadFactory.areThreadsAlive(true) && !shutDown)
+			{
 				Thread.sleep(refreshIntervalms);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				asyncLogger.log(Arrays.toString(e.getStackTrace()));
+				
+				System.out.println("-----------------T-H-R-E-A-D-----S-T-A-T-U-S-------------------");
+				
+				System.out.println("Alive Threads : " + CustomThreadFactory.getAliveThreadsCount(true));
+				System.out.println("Alive Threads per entity : " + CustomThreadFactory.getAliveThreadsCountPerEntity(true));
+				System.out.println("Threads States count : " + CustomThreadFactory.getThreadStatesCount(true));
+				System.out.println("Total Threads per entity : " + CustomThreadFactory.getEntityThreadCount(true));
+				
+				System.out.println("-------------------------------------------------------------------");
 			}
-			
-			System.out.println("-----------------T-H-R-E-A-D-----S-T-A-T-U-S-------------------");
-			
-			System.out.println("Alive Threads : " + CustomThreadFactory.getAliveThreadsCount(true));
-			System.out.println("Alive Threads per entity : " + CustomThreadFactory.getAliveThreadsCountPerEntity(true));
-			System.out.println("Threads States count : " + CustomThreadFactory.getThreadStatesCount(true));
-			System.out.println("Total Threads per entity : " + CustomThreadFactory.getEntityThreadCount(true));
-			
-			System.out.println("-------------------------------------------------------------------");
+		}
+		catch(InterruptedException e)
+		{
+			asyncLogger.log("Exception in ThreadStatus : " + e);
 		}
 		
 	}
 
+	@Override
+	public void shutDown() {
+		// TODO Auto-generated method stub
+		shutDown = true;
+	}
 }

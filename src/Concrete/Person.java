@@ -7,11 +7,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Factory.CustomLoggerFactory;
-import Factory.CustomThreadFactory;
 import Factory.LineFactory;
+import Interface.CustomExecutorServiceInterface;
 
 
-public class Person implements Runnable {
+public class Person implements Runnable, CustomExecutorServiceInterface {
 
 	private String name;
 	private Station sourceStation;
@@ -22,21 +22,22 @@ public class Person implements Runnable {
 	private Train train;
 	private boolean inTrain;
 	private volatile boolean interruptFlag;
-	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
+	private boolean shutDown;
 	
 	public Person(String name, Station sourceStation, Station destinationStation)
 	{
 		this.name = name;
 		this.sourceStation = sourceStation;
 		this.destinationStation = destinationStation;
+		this.shutDown = false;
 		
 		this.interruptFlag = false;
 		this.reachedDestination = false;
 		this.inTrain = false;
 		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
 		this.trainDirectionUp = LineFactory.getDirection(trainLine, sourceStation, destinationStation);
-		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Person");
+		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 	
@@ -62,6 +63,11 @@ public class Person implements Runnable {
 
 	public String getName() {
 		return name;
+	}
+	
+	public void setThreadName(String name)
+	{
+		Thread.currentThread().setName("T" + name);
 	}
 
 	private boolean canTakeThisTrain(Train train)
@@ -131,9 +137,9 @@ public class Person implements Runnable {
 		//enter station when thread first starts
 		enterStation(this);
 		
-		while (!reachedDestination)
+		while (!reachedDestination && !shutDown)
 		{
-			if (!inTrain) //waiting for train
+			if (!inTrain && !shutDown) //waiting for train
 			{							
 				try
 				{
@@ -163,7 +169,7 @@ public class Person implements Runnable {
 			}
 			
 			//when in train
-			if (inTrain)
+			if (inTrain && !shutDown)
 			{
 				try 
 				{
@@ -268,21 +274,13 @@ public class Person implements Runnable {
 																			//thread.interrupt() and then set interrupt flag;
 	}
 	
-	public void startPersonThread()
-	{	
-		if (!thread.isAlive())
-		{
-			thread.start();
-		}
-	}
-	
 	public boolean interruptThread()
 	{
 		//only interrupt uninterrupted persons
-		if (thread.getState() != Thread.State.WAITING && !interruptFlag)
+		if (Thread.currentThread().getState() != Thread.State.WAITING && !interruptFlag)
 		{
 			setInterruptFlag();
-			thread.interrupt();
+			Thread.currentThread().interrupt();
 			return true;
 		}
 
@@ -297,5 +295,12 @@ public class Person implements Runnable {
 	private void setInterruptFlag()
 	{
 		interruptFlag = true;
+	}
+
+	@Override
+	public void shutDown() {
+		// TODO Auto-generated method stub
+		shutDown = true;
+		interruptFlag = true; //since we have checks for interruption we could use that to trigger shutdown as well
 	}
 }

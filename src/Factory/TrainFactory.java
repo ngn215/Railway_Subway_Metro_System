@@ -2,7 +2,9 @@ package Factory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
+import Concrete.AsynchronousLogger;
 import Concrete.Line;
 import Concrete.Train;
 
@@ -10,10 +12,17 @@ public class TrainFactory {
 
 	private final static List<Train> trainsList = new ArrayList<Train>();
 	private final static int TOTALTRIPSDEFAULT = 10;
+	private static ExecutorService executorService;
+	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	private TrainFactory()
 	{
 		//do nothing
+	}
+	
+	public static void setNumberOfTrains(int totalNumberOfTrains)
+	{
+		executorService = ExecutorServiceFactory.createFixedThreadPoolExecutor(totalNumberOfTrains);
 	}
 	
 	public static List<Train> getTrainsList()
@@ -21,7 +30,7 @@ public class TrainFactory {
 		return trainsList;
 	}
 	
-	public static Train createTrainInstance(String name, String lineName, String direction, int speed, boolean start, int totalTrips)
+	public static Train createTrainInstance(String name, String lineName, String direction, int speed, int totalTrips)
 	{
 		Line line = LineFactory.getLineInstance(lineName);
 		boolean directionUp = direction.equals("Up") ? true : false;
@@ -29,30 +38,15 @@ public class TrainFactory {
 		Train train = new Train(name, line, directionUp, speed, totalTrips);        
 		trainsList.add(train);
 		
-		if (start)
-			startTrain(train);
+		asyncLogger.log("---- Starting train : " + name + " ----", true);
+		ExecutorServiceFactory.executeThreadInPool(executorService, train);
+		train.setThreadName("T" + train.getName());
 		
 		return train;
 	}
 	
-	public static Train createTrainInstance(String name, String lineName, String direction, int speed, boolean start)
+	public static Train createTrainInstance(String name, String lineName, String direction, int speed)
 	{
-		return createTrainInstance(name, lineName, direction, speed, start, TOTALTRIPSDEFAULT);
-	}
-	
-	public static void startTrain(Train train)
-	{
-		train.startTrain();
-	}
-	
-	public static boolean areTrainsRunning()
-	{
-		for(Train train : trainsList)
-		{
-			if (train.isRunning())
-				return true;
-		}
-		
-		return false;
+		return createTrainInstance(name, lineName, direction, speed, TOTALTRIPSDEFAULT);
 	}
 }

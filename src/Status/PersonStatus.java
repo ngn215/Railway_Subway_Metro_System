@@ -1,6 +1,5 @@
 package Status;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,20 +7,23 @@ import Concrete.AsynchronousLogger;
 import Concrete.Line;
 import Concrete.Person;
 import Factory.CustomLoggerFactory;
-import Factory.CustomThreadFactory;
+import Factory.ExecutorServiceFactory;
 import Factory.LineFactory;
+import Interface.CustomExecutorServiceInterface;
 import Interface.StatusInterface;
 
-public class PersonStatus implements StatusInterface,Runnable{
+public class PersonStatus implements StatusInterface,Runnable, CustomExecutorServiceInterface{
 
 	private final List<Person> personsList;
 	private final AsynchronousLogger asyncLogger;
 	private int refreshIntervalms;
+	private boolean shutDown;
 	
 	public PersonStatus(List<Person> personsList)
 	{
 		this.personsList = personsList;
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+		this.shutDown = false;
 	}
 	
 	@Override
@@ -30,8 +32,8 @@ public class PersonStatus implements StatusInterface,Runnable{
 		
 		setRefreshIntervalms(refreshIntervalms);
 		
-		Thread thread = CustomThreadFactory.getThread(this, "PersonStatusThread", "PersonStatus");
-		thread.start();
+		ExecutorServiceFactory.createAndExecuteSingleThreadExecutor(this);
+		Thread.currentThread().setName("PersonStatusThread");
 	}
 	
 	@Override
@@ -48,42 +50,49 @@ public class PersonStatus implements StatusInterface,Runnable{
 		int numberOfPeopleYetToReachDestination;
 		HashMap<String, Integer> linePeopleMap = new HashMap<String, Integer>();
 		
-		while(true)
+		try
 		{
-			numberOfPeopleYetToReachDestination = 0;
-			linePeopleMap.clear();
-			
-			try {
+			while(!shutDown)
+			{
+				numberOfPeopleYetToReachDestination = 0;
+				linePeopleMap.clear();
+				
 				Thread.sleep(refreshIntervalms);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				asyncLogger.log(Arrays.toString(e.getStackTrace()));
-			}
-			
-			System.out.println("------------------P-E-R-S-O-N---S-T-A-T-U-S---------------------");
-			
-			//populating map with zero values
-			for(Line line : LineFactory.getLinesList())
-			{
-				linePeopleMap.put(line.getName(), 0);
-			}
-			
-			for(Person person : personsList)
-			{
-				if(!person.hasReachedDestination())
+				
+				System.out.println("------------------P-E-R-S-O-N---S-T-A-T-U-S---------------------");
+				
+				//populating map with zero values
+				for(Line line : LineFactory.getLinesList())
 				{
-					String lineName = person.getTrainLine();
-					
-					linePeopleMap.put(lineName, linePeopleMap.get(lineName) + 1);
-					numberOfPeopleYetToReachDestination++;
+					linePeopleMap.put(line.getName(), 0);
 				}
+				
+				for(Person person : personsList)
+				{
+					if(!person.hasReachedDestination())
+					{
+						String lineName = person.getTrainLine();
+						
+						linePeopleMap.put(lineName, linePeopleMap.get(lineName) + 1);
+						numberOfPeopleYetToReachDestination++;
+					}
+				}
+				
+				System.out.println("Number of people yet to reach destination : " + numberOfPeopleYetToReachDestination);
+				System.out.println(linePeopleMap.toString());
+				
+				System.out.println("-------------------------------------------------------------------");
 			}
-			
-			System.out.println("Number of people yet to reach destination : " + numberOfPeopleYetToReachDestination);
-			System.out.println(linePeopleMap.toString());
-			
-			System.out.println("-------------------------------------------------------------------");
 		}
+		catch(InterruptedException e)
+		{
+			asyncLogger.log("Exception in PersonStatus : " + e);
+		}
+	}
+
+	@Override
+	public void shutDown() {
+		// TODO Auto-generated method stub
+		shutDown = true;
 	}
 }

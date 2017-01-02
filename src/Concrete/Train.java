@@ -1,22 +1,21 @@
 package Concrete;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
-import Factory.CustomThreadFactory;
 import Factory.LockFactory;
+import Interface.CustomExecutorServiceInterface;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
-public class Train extends ReentrantLockerUnlocker implements Runnable {
+public class Train extends ReentrantLockerUnlocker implements Runnable, CustomExecutorServiceInterface {
 
 	private String name;
 	private Line line;
 	private boolean directionUp;
 	private Station currentStation;
 	private int currentPlatformNumber;
-	private int numberOfTrips;
+	private int numberOfTripsCompleted;
 	private boolean doorsOpen;
 	private int noOfPeopleEnteringTrain;
 	private int noOfPeopleExitingTrain;
@@ -25,9 +24,9 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private final HashSet<Person> personsSet;
 	private final ReentrantReadWriteLock personsSetLock;
 	private final ReentrantReadWriteLock doorsLock;
-	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
 	private final int totalTrips;
+	private boolean shutDown;
 	
 	public Train(String name, Line line, boolean directionUp, int speed, int totalTrips)
 	{
@@ -37,11 +36,10 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		this.speed = speed;
 		this.capacity = 1000;
 		this.totalTrips = totalTrips;
+		this.shutDown = false;
 		
 		this.personsSet = new HashSet<Person>();
-		this.numberOfTrips = 0;
-		//this.currentStation = line.getFirstStation(directionUp);
-		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Train");//new Thread(this, "T" + name);
+		this.numberOfTripsCompleted = 0;
 		this.noOfPeopleEnteringTrain = 0;
 		this.noOfPeopleExitingTrain = 0;
 		
@@ -78,6 +76,11 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public String getCurrentStationName() 
 	{
 		return currentStation.getName();
+	}
+	
+	public void setThreadName(String name)
+	{
+		Thread.currentThread().setName(name);
 	}
 	
 	private boolean vacancyAvailable()
@@ -150,7 +153,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void getTrainStatus()
 	{
-		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + (numberOfTrips - 1));
+		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + (numberOfTripsCompleted - 1));
 	}
 	
 	public void openDoors()
@@ -288,104 +291,89 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		numberOfTrips = 1;
-		Station nextStation;
+		numberOfTripsCompleted = 1;
 		
-		while(true)
-		{		
-			if (currentStation != null)
-				nextStation = line.getNextStation(currentStation, directionUp);
-			else
-				nextStation = line.getFirstStation(directionUp);
-			
-			int platformNumber = nextStation.checkPlatformAvailabilty();
-			
-			while (platformNumber == -1)
-			{
-				asyncLogger.log("*** Station : " + nextStation.getName() + " not available...." + this.name + " waiting..." + " " + nextStation.printListOfTrainsInPlatforms(), true);
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					asyncLogger.log(Arrays.toString(e.getStackTrace()));
-				}
-				
-				platformNumber = nextStation.checkPlatformAvailabilty();
-				
-				if (platformNumber != -1)
-					asyncLogger.log("*** Found Empty platform : "+ platformNumber + " for " + this.name, true);
+		try
+		{
+			while(numberOfTripsCompleted <= totalTrips && !shutDown)
+			{		
+				doWhileTrainIsRunning();
 			}
-			
-			moveTo(nextStation, platformNumber);
-			
-			//we need to reverse direction here because otherwise people will never know the correct direction of the train
-			//when the train reaches last stop (churchgate, dahanu road etc.) and reverses direction
-			if (line.isLastStation(nextStation, directionUp))
-			{
-				this.reverseDirection();		
-				
-				//stop after totalTrips
-				if (numberOfTrips > totalTrips)
-				{
-					tripComplete();
-					break;
-				}
-				
-				numberOfTrips++;
-			}
-			
-			int numberOfExistingPersonsInTrain = getNumberOfPersons();
-			
-			//open train doors
-			openDoors();
-			
-			//announcement for passengers in train
-			announce();
-			
-			//signal for station that train is ready for intake
-			readyForIntake();
-			
-			//wait for people to enter train
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				asyncLogger.log(Arrays.toString(e.getStackTrace()));
-			}
-			
-			//close train doors
-			closeDoors();
-			
-			asyncLogger.log("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain 
-							+ " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " 
-							+ " at station " + getCurrentStationName());
-			
-			//reset values
-			noOfPeopleEnteringTrain = 0;
-			noOfPeopleExitingTrain = 0;
-			
-			//System.out.println(this.getName() + " " + this.getDirection() + " "+ this.getCurrentStation());
-			try {
-				Thread.sleep(speed);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				asyncLogger.log(Arrays.toString(e.getStackTrace()));
-			}
-		
-			currentPlatformNumber = platformNumber;
+		}
+		catch (InterruptedException e)
+		{
+			asyncLogger.log("Exception in Train : " + name + ". " + e, true);
 		}
 		
 		//System.out.println("Train run complete");
+		if (numberOfTripsCompleted > totalTrips)
+			tripComplete();
 		
 	}
 	
-	private void doWhileRunningTrain()
+	private void doWhileTrainIsRunning() throws InterruptedException
 	{
+		Station nextStation;
 		
+		if (currentStation != null)
+			nextStation = line.getNextStation(currentStation, directionUp);
+		else
+			nextStation = line.getFirstStation(directionUp);
+		
+		int platformNumber = nextStation.checkPlatformAvailabilty();
+		
+		while (platformNumber == -1)
+		{
+			asyncLogger.log("*** Station : " + nextStation.getName() + " not available...." + this.name + " waiting..." + " " + nextStation.printListOfTrainsInPlatforms(), true);
+			
+			Thread.sleep(1000);
+			
+			platformNumber = nextStation.checkPlatformAvailabilty();
+			
+			if (platformNumber != -1)
+				asyncLogger.log("*** Found Empty platform : "+ platformNumber + " for " + this.name, true);
+		}
+		
+		moveTo(nextStation, platformNumber);
+		
+		//we need to reverse direction here because otherwise people will never know the correct direction of the train
+		//when the train reaches last stop (churchgate, dahanu road etc.) and reverses direction
+		if (line.isLastStation(nextStation, directionUp))
+		{
+			this.reverseDirection();		
+			
+			numberOfTripsCompleted++;
+		}
+		
+		int numberOfExistingPersonsInTrain = getNumberOfPersons();
+		
+		//open train doors
+		openDoors();
+		
+		//announcement for passengers in train
+		announce();
+		
+		//signal for station that train is ready for intake
+		readyForIntake();
+		
+		//wait for people to enter train
+		Thread.sleep(100);
+		
+		//close train doors
+		closeDoors();
+		
+		asyncLogger.log("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain 
+						+ " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " 
+						+ " at station " + getCurrentStationName());
+		
+		//reset values
+		noOfPeopleEnteringTrain = 0;
+		noOfPeopleExitingTrain = 0;
+		
+		//System.out.println(this.getName() + " " + this.getDirection() + " "+ this.getCurrentStation());
+		Thread.sleep(speed);
+	
+		currentPlatformNumber = platformNumber;
 	}
 	
 	private void tripComplete()
@@ -393,7 +381,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		asyncLogger.log("*** TRIP COMPLETED : " + name + " " + getDirectionName(), true);
 	}
 	
-	public void startTrain()
+	/*public void startTrain()
 	{	
 		if (!isRunning())
 		{
@@ -404,14 +392,17 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		{
 			asyncLogger.log("--- Train : " + this.name + " ( " + this.getLineName() + " ) " + " is already running !!", true);
 		}
-	}
+	}*/
 	
 	public boolean isRunning()
 	{
-		if (thread.isAlive())
-			return true;
-			
-		return false;
+		return !shutDown;
+	}
+
+	@Override
+	public void shutDown() {
+		// TODO Auto-generated method stub
+		shutDown = true;
 	}
 	
 }

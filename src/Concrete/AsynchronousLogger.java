@@ -11,7 +11,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AsynchronousLogger implements Runnable {
+import Interface.CustomExecutorServiceInterface;
+
+public class AsynchronousLogger implements Runnable, CustomExecutorServiceInterface {
 	
 	private final String LOGFILENAME;
 	private final BlockingQueue<String> sharedQueue;
@@ -102,6 +104,7 @@ public class AsynchronousLogger implements Runnable {
 		return null;
 	}
 	
+	@Override
 	public void shutDown()
 	{
 		shutdown = true;
