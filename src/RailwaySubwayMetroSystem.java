@@ -26,13 +26,11 @@ public class RailwaySubwayMetroSystem {
 			//initialize station, line and person factory.
 			StationFactory.initializeFactory();
 			LineFactory.initializeFactory();
-			PersonFactory.randomlyGeneratePersons(100, "WesternSlow");
-			PersonFactory.randomlyGeneratePersons(100, "CentralSlow");
-			PersonFactory.randomlyGeneratePersons(100, "HarborPanvel");
-			PersonFactory.randomlyGeneratePersons(100, "HarborAndheri");
+			PersonFactory.randomlyGeneratePersons(10000, "WesternSlow");
+			PersonFactory.randomlyGeneratePersons(10000, "CentralSlow");
+			PersonFactory.randomlyGeneratePersons(10000, "HarborPanvel");
+			PersonFactory.randomlyGeneratePersons(10000, "HarborAndheri");
 			PersonFactory.closePersonsListFile();
-			
-			TrainFactory.setNumberOfTrains(8);
 			
 			TrainFactory.createTrainInstance("WS1", "WesternSlow", "Up", 1000);
 			TrainFactory.createTrainInstance("WF1", "WesternFast", "Up", 500);
@@ -46,8 +44,8 @@ public class RailwaySubwayMetroSystem {
 			
 			Thread.sleep(3000);
 			
-			TrainFactory.createTrainInstance("HP1", "HarborPanvel", "Down", 1000, 10);
-			TrainFactory.createTrainInstance("HA1", "HarborAndheri", "Up", 1000, 10);
+			TrainFactory.createTrainInstance("HP1", "HarborPanvel", "Down", 1000, 15);
+			TrainFactory.createTrainInstance("HA1", "HarborAndheri", "Up", 1000, 15);
 			
 			TrainStatus trainStatus = new TrainStatus(TrainFactory.getTrainsList());
 			trainStatus.getStatus(60000);
@@ -81,6 +79,8 @@ public class RailwaySubwayMetroSystem {
 		finally
 		{
 			ExecutorServiceFactory.shutDownAllExecutors();
+			TrainFactory.shutDownAllTrainThreads();
+			PersonFactory.shutDownAllPersonThreads();
 			ExecutorServiceFactory.shutDownAllAsyncLoggerExecutors();
 		}
 	}

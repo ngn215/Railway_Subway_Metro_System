@@ -7,11 +7,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Factory.CustomLoggerFactory;
+import Factory.CustomThreadFactory;
 import Factory.LineFactory;
-import Interface.CustomExecutorServiceInterface;
 
 
-public class Person implements Runnable, CustomExecutorServiceInterface {
+public class Person implements Runnable {
 
 	private String name;
 	private Station sourceStation;
@@ -24,6 +24,7 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 	private volatile boolean interruptFlag;
 	private final AsynchronousLogger asyncLogger;
 	private boolean shutDown;
+	private final Thread thread;
 	
 	public Person(String name, Station sourceStation, Station destinationStation)
 	{
@@ -37,6 +38,7 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 		this.inTrain = false;
 		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
 		this.trainDirectionUp = LineFactory.getDirection(trainLine, sourceStation, destinationStation);
+		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Person");
 		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
@@ -63,11 +65,6 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 
 	public String getName() {
 		return name;
-	}
-	
-	public void setThreadName(String name)
-	{
-		Thread.currentThread().setName("T" + name);
 	}
 
 	private boolean canTakeThisTrain(Train train)
@@ -268,6 +265,19 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 		}
 	}
 	
+	public boolean isRunning()
+	{
+		return thread.isAlive();
+	}
+	
+	public void startPersonThread()
+	{	
+		if (!thread.isAlive())
+		{
+			thread.start();
+		}
+	}
+	
 	private boolean checkThreadInterruption()
 	{		
 		return (Thread.currentThread().isInterrupted() || interruptFlag); //we should check both because in interrupt() method we first call
@@ -277,10 +287,10 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 	public boolean interruptThread()
 	{
 		//only interrupt uninterrupted persons
-		if (Thread.currentThread().getState() != Thread.State.WAITING && !interruptFlag)
+		if (thread.getState() != Thread.State.WAITING && !interruptFlag)
 		{
 			setInterruptFlag();
-			Thread.currentThread().interrupt();
+			thread.interrupt();
 			return true;
 		}
 
@@ -296,11 +306,9 @@ public class Person implements Runnable, CustomExecutorServiceInterface {
 	{
 		interruptFlag = true;
 	}
-
-	@Override
-	public void shutDown() {
-		// TODO Auto-generated method stub
+	
+	public void shutDown()
+	{
 		shutDown = true;
-		interruptFlag = true; //since we have checks for interruption we could use that to trigger shutdown as well
 	}
 }

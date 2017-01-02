@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
 
 import Concrete.AsynchronousLogger;
 import Concrete.Person;
@@ -37,7 +36,6 @@ public class PersonFactory {
 		Random rn = new Random();
 		List<Station> stationsList = LineFactory.getLineInstance(lineName).getStationsList();
 		int listSize = stationsList.size();
-		ExecutorService executorService = ExecutorServiceFactory.createFixedThreadPoolExecutor(personsCount);
 		
 		while(i <= personsCount)
 		{
@@ -55,8 +53,7 @@ public class PersonFactory {
 				
 				personsList.add(person);
 				
-				ExecutorServiceFactory.executeThreadInPool(executorService, person);
-				person.setThreadName(person.getName());
+				person.startPersonThread();
 				
 				i++;
 			}
@@ -101,6 +98,17 @@ public class PersonFactory {
 	public static boolean arePeopleStillWaitingForTrains()
 	{
 		return numberOfPeopleYetToReachDestination() > 0;
+	}
+	
+	public static void shutDownAllPersonThreads()
+	{
+		asyncLogger.log("Shutting down all person threads.", true);
+		
+		for(Person person : personsList)
+		{
+			if (person.isRunning())
+				person.shutDown();
+		}
 	}
 	
 }

@@ -3,12 +3,12 @@ import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
+import Factory.CustomThreadFactory;
 import Factory.LockFactory;
-import Interface.CustomExecutorServiceInterface;
 import LockerClasses.ReentrantLockerUnlocker;
 
 
-public class Train extends ReentrantLockerUnlocker implements Runnable, CustomExecutorServiceInterface {
+public class Train extends ReentrantLockerUnlocker implements Runnable {
 
 	private String name;
 	private Line line;
@@ -27,6 +27,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable, CustomEx
 	private final AsynchronousLogger asyncLogger;
 	private final int totalTrips;
 	private boolean shutDown;
+	private final Thread thread;
 	
 	public Train(String name, Line line, boolean directionUp, int speed, int totalTrips)
 	{
@@ -47,6 +48,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable, CustomEx
 		this.doorsLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Train");
 
 	}
 	
@@ -76,11 +78,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable, CustomEx
 	public String getCurrentStationName() 
 	{
 		return currentStation.getName();
-	}
-	
-	public void setThreadName(String name)
-	{
-		Thread.currentThread().setName(name);
 	}
 	
 	private boolean vacancyAvailable()
@@ -394,12 +391,24 @@ public class Train extends ReentrantLockerUnlocker implements Runnable, CustomEx
 		}
 	}*/
 	
+	public void startTrain()
+ 	{	
+ 		if (!isRunning())
+ 		{
+ 			asyncLogger.log("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---", true);
+ 			thread.start();
+ 		}
+ 		else
+ 		{
+ 			asyncLogger.log("--- Train : " + this.name + " ( " + this.getLineName() + " ) " + " is already running !!", true);
+ 		}
+	}
+	
 	public boolean isRunning()
 	{
-		return !shutDown;
+		return (thread.isAlive());
 	}
 
-	@Override
 	public void shutDown() {
 		// TODO Auto-generated method stub
 		shutDown = true;
