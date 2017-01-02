@@ -383,7 +383,12 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		
 	}
 	
-	public void tripComplete()
+	private void doWhileRunningTrain()
+	{
+		
+	}
+	
+	private void tripComplete()
 	{
 		asyncLogger.log("*** TRIP COMPLETED : " + name + " " + getDirectionName(), true);
 	}

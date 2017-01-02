@@ -21,7 +21,7 @@ public class Person implements Runnable {
 	private boolean reachedDestination;
 	private Train train;
 	private boolean inTrain;
-	private volatile boolean isInterrupted;
+	private volatile boolean interruptFlag;
 	private final Thread thread;
 	private final AsynchronousLogger asyncLogger;
 	
@@ -31,21 +31,13 @@ public class Person implements Runnable {
 		this.sourceStation = sourceStation;
 		this.destinationStation = destinationStation;
 		
-		this.isInterrupted = false;
+		this.interruptFlag = false;
 		this.reachedDestination = false;
 		this.inTrain = false;
 		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
 		this.trainDirectionUp = LineFactory.getDirection(trainLine, sourceStation, destinationStation);
 		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Person");
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
-	}
-
-	public synchronized void getPersonStatus()
-	{
-		if (train != null)
-			System.out.println("PERSON STATUS : " + this.name + " Source : " + this.sourceStation.getName() + "\t Destination : " + this.destinationStation.getName() + ". \tIn Train : " + this.train.getName() + " " + this.train.getDirectionName());
-		else
-			System.out.println("PERSON STATUS : " + this.name + " Source : " + this.sourceStation.getName() + "\t Destination : " + this.destinationStation.getName());
 	}
 	
 	public String getTrainLine() {
@@ -72,7 +64,7 @@ public class Person implements Runnable {
 		return name;
 	}
 
-	public boolean canTakeThisTrain(Train train)
+	private boolean canTakeThisTrain(Train train)
 	{		
 		if (train.getLineName().equals(trainLine) && train.getDirection() == trainDirectionUp)
 		{
@@ -82,7 +74,7 @@ public class Person implements Runnable {
 		return false;
 	}
 	
-	public boolean checkIfTrainAtDestination()
+	private boolean checkIfTrainAtDestination()
 	{		
 		if (train.getCurrentStationName().equals(destinationStation.getName()))
 		{
@@ -92,7 +84,12 @@ public class Person implements Runnable {
 		return false;
 	}
 	
-	public boolean enterTrain(Train train)
+	private void enterStation(Person person)
+	{
+		sourceStation.enterStation(person);
+	}
+	
+	private boolean enterTrain(Train train)
 	{
 		boolean success = train.enterTrain(this);
 		
@@ -101,7 +98,7 @@ public class Person implements Runnable {
 			this.train = train;
 			
 			if (!train.getCurrentStationName().equals(sourceStation.getName()))
-				System.out.println("Person : " + name + " at " + sourceStation.getName() + " is entering Train : " + train.getName() + " located at " + train.getCurrentStationName());
+				asyncLogger.log("Person : " + name + " at " + sourceStation.getName() + " is entering Train : " + train.getName() + " located at " + train.getCurrentStationName(), true);
 			
 			return true;
 		}
@@ -110,7 +107,7 @@ public class Person implements Runnable {
 		//System.out.println("*** PERSON : " + this.name + " is entering train " + " " + this.train.getName() + " " + this.train.getDirectionName());
 	}
 	
-	public boolean exitTrain()
+	private boolean exitTrain()
 	{
 		//System.out.println("*** PERSON : " + this.name + " is exiting train " + " " + this.train.getName() + " " + this.train.getDirectionName());
 		boolean success = train.exitTrain(this);
@@ -118,8 +115,8 @@ public class Person implements Runnable {
 		if (success)
 		{
 			//System.out.println("Person : " + name + " is exiting from Train : " + train.getName());
-			this.train = null;
-			this.reachedDestination = true;
+			train = null;
+			reachedDestination = true;
 			
 			return true;
 		}
@@ -132,7 +129,7 @@ public class Person implements Runnable {
 		// TODO Auto-generated method stub
 		
 		//enter station when thread first starts
-		sourceStation.enterStation(this);
+		enterStation(this);
 		
 		while (!reachedDestination)
 		{
@@ -140,17 +137,17 @@ public class Person implements Runnable {
 			{							
 				try
 				{
+					setInterruptFlag();
+					
 					synchronized(sourceStation)
-					{
-						setInterruptFlag();
-						
+					{					
 						//waiting for station to announce
 						sourceStation.wait();
-						
-						resetInterruptFlag();
-						
-						doWhenNotInTrain();
 					}
+					
+					resetInterruptFlag();
+					
+					doWhenNotInTrain();
 					
 				}//end try block
 				catch(InterruptedException|ConcurrentModificationException e)
@@ -170,17 +167,17 @@ public class Person implements Runnable {
 			{
 				try 
 				{
+					setInterruptFlag();
+					
 					synchronized(train)
 					{
-						setInterruptFlag();
-						
 						//waiting for train to announce
 						train.wait();
-						
-						resetInterruptFlag();
-						
-						doWhenInTrain();
 					}
+					
+					resetInterruptFlag();
+					
+					doWhenInTrain();
 				}//end try block
 				catch(InterruptedException|ConcurrentModificationException e)
 				{
@@ -197,7 +194,7 @@ public class Person implements Runnable {
 		} //end of while(true)
 	}
 	
-	private void doWhenNotInTrain()
+	private void doWhenNotInTrain() throws ConcurrentModificationException
 	{
 		if(checkThreadInterruption())
 			return;
@@ -241,13 +238,12 @@ public class Person implements Runnable {
 			if (canTakeThisTrain && enterTrain(trainFromStationSet))
 			{
 				inTrain = true;
-				return;
 				//System.out.println("Thread : " + thread.getName() + " has entered train.");
 			}
 		}
 	}
 	
-	private void doWhenInTrain()
+	private void doWhenInTrain() throws ConcurrentModificationException
 	{
 		boolean isTrainAtDestination = false;
 		
@@ -262,14 +258,13 @@ public class Person implements Runnable {
 		if (isTrainAtDestination && exitTrain())
 		{
 			inTrain = false;
-			return;
 			//System.out.println("Thread : " + thread.getName() + " has exited from train");
 		}
 	}
 	
 	private boolean checkThreadInterruption()
 	{		
-		return (Thread.currentThread().isInterrupted() || isInterrupted); //we should check both because in interrupt() method we first call
+		return (Thread.currentThread().isInterrupted() || interruptFlag); //we should check both because in interrupt() method we first call
 																			//thread.interrupt() and then set interrupt flag;
 	}
 	
@@ -284,7 +279,7 @@ public class Person implements Runnable {
 	public boolean interruptThread()
 	{
 		//only interrupt uninterrupted persons
-		if (thread.getState() != Thread.State.WAITING && !isInterrupted)
+		if (thread.getState() != Thread.State.WAITING && !interruptFlag)
 		{
 			setInterruptFlag();
 			thread.interrupt();
@@ -296,11 +291,11 @@ public class Person implements Runnable {
 	
 	private void resetInterruptFlag()
 	{
-		isInterrupted = false;
+		interruptFlag = false;
 	}
 	
 	private void setInterruptFlag()
 	{
-		isInterrupted = true;
+		interruptFlag = true;
 	}
 }
