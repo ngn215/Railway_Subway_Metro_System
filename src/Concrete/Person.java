@@ -150,7 +150,7 @@ public class Person implements Runnable {
 					
 					resetInterruptFlag();
 					
-					doWhenNotInTrain();
+					doWhenInStation();
 					
 				}//end try block
 				catch(InterruptedException|ConcurrentModificationException e)
@@ -197,7 +197,7 @@ public class Person implements Runnable {
 		} //end of while(true)
 	}
 	
-	private void doWhenNotInTrain() throws ConcurrentModificationException
+	private void doWhenInStation() throws ConcurrentModificationException
 	{
 		if(checkThreadInterruption())
 			return;
