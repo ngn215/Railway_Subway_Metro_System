@@ -135,19 +135,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		directionUp = !directionUp;
 	}
 	
-	public void moveTo(Station nextStation, int platformNumber)
-	{
-		//freeing platform
-		if (currentStation != null)
-			currentStation.exitStationPlatform(this);
-		
-		//moving to platform
-		nextStation.enterStationPlatform(this, platformNumber);
-		
-		//setting current station
-		currentStation = nextStation;
-	}
-	
 	public void getTrainStatus()
 	{
 		System.out.println("TRAIN STATUS : " + name + " " + getDirectionName() + " " + getCurrentStationName() + "\t Persons count : " + getNumberOfPersons() + "\t TripNumber : " + (numberOfTripsCompleted - 1));
@@ -284,6 +271,24 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		return true;
 	}
 
+	public void exitCurrentStation()
+	{
+		currentStation.exitStationPlatform(this);
+	}
+	
+	public void moveToNextStation(Station nextStation, int platformNumber)
+	{
+		//freeing platform
+		//if (currentStation != null)
+			//currentStation.exitStationPlatform(this);
+		
+		//moving to platform
+		nextStation.enterStationPlatform(this, platformNumber);
+		
+		//setting current station
+		currentStation = nextStation;
+	}
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -313,9 +318,17 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		Station nextStation;
 		
 		if (currentStation != null)
+		{
+			//exit from current station
+			exitCurrentStation();
+			
+			//get next station in line
 			nextStation = line.getNextStation(currentStation, directionUp);
+		}
 		else
+		{
 			nextStation = line.getFirstStation(directionUp);
+		}
 		
 		int platformNumber = nextStation.checkPlatformAvailabilty();
 		
@@ -331,7 +344,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				asyncLogger.log("*** Found Empty platform : "+ platformNumber + " for " + this.name, true);
 		}
 		
-		moveTo(nextStation, platformNumber);
+		moveToNextStation(nextStation, platformNumber);
 		
 		//we need to reverse direction here because otherwise people will never know the correct direction of the train
 		//when the train reaches last stop (churchgate, dahanu road etc.) and reverses direction
@@ -377,20 +390,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	{
 		asyncLogger.log("*** TRIP COMPLETED : " + name + " " + getDirectionName(), true);
 	}
-	
-	/*public void startTrain()
-	{	
-		if (!isRunning())
-		{
-			asyncLogger.log("--- Starting Train : " + this.name + " ( " + this.getLineName() + " ) " + " ---", true);
-			thread.start();
-		}
-		else
-		{
-			asyncLogger.log("--- Train : " + this.name + " ( " + this.getLineName() + " ) " + " is already running !!", true);
-		}
-	}*/
-	
+		
 	public void startTrain()
  	{	
  		if (!isRunning())
