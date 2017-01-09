@@ -13,11 +13,11 @@ import Factory.LineFactory;
 
 public class Person implements Runnable {
 
-	private String name;
-	private Station sourceStation;
-	private Station destinationStation;
-	private String trainLine;
-	private boolean trainDirectionUp;
+	private final String name;
+	private final Station sourceStation;
+	private final Station destinationStation;
+	private final Line trainLine;
+	private final boolean trainDirectionUp;
 	private boolean reachedDestination;
 	private Train train;
 	private boolean inTrain;
@@ -36,15 +36,15 @@ public class Person implements Runnable {
 		this.interruptFlag = false;
 		this.reachedDestination = false;
 		this.inTrain = false;
-		this.trainLine = LineFactory.getLineName(sourceStation, destinationStation);
-		this.trainDirectionUp = LineFactory.getDirection(trainLine, sourceStation, destinationStation);
+		this.trainLine = LineFactory.getLineFromSourceAndDestination(sourceStation, destinationStation);
+		this.trainDirectionUp = LineFactory.getDirectionFromSourceAndDestination(trainLine, sourceStation, destinationStation);
 		this.thread = CustomThreadFactory.getThread(this, "T" + name, "Person");
 		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	}
 	
-	public String getTrainLine() {
-		return trainLine;
+	public String getTrainLineName() {
+		return trainLine.getName();
 	}
 
 	public Station getSourceStation() {
@@ -69,7 +69,9 @@ public class Person implements Runnable {
 
 	private boolean canTakeThisTrain(Train train)
 	{		
-		if (train.getLineName().equals(trainLine) && train.getDirection() == trainDirectionUp)
+		if (train.trainFollowsLine(trainLine) 
+			&& train.trainFollowsDirection(trainDirectionUp) 
+			&& train.stopsAt(destinationStation))
 		{
 			return true;
 		}
