@@ -24,6 +24,10 @@ Station lets person know that train has arrived. Station tells train whether vac
 
 Line contains multiple stations. Train goes to the stations in the order defined by the line. Lines can be used to represent slow / express trains or different routes altogether.
 
+## Asynchronous Logger
+
+This is a simple asynchronous logger that logs info about trains, persons, stations and exceptions to the log file.
+
 ## Intersection
 
 This class is work in progress.
