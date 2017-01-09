@@ -5,6 +5,7 @@ import java.util.List;
 
 import Concrete.AsynchronousLogger;
 import Concrete.Line;
+import Concrete.Stops;
 import Concrete.Train;
 
 public class TrainFactory {
@@ -23,12 +24,13 @@ public class TrainFactory {
 		return trainsList;
 	}
 	
-	public static Train createTrainInstance(String name, String lineName, String direction, int speed, int totalTrips)
+	public static Train createTrainInstance(String name, String lineName, String direction, int speed, String stopsName, int totalTrips)
 	{
 		Line line = LineFactory.getLineInstance(lineName);
 		boolean directionUp = direction.equals("Up") ? true : false;
+		Stops stops = line.getStops(stopsName);
 		
-		Train train = new Train(name, line, directionUp, speed, totalTrips);        
+		Train train = new Train(name, line, directionUp, speed, stops, totalTrips);        
 		trainsList.add(train);
 		
 		train.startTrain();
@@ -36,9 +38,9 @@ public class TrainFactory {
 		return train;
 	}
 	
-	public static Train createTrainInstance(String name, String lineName, String direction, int speed)
+	public static Train createTrainInstance(String name, String lineName, String direction, int speed, String stopsName)
 	{
-		return createTrainInstance(name, lineName, direction, speed, TOTALTRIPSDEFAULT);
+		return createTrainInstance(name, lineName, direction, speed, stopsName, TOTALTRIPSDEFAULT);
 	}
 	
 	public static boolean areTrainsRunning()
