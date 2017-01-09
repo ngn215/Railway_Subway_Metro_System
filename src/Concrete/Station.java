@@ -90,7 +90,7 @@ public class Station extends ReentrantLockerUnlocker{
 		}
 		else //person has reached destination. remove him from set.
 		{
-			asyncLogger.log("Person : " + person.getName() + " has reached his destination " + person.getDestinationStation().getName());
+			asyncLogger.log("Person : " + person.getName() + " is entering station and has reached his destination : " + person.getDestinationStation().getName());
 			exitStation(person);
 			//counter++;
 		}
@@ -102,7 +102,7 @@ public class Station extends ReentrantLockerUnlocker{
 		{
 			writeLock(personsInPlatformSetLock);
 			
-			asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
+			//asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
 			personsInPlatformSet.remove(person);
 		}
 		finally
@@ -119,7 +119,7 @@ public class Station extends ReentrantLockerUnlocker{
 			writeLock(availablePlatformsSetLock);
 			writeLock(trainPlatformMapLock);
 			
-			asyncLogger.log("Train : " + train.getName() + " entering station : " + name);
+			asyncLogger.log("Train : " + train.getName() + " entering station : " + name + " at platform : " + platformNumber);
 		
 			availablePlatformsSet.remove(platformNumber);
 		
