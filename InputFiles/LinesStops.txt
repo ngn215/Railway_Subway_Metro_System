@@ -1,0 +1,20 @@
+----------------------------------------------------------------------
+--This txt file contains the lines list
+--format is linename followed by stops name (no spaces)
+--<LineName>,<StopsName>
+--To add comments use prefix text with "-"
+----------------------------------------------------------------------
+
+Western,Western-Fast
+Western,Western-Slow
+Western,Western-BORCCGT-Fast
+Western,Western-BORCCGT-Slow
+Western,Western-ANDHCCGT-Fast
+Western,Western-ANDHCCGT-Slow
+Western,Western-VIRCCGT-Fast
+Western,Western-VIRCCGT-Slow
+
+Central,Central-Fast
+Central,Central-Slow
+HarborAndheri,HarborAndheri
+HarborPanvel,HarborPanvel

@@ -71,7 +71,7 @@ public class PersonStatus implements StatusInterface,Runnable, CustomExecutorSer
 				{
 					if(!person.hasReachedDestination())
 					{
-						String lineName = person.getTrainLine();
+						String lineName = person.getTrainLineName();
 						
 						linePeopleMap.put(lineName, linePeopleMap.get(lineName) + 1);
 						numberOfPeopleYetToReachDestination++;

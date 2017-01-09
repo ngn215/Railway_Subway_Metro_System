@@ -1,0 +1,27 @@
+----------------------------------------------------------------------
+--This txt file contains the lines list
+--format is linename followed by stopsname (eg. express, slow, fast) and then followed by station names in order (no spaces)
+--<LineName>,<StopsName>,<StationName1>,<StationName2>....
+--To add comments use prefix text with "-"
+--Note : always add fast line before slow line for every line type
+----------------------------------------------------------------------
+
+Western-Fast,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Dadar,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Bhayandar,Vasai Road,Virar
+Western-Slow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Dahisar,Mira Road,Bhayandar,Naigaon,Vasai Road,Nala Sopara,Virar,Vaitarna,Saphale,Kelve Road,Palghar,Umroli,Boisar,Vangaon,Dahanu Road
+
+Western-BORCCGT-Fast,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Dadar,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali
+Western-BORCCGT-Slow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali
+
+Western-ANDHCCGT-Fast,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Dadar,Bandra,Khar Road,Santacruz,Vile Parle,Andheri
+Western-ANDHCCGT-Slow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri
+
+Western-VIRCCGT-Fast,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Dadar,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Bhayandar,Vasai Road,Virar
+Western-VIRCCGT-Slow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Dahisar,Mira Road,Bhayandar,Naigaon,Vasai Road,Nala Sopara,Virar
+
+Central-Fast,Chhatrapati Shivaji Terminus,Byculla,Parel,Sion,Ghatkopar,Vikhroli,Bhandup,Mulund,Thane,Dombivli,Kalyan
+
+Central-Slow,Chhatrapati Shivaji Terminus,Masjid,Sandhurst Road,Byculla,Chinchpokli,Currey Road,Parel,Dadar,Matunga,Sion,Kurla,Vidyavihar,Ghatkopar,Vikhroli,Kanjurmarg,Bhandup,Nahur,Mulund,Thane,Kalwa,Mumbra,Diva,Kopar,Dombivli,Thakurli,Kalyan
+
+HarborAndheri,Wadala Road,King's Circle,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri
+
+HarborPanvel,Chhatrapati Shivaji Terminus,Sandhurst Road,Dockyard Road,Reay Road,Cotton Green,Sewri,Wadala Road,Guru Tegh Bahadur Nagar,Chunabhatti,Kurla,Tilak Nagar,Chembur,Govandi,Mankhurd,Vashi,Sanpada,Juinagar,Nerul,Seawoods-Darave,CBD Belapur,Kharghar,Mansarovar,Khandeshwar,Panvel
