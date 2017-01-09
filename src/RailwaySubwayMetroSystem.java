@@ -4,10 +4,13 @@ import Concrete.AsynchronousLogger;
 import Factory.CustomLoggerFactory;
 import Factory.ExecutorServiceFactory;
 import Factory.LineFactory;
+import Factory.LinesStopsFactory;
 import Factory.PersonFactory;
 import Factory.StationFactory;
+import Factory.StopsFactory;
 import Factory.TrainFactory;
 import Status.PersonStatus;
+import Status.StationStatus;
 import Status.ThreadStatus;
 import Status.TrainStatus;
 
@@ -25,27 +28,30 @@ public class RailwaySubwayMetroSystem {
 			
 			//initialize station, line and person factory.
 			StationFactory.initializeFactory();
+			StopsFactory.initializeFactory();
+			LinesStopsFactory.initializeFactory();
 			LineFactory.initializeFactory();
-			PersonFactory.randomlyGeneratePersons(10000, "WesternSlow");
-			PersonFactory.randomlyGeneratePersons(10000, "CentralSlow");
-			PersonFactory.randomlyGeneratePersons(10000, "HarborPanvel");
-			PersonFactory.randomlyGeneratePersons(10000, "HarborAndheri");
+			
+			PersonFactory.randomlyGeneratePersons(4, "Western");
+			PersonFactory.randomlyGeneratePersons(4, "Central");
+			PersonFactory.randomlyGeneratePersons(4, "HarborPanvel");
+			PersonFactory.randomlyGeneratePersons(4, "HarborAndheri");
 			PersonFactory.closePersonsListFile();
 			
-			TrainFactory.createTrainInstance("WS1", "WesternSlow", "Up", 1000);
-			TrainFactory.createTrainInstance("WF1", "WesternFast", "Up", 500);
-			TrainFactory.createTrainInstance("CS1", "CentralSlow", "Up", 1000);
-			TrainFactory.createTrainInstance("CF1", "CentralFast", "Down", 100);
+			TrainFactory.createTrainInstance("VirarFast", "Western", "Up", 500, "Western-VIRCCGT-Fast");
+			TrainFactory.createTrainInstance("WS1", "Western", "Up", 1000, "Western-Slow");
+			TrainFactory.createTrainInstance("CS1", "Central", "Up", 1000, "Central-Slow");
+			TrainFactory.createTrainInstance("CF1", "Central", "Down", 100, "Central-Fast");
 			
 			Thread.sleep(3000);
 			
-			TrainFactory.createTrainInstance("WS2", "WesternSlow", "Down", 1500);
-			TrainFactory.createTrainInstance("CS2", "CentralSlow", "Up", 1500);
+			TrainFactory.createTrainInstance("BorivaliFast", "Western", "Down", 600, "Western-BORCCGT-Fast");
+			TrainFactory.createTrainInstance("CS2", "Central", "Up", 1500, "Central-Slow");
 			
 			Thread.sleep(3000);
 			
-			TrainFactory.createTrainInstance("HP1", "HarborPanvel", "Down", 1000, 15);
-			TrainFactory.createTrainInstance("HA1", "HarborAndheri", "Up", 1000, 15);
+			TrainFactory.createTrainInstance("HP1", "HarborPanvel", "Down", 1000, "HarborPanvel", 15);
+			TrainFactory.createTrainInstance("HA1", "HarborAndheri", "Up", 1000, "HarborAndheri", 15);
 			
 			TrainStatus trainStatus = new TrainStatus(TrainFactory.getTrainsList());
 			trainStatus.getStatus(60000);
