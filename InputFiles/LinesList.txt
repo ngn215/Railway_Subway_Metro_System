@@ -5,14 +5,10 @@
 --To add comments use prefix text with "-"
 ----------------------------------------------------------------------
 
-WesternSlow,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Dahisar,Mira Road,Bhayandar,Naigaon,Vasai Road,Nala Sopara,Virar,Vaitarna,Saphale,Kelve Road,Palghar,Umroli,Boisar,Vangaon,Dahanu Road
+Western,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Mahalaxmi,Lower Parel,Elphinstone Road,Dadar,Matunga,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Dahisar,Mira Road,Bhayandar,Naigaon,Vasai Road,Nala Sopara,Virar,Vaitarna,Saphale,Kelve Road,Palghar,Umroli,Boisar,Vangaon,Dahanu Road
 
-WesternFast,Churchgate,Marine Lines,Charni Road,Grant Road,Mumbai Central,Dadar,Bandra,Khar Road,Santacruz,Vile Parle,Andheri,Jogeshwari,Goregaon,Malad,Kandivali,Borivali,Bhayandar,Vasai Road,Virar
-
-CentralSlow,Chhatrapati Shivaji Terminus,Masjid,Sandhurst Road,Byculla,Chinchpokli,Currey Road,Parel,Dadar,Matunga,Sion,Kurla,Vidyavihar,Ghatkopar,Vikhroli,Kanjurmarg,Bhandup,Nahur,Mulund,Thane,Kalwa,Mumbra,Diva,Kopar,Dombivli,Thakurli,Kalyan
-
-CentralFast,Chhatrapati Shivaji Terminus,Byculla,Parel,Sion,Ghatkopar,Vikhroli,Bhandup,Mulund,Thane,Dombivli,Kalyan
-
-HarborPanvel,Chhatrapati Shivaji Terminus,Sandhurst Road,Dockyard Road,Reay Road,Cotton Green,Sewri,Wadala Road,Guru Tegh Bahadur Nagar,Chunabhatti,Kurla,Tilak Nagar,Chembur,Govandi,Mankhurd,Vashi,Sanpada,Juinagar,Nerul,Seawoods-Darave,CBD Belapur,Kharghar,Mansarovar,Khandeshwar,Panvel
+Central,Chhatrapati Shivaji Terminus,Masjid,Sandhurst Road,Byculla,Chinchpokli,Currey Road,Parel,Dadar,Matunga,Sion,Kurla,Vidyavihar,Ghatkopar,Vikhroli,Kanjurmarg,Bhandup,Nahur,Mulund,Thane,Kalwa,Mumbra,Diva,Kopar,Dombivli,Thakurli,Kalyan
 
 HarborAndheri,Wadala Road,King's Circle,Mahim,Bandra,Khar Road,Santacruz,Vile Parle,Andheri
+
+HarborPanvel,Chhatrapati Shivaji Terminus,Sandhurst Road,Dockyard Road,Reay Road,Cotton Green,Sewri,Wadala Road,Guru Tegh Bahadur Nagar,Chunabhatti,Kurla,Tilak Nagar,Chembur,Govandi,Mankhurd,Vashi,Sanpada,Juinagar,Nerul,Seawoods-Darave,CBD Belapur,Kharghar,Mansarovar,Khandeshwar,Panvel
