@@ -13,7 +13,7 @@ import LockerClasses.ReentrantLockerUnlocker;
 
 public class Station extends ReentrantLockerUnlocker{
 	
-	private String name;
+	private final String name;
 	private final int numberOfPlatforms;
 	private final HashMap<Integer, Train> trainPlatformMap;
 	private final HashSet<Integer> availablePlatformsSet;

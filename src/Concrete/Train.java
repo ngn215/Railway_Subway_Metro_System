@@ -314,10 +314,6 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	
 	public void moveToNextStation(Station nextStation, int platformNumber)
 	{
-		//freeing platform
-		//if (currentStation != null)
-			//currentStation.exitStationPlatform(this);
-		
 		//moving to platform
 		nextStation.enterStationPlatform(this, platformNumber);
 		
