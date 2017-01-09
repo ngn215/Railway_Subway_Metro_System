@@ -1,4 +1,5 @@
 package Concrete;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,12 +9,14 @@ public class Line {
 	private String name;
 	private final List<Station> stationsList;
 	private final HashMap<Station, Integer> stationsHashMap;
+	private final HashMap<String, Stops> stopsMap;
 	
-	public Line(String name, List<Station> stationsList)
+	public Line(String name, List<Station> stationsList, HashMap<String, Stops> stopsMap)
 	{
 		this.name = name;
 		this.stationsList = stationsList;
 		this.stationsHashMap = new HashMap<Station, Integer>();
+		this.stopsMap = stopsMap;
 		
 		buildHashMap();
 	}
@@ -25,6 +28,11 @@ public class Line {
 	public List<Station> getStationsList() {
 		return stationsList;
 	}
+	
+	public Stops getStops(String stopsName)
+	{
+		return stopsMap.get(stopsName);
+	}
 
 	private void buildHashMap()
 	{
@@ -32,7 +40,7 @@ public class Line {
 			stationsHashMap.put(stationsList.get(i), i);
 	}
 	
-	public Station getFirstStation(boolean directionUp)
+	private Station getFirstStation(boolean directionUp)
 	{
 		if (directionUp)
 			return stationsList.get(0);
@@ -42,6 +50,10 @@ public class Line {
 	
 	public Station getNextStation(Station station, boolean directionUp)
 	{
+		//if current station is null then return first station
+		if (station == null)
+			return getFirstStation(directionUp);
+		
 		if (stationsHashMap.containsKey(station))
 		{
 			int currentIndex = stationsHashMap.get(station);

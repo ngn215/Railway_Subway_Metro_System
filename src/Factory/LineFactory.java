@@ -86,10 +86,9 @@ public class LineFactory {
 						}
 					}
 					
-					Line line = new Line(lineName, stationsList);
+					Line line = new Line(lineName, stationsList, LinesStopsFactory.getStopsMap(lineName));
 					linesMap.put(lineName, line);
 					linesList.add(line);
-					//line.printStationsList();
 				}
 		    }      
 		}
@@ -105,7 +104,7 @@ public class LineFactory {
 		}
 	}
 	
-	public static String getLineName(Station sourceStationName, Station destinationStationName)
+	public static Line getLineFromSourceAndDestination(Station sourceStationName, Station destinationStationName)
 	{
 		if(linesList.isEmpty()) 
 		{
@@ -118,22 +117,14 @@ public class LineFactory {
 			//System.out.println(line.hasStation(sourceStationName) + " " + line.hasStation(sourceStationName));
 			
 			if (line.hasStation(sourceStationName) && line.hasStation(destinationStationName))
-				return line.getName();
+				return line;
 		}
 		
 		return null;
 	}
 	
-	public static boolean getDirection(String lineName, Station sourceStationName, Station destinationStationName)
+	public static boolean getDirectionFromSourceAndDestination(Line line, Station sourceStationName, Station destinationStationName)
 	{
-		if(linesMap.isEmpty() || !linesMap.containsKey(lineName))
-		{
-			asyncLogger.log("ERROR : " + lineName + " is not initialized in the map", true);
-			return false;
-		}
-		
-		Line line = linesMap.get(lineName);
-			
 		if (line.getDirection(sourceStationName, destinationStationName))
 			return true;
 		
