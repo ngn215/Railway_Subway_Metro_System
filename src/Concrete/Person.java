@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import Factory.CustomLoggerFactory;
 import Factory.CustomThreadFactory;
@@ -206,7 +207,7 @@ public class Person implements Runnable {
 		
 		boolean canTakeThisTrain = false;
 		
-		HashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
+		ConcurrentHashMap<Integer, Train> trainPlatformMap = sourceStation.getTrainsInPlatforms();
 		
 		if(checkThreadInterruption() || trainPlatformMap.isEmpty())
 			return;
