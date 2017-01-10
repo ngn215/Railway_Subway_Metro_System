@@ -1,16 +1,4000 @@
-P1	Nala Sopara --> Vangaon
-P2	Elphinstone Road --> Jogeshwari
-P3	Santacruz --> Matunga
-P4	Boisar --> Mumbai Central
-P5	Kalwa --> Chinchpokli
-P6	Thakurli --> Kopar
-P7	Vidyavihar --> Mulund
-P8	Nahur --> Sandhurst Road
-P9	Seawoods-Darave --> Vashi
-P10	Reay Road --> Chhatrapati Shivaji Terminus
-P11	Nerul --> Sandhurst Road
-P12	Reay Road --> Chhatrapati Shivaji Terminus
-P13	Santacruz --> Khar Road
-P14	Andheri --> Bandra
-P15	Bandra --> Khar Road
-P16	Khar Road --> Wadala Road
+P1	Borivali --> Churchgate
+P2	Vaitarna --> Vasai Road
+P3	Dahanu Road --> Palghar
+P4	Khar Road --> Vasai Road
+P5	Dahanu Road --> Palghar
+P6	Mahim --> Kandivali
+P7	Umroli --> Mahalaxmi
+P8	Charni Road --> Boisar
+P9	Virar --> Khar Road
+P10	Andheri --> Dadar
+P11	Andheri --> Vaitarna
+P12	Mahalaxmi --> Saphale
+P13	Charni Road --> Mahim
+P14	Mira Road --> Nala Sopara
+P15	Dadar --> Mira Road
+P16	Saphale --> Palghar
+P17	Palghar --> Umroli
+P18	Mahim --> Mira Road
+P19	Vaitarna --> Marine Lines
+P20	Vaitarna --> Grant Road
+P21	Mira Road --> Churchgate
+P22	Lower Parel --> Naigaon
+P23	Vile Parle --> Mumbai Central
+P24	Mira Road --> Vile Parle
+P25	Marine Lines --> Nala Sopara
+P26	Dahisar --> Mahim
+P27	Elphinstone Road --> Bhayandar
+P28	Borivali --> Mira Road
+P29	Umroli --> Elphinstone Road
+P30	Bhayandar --> Saphale
+P31	Borivali --> Dadar
+P32	Umroli --> Vile Parle
+P33	Bandra --> Vile Parle
+P34	Elphinstone Road --> Malad
+P35	Khar Road --> Mahalaxmi
+P36	Nala Sopara --> Vaitarna
+P37	Saphale --> Dahisar
+P38	Churchgate --> Saphale
+P39	Saphale --> Andheri
+P40	Elphinstone Road --> Santacruz
+P41	Marine Lines --> Naigaon
+P42	Vile Parle --> Khar Road
+P43	Churchgate --> Elphinstone Road
+P44	Umroli --> Vaitarna
+P45	Saphale --> Naigaon
+P46	Naigaon --> Mumbai Central
+P47	Andheri --> Dadar
+P48	Elphinstone Road --> Malad
+P49	Santacruz --> Goregaon
+P50	Saphale --> Elphinstone Road
+P51	Borivali --> Malad
+P52	Bandra --> Elphinstone Road
+P53	Mahim --> Umroli
+P54	Vasai Road --> Mumbai Central
+P55	Dahisar --> Khar Road
+P56	Jogeshwari --> Virar
+P57	Vasai Road --> Vile Parle
+P58	Lower Parel --> Matunga
+P59	Vile Parle --> Kandivali
+P60	Elphinstone Road --> Mahalaxmi
+P61	Palghar --> Elphinstone Road
+P62	Dahisar --> Khar Road
+P63	Jogeshwari --> Vasai Road
+P64	Mumbai Central --> Kandivali
+P65	Vaitarna --> Kelve Road
+P66	Vasai Road --> Santacruz
+P67	Kandivali --> Mahim
+P68	Dadar --> Umroli
+P69	Matunga --> Kandivali
+P70	Dadar --> Mahalaxmi
+P71	Goregaon --> Mahim
+P72	Malad --> Khar Road
+P73	Nala Sopara --> Mahim
+P74	Andheri --> Naigaon
+P75	Jogeshwari --> Charni Road
+P76	Boisar --> Charni Road
+P77	Bhayandar --> Dadar
+P78	Borivali --> Khar Road
+P79	Naigaon --> Dahisar
+P80	Umroli --> Vile Parle
+P81	Kelve Road --> Goregaon
+P82	Santacruz --> Vasai Road
+P83	Boisar --> Lower Parel
+P84	Palghar --> Naigaon
+P85	Vasai Road --> Mumbai Central
+P86	Vasai Road --> Bhayandar
+P87	Marine Lines --> Virar
+P88	Vile Parle --> Kelve Road
+P89	Boisar --> Mahim
+P90	Dahisar --> Vangaon
+P91	Kelve Road --> Virar
+P92	Malad --> Bhayandar
+P93	Matunga --> Naigaon
+P94	Kandivali --> Mumbai Central
+P95	Mumbai Central --> Elphinstone Road
+P96	Santacruz --> Dahanu Road
+P97	Umroli --> Matunga
+P98	Dadar --> Vile Parle
+P99	Mahim --> Goregaon
+P100	Santacruz --> Kelve Road
+P101	Dahanu Road --> Andheri
+P102	Mira Road --> Vile Parle
+P103	Dahanu Road --> Khar Road
+P104	Borivali --> Mumbai Central
+P105	Vasai Road --> Jogeshwari
+P106	Bhayandar --> Naigaon
+P107	Saphale --> Jogeshwari
+P108	Vaitarna --> Naigaon
+P109	Mumbai Central --> Vile Parle
+P110	Mira Road --> Bandra
+P111	Andheri --> Virar
+P112	Dadar --> Palghar
+P113	Mahim --> Malad
+P114	Andheri --> Borivali
+P115	Umroli --> Mahalaxmi
+P116	Virar --> Charni Road
+P117	Dahisar --> Bhayandar
+P118	Dahanu Road --> Kelve Road
+P119	Malad --> Grant Road
+P120	Vile Parle --> Mahim
+P121	Santacruz --> Jogeshwari
+P122	Elphinstone Road --> Bandra
+P123	Bandra --> Goregaon
+P124	Naigaon --> Saphale
+P125	Dahanu Road --> Palghar
+P126	Vile Parle --> Mumbai Central
+P127	Boisar --> Bhayandar
+P128	Grant Road --> Mumbai Central
+P129	Dadar --> Khar Road
+P130	Mumbai Central --> Grant Road
+P131	Borivali --> Goregaon
+P132	Khar Road --> Bhayandar
+P133	Umroli --> Andheri
+P134	Kandivali --> Dadar
+P135	Borivali --> Jogeshwari
+P136	Vasai Road --> Matunga
+P137	Vangaon --> Saphale
+P138	Marine Lines --> Elphinstone Road
+P139	Nala Sopara --> Vangaon
+P140	Mira Road --> Charni Road
+P141	Andheri --> Khar Road
+P142	Goregaon --> Marine Lines
+P143	Goregaon --> Lower Parel
+P144	Mahim --> Saphale
+P145	Grant Road --> Santacruz
+P146	Kandivali --> Charni Road
+P147	Virar --> Dahisar
+P148	Vasai Road --> Nala Sopara
+P149	Borivali --> Santacruz
+P150	Lower Parel --> Dahisar
+P151	Dadar --> Mahalaxmi
+P152	Jogeshwari --> Elphinstone Road
+P153	Lower Parel --> Virar
+P154	Churchgate --> Mumbai Central
+P155	Dahisar --> Boisar
+P156	Boisar --> Saphale
+P157	Borivali --> Mira Road
+P158	Vangaon --> Matunga
+P159	Mahalaxmi --> Marine Lines
+P160	Mahim --> Nala Sopara
+P161	Marine Lines --> Mumbai Central
+P162	Kandivali --> Matunga
+P163	Elphinstone Road --> Grant Road
+P164	Bhayandar --> Jogeshwari
+P165	Marine Lines --> Vasai Road
+P166	Churchgate --> Matunga
+P167	Mumbai Central --> Khar Road
+P168	Mahim --> Marine Lines
+P169	Malad --> Boisar
+P170	Kandivali --> Naigaon
+P171	Elphinstone Road --> Kandivali
+P172	Dahanu Road --> Boisar
+P173	Marine Lines --> Matunga
+P174	Lower Parel --> Dahanu Road
+P175	Lower Parel --> Virar
+P176	Naigaon --> Mahalaxmi
+P177	Dahisar --> Santacruz
+P178	Borivali --> Grant Road
+P179	Dadar --> Palghar
+P180	Borivali --> Vangaon
+P181	Khar Road --> Vasai Road
+P182	Mumbai Central --> Mira Road
+P183	Mira Road --> Mumbai Central
+P184	Vasai Road --> Khar Road
+P185	Grant Road --> Dahanu Road
+P186	Vile Parle --> Nala Sopara
+P187	Vaitarna --> Kandivali
+P188	Dahanu Road --> Andheri
+P189	Mumbai Central --> Dahisar
+P190	Bhayandar --> Virar
+P191	Bhayandar --> Vasai Road
+P192	Mahalaxmi --> Matunga
+P193	Goregaon --> Malad
+P194	Mumbai Central --> Vaitarna
+P195	Elphinstone Road --> Kandivali
+P196	Nala Sopara --> Bhayandar
+P197	Vile Parle --> Virar
+P198	Mumbai Central --> Churchgate
+P199	Jogeshwari --> Dahisar
+P200	Kandivali --> Matunga
+P201	Bhayandar --> Kelve Road
+P202	Goregaon --> Malad
+P203	Santacruz --> Dahanu Road
+P204	Kandivali --> Vangaon
+P205	Dahanu Road --> Vangaon
+P206	Dahanu Road --> Vangaon
+P207	Dadar --> Palghar
+P208	Grant Road --> Mahim
+P209	Mumbai Central --> Jogeshwari
+P210	Andheri --> Charni Road
+P211	Malad --> Mahalaxmi
+P212	Marine Lines --> Goregaon
+P213	Umroli --> Andheri
+P214	Grant Road --> Churchgate
+P215	Boisar --> Palghar
+P216	Andheri --> Goregaon
+P217	Lower Parel --> Elphinstone Road
+P218	Dahanu Road --> Mumbai Central
+P219	Vile Parle --> Charni Road
+P220	Kelve Road --> Kandivali
+P221	Dahanu Road --> Vasai Road
+P222	Dadar --> Elphinstone Road
+P223	Andheri --> Elphinstone Road
+P224	Mira Road --> Bhayandar
+P225	Palghar --> Santacruz
+P226	Mira Road --> Dadar
+P227	Khar Road --> Lower Parel
+P228	Malad --> Bandra
+P229	Virar --> Malad
+P230	Grant Road --> Mira Road
+P231	Kandivali --> Vile Parle
+P232	Malad --> Andheri
+P233	Bandra --> Santacruz
+P234	Malad --> Umroli
+P235	Vasai Road --> Virar
+P236	Lower Parel --> Bhayandar
+P237	Virar --> Boisar
+P238	Kandivali --> Bhayandar
+P239	Mumbai Central --> Matunga
+P240	Boisar --> Bhayandar
+P241	Andheri --> Mumbai Central
+P242	Grant Road --> Elphinstone Road
+P243	Vasai Road --> Dahanu Road
+P244	Umroli --> Nala Sopara
+P245	Marine Lines --> Churchgate
+P246	Vangaon --> Goregaon
+P247	Matunga --> Vasai Road
+P248	Bhayandar --> Grant Road
+P249	Kandivali --> Grant Road
+P250	Elphinstone Road --> Mira Road
+P251	Nala Sopara --> Jogeshwari
+P252	Dahisar --> Mahim
+P253	Virar --> Palghar
+P254	Naigaon --> Malad
+P255	Umroli --> Malad
+P256	Goregaon --> Elphinstone Road
+P257	Dahisar --> Charni Road
+P258	Mumbai Central --> Saphale
+P259	Malad --> Bhayandar
+P260	Boisar --> Matunga
+P261	Khar Road --> Grant Road
+P262	Mahim --> Boisar
+P263	Naigaon --> Borivali
+P264	Mira Road --> Borivali
+P265	Lower Parel --> Malad
+P266	Mahalaxmi --> Goregaon
+P267	Vaitarna --> Elphinstone Road
+P268	Dahanu Road --> Kandivali
+P269	Virar --> Borivali
+P270	Palghar --> Churchgate
+P271	Vile Parle --> Charni Road
+P272	Dahanu Road --> Kandivali
+P273	Naigaon --> Dahanu Road
+P274	Kelve Road --> Charni Road
+P275	Dahanu Road --> Matunga
+P276	Kelve Road --> Boisar
+P277	Vile Parle --> Kelve Road
+P278	Bandra --> Jogeshwari
+P279	Saphale --> Malad
+P280	Umroli --> Malad
+P281	Umroli --> Bandra
+P282	Palghar --> Bhayandar
+P283	Saphale --> Andheri
+P284	Grant Road --> Dahisar
+P285	Vaitarna --> Goregaon
+P286	Dadar --> Mira Road
+P287	Palghar --> Mahalaxmi
+P288	Malad --> Andheri
+P289	Palghar --> Kelve Road
+P290	Saphale --> Borivali
+P291	Mahim --> Boisar
+P292	Santacruz --> Dahanu Road
+P293	Santacruz --> Khar Road
+P294	Andheri --> Palghar
+P295	Vile Parle --> Vangaon
+P296	Dahisar --> Kelve Road
+P297	Vaitarna --> Dahanu Road
+P298	Khar Road --> Vasai Road
+P299	Elphinstone Road --> Saphale
+P300	Grant Road --> Churchgate
+P301	Mumbai Central --> Santacruz
+P302	Palghar --> Boisar
+P303	Saphale --> Kandivali
+P304	Dahisar --> Vasai Road
+P305	Mahalaxmi --> Naigaon
+P306	Borivali --> Charni Road
+P307	Andheri --> Malad
+P308	Malad --> Mahalaxmi
+P309	Mira Road --> Elphinstone Road
+P310	Virar --> Andheri
+P311	Kelve Road --> Vaitarna
+P312	Santacruz --> Jogeshwari
+P313	Vangaon --> Borivali
+P314	Mahalaxmi --> Mahim
+P315	Virar --> Vasai Road
+P316	Goregaon --> Mumbai Central
+P317	Naigaon --> Andheri
+P318	Palghar --> Dahisar
+P319	Mira Road --> Andheri
+P320	Malad --> Vangaon
+P321	Dahanu Road --> Elphinstone Road
+P322	Mira Road --> Borivali
+P323	Nala Sopara --> Mahim
+P324	Mahim --> Virar
+P325	Andheri --> Churchgate
+P326	Churchgate --> Andheri
+P327	Borivali --> Mira Road
+P328	Kandivali --> Santacruz
+P329	Vasai Road --> Mumbai Central
+P330	Vangaon --> Santacruz
+P331	Malad --> Jogeshwari
+P332	Marine Lines --> Nala Sopara
+P333	Borivali --> Elphinstone Road
+P334	Andheri --> Bhayandar
+P335	Borivali --> Palghar
+P336	Grant Road --> Vasai Road
+P337	Mumbai Central --> Grant Road
+P338	Bhayandar --> Mira Road
+P339	Dahanu Road --> Vaitarna
+P340	Malad --> Churchgate
+P341	Jogeshwari --> Khar Road
+P342	Santacruz --> Borivali
+P343	Marine Lines --> Goregaon
+P344	Vangaon --> Marine Lines
+P345	Kelve Road --> Mahalaxmi
+P346	Palghar --> Dahanu Road
+P347	Kandivali --> Matunga
+P348	Dahanu Road --> Borivali
+P349	Kandivali --> Charni Road
+P350	Kelve Road --> Elphinstone Road
+P351	Matunga --> Umroli
+P352	Kelve Road --> Boisar
+P353	Virar --> Malad
+P354	Saphale --> Boisar
+P355	Boisar --> Kelve Road
+P356	Malad --> Mahalaxmi
+P357	Churchgate --> Bhayandar
+P358	Saphale --> Vaitarna
+P359	Dahanu Road --> Bandra
+P360	Marine Lines --> Vaitarna
+P361	Churchgate --> Mahim
+P362	Andheri --> Dadar
+P363	Kelve Road --> Elphinstone Road
+P364	Vasai Road --> Charni Road
+P365	Vangaon --> Boisar
+P366	Dahisar --> Dahanu Road
+P367	Nala Sopara --> Mira Road
+P368	Kandivali --> Dahisar
+P369	Kelve Road --> Bhayandar
+P370	Bhayandar --> Kelve Road
+P371	Santacruz --> Dahisar
+P372	Mahim --> Goregaon
+P373	Borivali --> Mumbai Central
+P374	Dadar --> Vile Parle
+P375	Mumbai Central --> Dadar
+P376	Lower Parel --> Mahim
+P377	Dahanu Road --> Mahalaxmi
+P378	Churchgate --> Naigaon
+P379	Kandivali --> Khar Road
+P380	Andheri --> Vaitarna
+P381	Nala Sopara --> Elphinstone Road
+P382	Kelve Road --> Grant Road
+P383	Matunga --> Kandivali
+P384	Dadar --> Kelve Road
+P385	Khar Road --> Borivali
+P386	Umroli --> Elphinstone Road
+P387	Jogeshwari --> Palghar
+P388	Mahalaxmi --> Marine Lines
+P389	Vasai Road --> Saphale
+P390	Andheri --> Elphinstone Road
+P391	Dadar --> Mira Road
+P392	Nala Sopara --> Borivali
+P393	Dadar --> Vile Parle
+P394	Mahim --> Dadar
+P395	Mumbai Central --> Palghar
+P396	Khar Road --> Palghar
+P397	Goregaon --> Matunga
+P398	Mahim --> Virar
+P399	Charni Road --> Andheri
+P400	Boisar --> Kandivali
+P401	Mahim --> Charni Road
+P402	Jogeshwari --> Nala Sopara
+P403	Dahisar --> Goregaon
+P404	Santacruz --> Andheri
+P405	Jogeshwari --> Andheri
+P406	Bandra --> Kandivali
+P407	Virar --> Nala Sopara
+P408	Goregaon --> Matunga
+P409	Santacruz --> Vasai Road
+P410	Santacruz --> Elphinstone Road
+P411	Mira Road --> Mahalaxmi
+P412	Saphale --> Vangaon
+P413	Churchgate --> Goregaon
+P414	Charni Road --> Bandra
+P415	Goregaon --> Umroli
+P416	Virar --> Saphale
+P417	Goregaon --> Naigaon
+P418	Virar --> Grant Road
+P419	Dahisar --> Naigaon
+P420	Charni Road --> Bhayandar
+P421	Jogeshwari --> Virar
+P422	Nala Sopara --> Saphale
+P423	Vile Parle --> Khar Road
+P424	Santacruz --> Vile Parle
+P425	Elphinstone Road --> Grant Road
+P426	Churchgate --> Nala Sopara
+P427	Matunga --> Charni Road
+P428	Mumbai Central --> Naigaon
+P429	Charni Road --> Boisar
+P430	Santacruz --> Vasai Road
+P431	Marine Lines --> Churchgate
+P432	Naigaon --> Jogeshwari
+P433	Mumbai Central --> Vangaon
+P434	Khar Road --> Boisar
+P435	Borivali --> Grant Road
+P436	Marine Lines --> Boisar
+P437	Mahalaxmi --> Dadar
+P438	Vasai Road --> Nala Sopara
+P439	Dahisar --> Bandra
+P440	Borivali --> Goregaon
+P441	Mumbai Central --> Andheri
+P442	Naigaon --> Dadar
+P443	Andheri --> Elphinstone Road
+P444	Khar Road --> Mumbai Central
+P445	Marine Lines --> Vangaon
+P446	Andheri --> Dadar
+P447	Mumbai Central --> Mahalaxmi
+P448	Andheri --> Borivali
+P449	Lower Parel --> Vaitarna
+P450	Churchgate --> Matunga
+P451	Umroli --> Vangaon
+P452	Dahanu Road --> Nala Sopara
+P453	Jogeshwari --> Marine Lines
+P454	Matunga --> Dahanu Road
+P455	Palghar --> Dahisar
+P456	Borivali --> Vangaon
+P457	Nala Sopara --> Kandivali
+P458	Umroli --> Charni Road
+P459	Saphale --> Dahanu Road
+P460	Bhayandar --> Goregaon
+P461	Churchgate --> Bhayandar
+P462	Bhayandar --> Vile Parle
+P463	Dadar --> Jogeshwari
+P464	Malad --> Mahalaxmi
+P465	Elphinstone Road --> Vasai Road
+P466	Mahalaxmi --> Naigaon
+P467	Khar Road --> Nala Sopara
+P468	Mira Road --> Umroli
+P469	Malad --> Mumbai Central
+P470	Goregaon --> Santacruz
+P471	Saphale --> Kelve Road
+P472	Saphale --> Dahanu Road
+P473	Mumbai Central --> Boisar
+P474	Dahisar --> Borivali
+P475	Mahalaxmi --> Marine Lines
+P476	Mira Road --> Grant Road
+P477	Charni Road --> Bhayandar
+P478	Saphale --> Dadar
+P479	Umroli --> Kandivali
+P480	Bhayandar --> Vaitarna
+P481	Virar --> Dahanu Road
+P482	Bandra --> Borivali
+P483	Vile Parle --> Bhayandar
+P484	Palghar --> Dadar
+P485	Mahalaxmi --> Vaitarna
+P486	Charni Road --> Matunga
+P487	Vasai Road --> Churchgate
+P488	Bhayandar --> Umroli
+P489	Elphinstone Road --> Borivali
+P490	Santacruz --> Palghar
+P491	Vasai Road --> Mira Road
+P492	Virar --> Bhayandar
+P493	Andheri --> Churchgate
+P494	Santacruz --> Vangaon
+P495	Mira Road --> Jogeshwari
+P496	Kelve Road --> Mahim
+P497	Malad --> Vile Parle
+P498	Mahalaxmi --> Vasai Road
+P499	Vasai Road --> Kandivali
+P500	Churchgate --> Kandivali
+P501	Lower Parel --> Khar Road
+P502	Kandivali --> Saphale
+P503	Vile Parle --> Borivali
+P504	Virar --> Grant Road
+P505	Santacruz --> Malad
+P506	Khar Road --> Mahim
+P507	Malad --> Kelve Road
+P508	Jogeshwari --> Santacruz
+P509	Dahisar --> Churchgate
+P510	Lower Parel --> Charni Road
+P511	Boisar --> Saphale
+P512	Mumbai Central --> Marine Lines
+P513	Vasai Road --> Khar Road
+P514	Kelve Road --> Saphale
+P515	Charni Road --> Kandivali
+P516	Andheri --> Kandivali
+P517	Khar Road --> Boisar
+P518	Matunga --> Vaitarna
+P519	Virar --> Dahisar
+P520	Grant Road --> Saphale
+P521	Kandivali --> Boisar
+P522	Bhayandar --> Elphinstone Road
+P523	Jogeshwari --> Churchgate
+P524	Dahanu Road --> Saphale
+P525	Mumbai Central --> Mira Road
+P526	Mahalaxmi --> Khar Road
+P527	Borivali --> Nala Sopara
+P528	Khar Road --> Matunga
+P529	Kandivali --> Boisar
+P530	Kandivali --> Saphale
+P531	Mumbai Central --> Malad
+P532	Virar --> Dadar
+P533	Bhayandar --> Elphinstone Road
+P534	Boisar --> Bhayandar
+P535	Marine Lines --> Matunga
+P536	Vaitarna --> Borivali
+P537	Marine Lines --> Borivali
+P538	Matunga --> Khar Road
+P539	Lower Parel --> Mahim
+P540	Kelve Road --> Churchgate
+P541	Lower Parel --> Vile Parle
+P542	Matunga --> Boisar
+P543	Mumbai Central --> Virar
+P544	Andheri --> Dahisar
+P545	Kelve Road --> Kandivali
+P546	Palghar --> Vaitarna
+P547	Elphinstone Road --> Malad
+P548	Vasai Road --> Saphale
+P549	Dahisar --> Mira Road
+P550	Boisar --> Malad
+P551	Grant Road --> Umroli
+P552	Mahalaxmi --> Charni Road
+P553	Dadar --> Marine Lines
+P554	Kelve Road --> Mumbai Central
+P555	Naigaon --> Bandra
+P556	Umroli --> Kandivali
+P557	Grant Road --> Andheri
+P558	Vangaon --> Boisar
+P559	Charni Road --> Mumbai Central
+P560	Elphinstone Road --> Kelve Road
+P561	Grant Road --> Santacruz
+P562	Saphale --> Kandivali
+P563	Boisar --> Churchgate
+P564	Marine Lines --> Santacruz
+P565	Charni Road --> Goregaon
+P566	Marine Lines --> Goregaon
+P567	Andheri --> Naigaon
+P568	Malad --> Andheri
+P569	Elphinstone Road --> Grant Road
+P570	Andheri --> Borivali
+P571	Bhayandar --> Jogeshwari
+P572	Khar Road --> Elphinstone Road
+P573	Andheri --> Elphinstone Road
+P574	Andheri --> Churchgate
+P575	Marine Lines --> Virar
+P576	Andheri --> Khar Road
+P577	Virar --> Grant Road
+P578	Vaitarna --> Bhayandar
+P579	Mumbai Central --> Dahisar
+P580	Borivali --> Mira Road
+P581	Palghar --> Mahim
+P582	Umroli --> Naigaon
+P583	Bandra --> Saphale
+P584	Goregaon --> Matunga
+P585	Andheri --> Jogeshwari
+P586	Malad --> Vangaon
+P587	Mira Road --> Santacruz
+P588	Grant Road --> Virar
+P589	Santacruz --> Lower Parel
+P590	Borivali --> Saphale
+P591	Malad --> Bhayandar
+P592	Santacruz --> Umroli
+P593	Churchgate --> Santacruz
+P594	Mahalaxmi --> Umroli
+P595	Mira Road --> Dadar
+P596	Umroli --> Santacruz
+P597	Charni Road --> Virar
+P598	Elphinstone Road --> Boisar
+P599	Marine Lines --> Dahisar
+P600	Dadar --> Malad
+P601	Goregaon --> Jogeshwari
+P602	Mira Road --> Elphinstone Road
+P603	Malad --> Dahanu Road
+P604	Matunga --> Bhayandar
+P605	Matunga --> Mumbai Central
+P606	Santacruz --> Bhayandar
+P607	Grant Road --> Dahanu Road
+P608	Elphinstone Road --> Mahalaxmi
+P609	Dadar --> Boisar
+P610	Mahalaxmi --> Vasai Road
+P611	Nala Sopara --> Jogeshwari
+P612	Grant Road --> Nala Sopara
+P613	Vangaon --> Jogeshwari
+P614	Dadar --> Jogeshwari
+P615	Dadar --> Mumbai Central
+P616	Mumbai Central --> Churchgate
+P617	Vangaon --> Borivali
+P618	Virar --> Kandivali
+P619	Umroli --> Dadar
+P620	Bandra --> Jogeshwari
+P621	Khar Road --> Elphinstone Road
+P622	Saphale --> Borivali
+P623	Naigaon --> Matunga
+P624	Lower Parel --> Umroli
+P625	Boisar --> Mahim
+P626	Matunga --> Mahalaxmi
+P627	Khar Road --> Dahisar
+P628	Jogeshwari --> Kelve Road
+P629	Khar Road --> Jogeshwari
+P630	Boisar --> Marine Lines
+P631	Khar Road --> Matunga
+P632	Vangaon --> Nala Sopara
+P633	Elphinstone Road --> Mahalaxmi
+P634	Boisar --> Lower Parel
+P635	Andheri --> Mahim
+P636	Virar --> Nala Sopara
+P637	Malad --> Mahalaxmi
+P638	Palghar --> Virar
+P639	Grant Road --> Kandivali
+P640	Nala Sopara --> Charni Road
+P641	Mira Road --> Kelve Road
+P642	Borivali --> Churchgate
+P643	Bhayandar --> Churchgate
+P644	Mira Road --> Khar Road
+P645	Vaitarna --> Charni Road
+P646	Andheri --> Vangaon
+P647	Virar --> Umroli
+P648	Dahisar --> Borivali
+P649	Matunga --> Mumbai Central
+P650	Goregaon --> Vasai Road
+P651	Dadar --> Matunga
+P652	Churchgate --> Boisar
+P653	Dadar --> Andheri
+P654	Khar Road --> Marine Lines
+P655	Dadar --> Malad
+P656	Grant Road --> Goregaon
+P657	Matunga --> Bhayandar
+P658	Kelve Road --> Palghar
+P659	Mumbai Central --> Vasai Road
+P660	Saphale --> Malad
+P661	Mahalaxmi --> Elphinstone Road
+P662	Kandivali --> Saphale
+P663	Vaitarna --> Palghar
+P664	Malad --> Vasai Road
+P665	Khar Road --> Umroli
+P666	Dahisar --> Santacruz
+P667	Andheri --> Santacruz
+P668	Mahim --> Mumbai Central
+P669	Charni Road --> Dahisar
+P670	Elphinstone Road --> Mira Road
+P671	Goregaon --> Khar Road
+P672	Naigaon --> Borivali
+P673	Kandivali --> Umroli
+P674	Borivali --> Andheri
+P675	Khar Road --> Kelve Road
+P676	Mahim --> Mumbai Central
+P677	Naigaon --> Kandivali
+P678	Virar --> Goregaon
+P679	Malad --> Mahim
+P680	Matunga --> Churchgate
+P681	Dahisar --> Jogeshwari
+P682	Vile Parle --> Umroli
+P683	Andheri --> Mahalaxmi
+P684	Palghar --> Goregaon
+P685	Dadar --> Vile Parle
+P686	Boisar --> Mahalaxmi
+P687	Bandra --> Palghar
+P688	Matunga --> Khar Road
+P689	Marine Lines --> Kelve Road
+P690	Umroli --> Vasai Road
+P691	Borivali --> Charni Road
+P692	Mahalaxmi --> Khar Road
+P693	Bhayandar --> Marine Lines
+P694	Khar Road --> Saphale
+P695	Grant Road --> Naigaon
+P696	Mahim --> Marine Lines
+P697	Umroli --> Vasai Road
+P698	Churchgate --> Charni Road
+P699	Khar Road --> Goregaon
+P700	Mahalaxmi --> Palghar
+P701	Khar Road --> Dahisar
+P702	Vangaon --> Virar
+P703	Malad --> Goregaon
+P704	Marine Lines --> Andheri
+P705	Charni Road --> Mahalaxmi
+P706	Vaitarna --> Jogeshwari
+P707	Vasai Road --> Mumbai Central
+P708	Dadar --> Umroli
+P709	Elphinstone Road --> Bhayandar
+P710	Nala Sopara --> Dadar
+P711	Borivali --> Goregaon
+P712	Santacruz --> Kandivali
+P713	Borivali --> Andheri
+P714	Kelve Road --> Malad
+P715	Vasai Road --> Umroli
+P716	Nala Sopara --> Lower Parel
+P717	Nala Sopara --> Lower Parel
+P718	Vangaon --> Khar Road
+P719	Mahalaxmi --> Palghar
+P720	Matunga --> Jogeshwari
+P721	Marine Lines --> Vaitarna
+P722	Dahanu Road --> Churchgate
+P723	Santacruz --> Naigaon
+P724	Elphinstone Road --> Vangaon
+P725	Saphale --> Dadar
+P726	Umroli --> Churchgate
+P727	Khar Road --> Santacruz
+P728	Dadar --> Borivali
+P729	Dahanu Road --> Grant Road
+P730	Marine Lines --> Vasai Road
+P731	Dahanu Road --> Naigaon
+P732	Lower Parel --> Grant Road
+P733	Saphale --> Dadar
+P734	Mahim --> Khar Road
+P735	Kelve Road --> Boisar
+P736	Grant Road --> Kandivali
+P737	Boisar --> Vaitarna
+P738	Vile Parle --> Naigaon
+P739	Dahanu Road --> Grant Road
+P740	Dadar --> Charni Road
+P741	Umroli --> Jogeshwari
+P742	Mira Road --> Matunga
+P743	Vasai Road --> Mumbai Central
+P744	Malad --> Dahanu Road
+P745	Khar Road --> Nala Sopara
+P746	Saphale --> Borivali
+P747	Dadar --> Dahanu Road
+P748	Churchgate --> Palghar
+P749	Nala Sopara --> Mahalaxmi
+P750	Virar --> Boisar
+P751	Mahalaxmi --> Naigaon
+P752	Matunga --> Bandra
+P753	Dahanu Road --> Dahisar
+P754	Jogeshwari --> Borivali
+P755	Vaitarna --> Palghar
+P756	Borivali --> Kandivali
+P757	Jogeshwari --> Churchgate
+P758	Palghar --> Virar
+P759	Santacruz --> Khar Road
+P760	Churchgate --> Vaitarna
+P761	Virar --> Vangaon
+P762	Marine Lines --> Charni Road
+P763	Vasai Road --> Vaitarna
+P764	Churchgate --> Vangaon
+P765	Mahalaxmi --> Marine Lines
+P766	Churchgate --> Charni Road
+P767	Mumbai Central --> Mahim
+P768	Vangaon --> Nala Sopara
+P769	Umroli --> Santacruz
+P770	Vangaon --> Vasai Road
+P771	Charni Road --> Kelve Road
+P772	Dahisar --> Matunga
+P773	Vaitarna --> Dahisar
+P774	Mahim --> Vile Parle
+P775	Khar Road --> Saphale
+P776	Vaitarna --> Malad
+P777	Grant Road --> Palghar
+P778	Borivali --> Palghar
+P779	Mahim --> Nala Sopara
+P780	Charni Road --> Churchgate
+P781	Bhayandar --> Andheri
+P782	Lower Parel --> Mahalaxmi
+P783	Jogeshwari --> Virar
+P784	Charni Road --> Boisar
+P785	Dahanu Road --> Kelve Road
+P786	Bhayandar --> Boisar
+P787	Vangaon --> Umroli
+P788	Santacruz --> Nala Sopara
+P789	Vaitarna --> Bhayandar
+P790	Mira Road --> Bandra
+P791	Charni Road --> Bhayandar
+P792	Saphale --> Marine Lines
+P793	Bhayandar --> Vangaon
+P794	Dahanu Road --> Bhayandar
+P795	Dahanu Road --> Goregaon
+P796	Kandivali --> Borivali
+P797	Goregaon --> Santacruz
+P798	Goregaon --> Malad
+P799	Matunga --> Saphale
+P800	Mumbai Central --> Elphinstone Road
+P801	Marine Lines --> Mumbai Central
+P802	Dahisar --> Khar Road
+P803	Virar --> Borivali
+P804	Malad --> Andheri
+P805	Mahalaxmi --> Mira Road
+P806	Palghar --> Dahisar
+P807	Jogeshwari --> Kelve Road
+P808	Mumbai Central --> Mahalaxmi
+P809	Boisar --> Khar Road
+P810	Bandra --> Vasai Road
+P811	Vasai Road --> Goregaon
+P812	Vile Parle --> Elphinstone Road
+P813	Mahalaxmi --> Vaitarna
+P814	Nala Sopara --> Vaitarna
+P815	Dadar --> Naigaon
+P816	Bhayandar --> Vasai Road
+P817	Boisar --> Vangaon
+P818	Mahalaxmi --> Bhayandar
+P819	Naigaon --> Saphale
+P820	Elphinstone Road --> Jogeshwari
+P821	Dadar --> Vangaon
+P822	Malad --> Vaitarna
+P823	Elphinstone Road --> Grant Road
+P824	Saphale --> Charni Road
+P825	Bandra --> Jogeshwari
+P826	Jogeshwari --> Vasai Road
+P827	Mira Road --> Borivali
+P828	Dahanu Road --> Umroli
+P829	Boisar --> Mahim
+P830	Boisar --> Lower Parel
+P831	Boisar --> Khar Road
+P832	Malad --> Lower Parel
+P833	Elphinstone Road --> Dahisar
+P834	Palghar --> Mahalaxmi
+P835	Malad --> Kandivali
+P836	Marine Lines --> Mahim
+P837	Mahim --> Naigaon
+P838	Marine Lines --> Churchgate
+P839	Vaitarna --> Nala Sopara
+P840	Andheri --> Saphale
+P841	Santacruz --> Dahanu Road
+P842	Mahalaxmi --> Elphinstone Road
+P843	Marine Lines --> Mira Road
+P844	Lower Parel --> Bhayandar
+P845	Malad --> Naigaon
+P846	Saphale --> Mahalaxmi
+P847	Vile Parle --> Bhayandar
+P848	Khar Road --> Virar
+P849	Mahim --> Boisar
+P850	Grant Road --> Bhayandar
+P851	Andheri --> Vile Parle
+P852	Elphinstone Road --> Borivali
+P853	Palghar --> Grant Road
+P854	Kandivali --> Saphale
+P855	Boisar --> Bandra
+P856	Vile Parle --> Churchgate
+P857	Grant Road --> Dadar
+P858	Mahalaxmi --> Charni Road
+P859	Vile Parle --> Palghar
+P860	Naigaon --> Dadar
+P861	Jogeshwari --> Malad
+P862	Marine Lines --> Churchgate
+P863	Mira Road --> Grant Road
+P864	Malad --> Lower Parel
+P865	Palghar --> Dahisar
+P866	Saphale --> Santacruz
+P867	Vasai Road --> Vangaon
+P868	Santacruz --> Kelve Road
+P869	Dahanu Road --> Naigaon
+P870	Bhayandar --> Grant Road
+P871	Vaitarna --> Lower Parel
+P872	Dahanu Road --> Vasai Road
+P873	Vaitarna --> Naigaon
+P874	Mahalaxmi --> Naigaon
+P875	Nala Sopara --> Dadar
+P876	Umroli --> Dadar
+P877	Malad --> Kandivali
+P878	Dahanu Road --> Mahalaxmi
+P879	Borivali --> Nala Sopara
+P880	Virar --> Boisar
+P881	Matunga --> Charni Road
+P882	Marine Lines --> Elphinstone Road
+P883	Naigaon --> Khar Road
+P884	Matunga --> Malad
+P885	Palghar --> Goregaon
+P886	Dadar --> Bhayandar
+P887	Dahisar --> Andheri
+P888	Matunga --> Mira Road
+P889	Kelve Road --> Dahanu Road
+P890	Grant Road --> Andheri
+P891	Bandra --> Vile Parle
+P892	Boisar --> Andheri
+P893	Goregaon --> Vile Parle
+P894	Bhayandar --> Vangaon
+P895	Elphinstone Road --> Mumbai Central
+P896	Marine Lines --> Bhayandar
+P897	Malad --> Borivali
+P898	Dahisar --> Mahim
+P899	Dahanu Road --> Kandivali
+P900	Saphale --> Vile Parle
+P901	Mahalaxmi --> Dadar
+P902	Lower Parel --> Kelve Road
+P903	Churchgate --> Bhayandar
+P904	Matunga --> Bandra
+P905	Kelve Road --> Khar Road
+P906	Kandivali --> Marine Lines
+P907	Jogeshwari --> Dahanu Road
+P908	Umroli --> Churchgate
+P909	Khar Road --> Marine Lines
+P910	Naigaon --> Vasai Road
+P911	Dahanu Road --> Matunga
+P912	Elphinstone Road --> Vaitarna
+P913	Nala Sopara --> Mahim
+P914	Grant Road --> Boisar
+P915	Elphinstone Road --> Mira Road
+P916	Matunga --> Dadar
+P917	Nala Sopara --> Dadar
+P918	Naigaon --> Virar
+P919	Dahisar --> Mumbai Central
+P920	Vasai Road --> Andheri
+P921	Nala Sopara --> Bandra
+P922	Umroli --> Vangaon
+P923	Dahanu Road --> Mahim
+P924	Vasai Road --> Bandra
+P925	Naigaon --> Mahim
+P926	Dadar --> Boisar
+P927	Kelve Road --> Malad
+P928	Andheri --> Mira Road
+P929	Vasai Road --> Matunga
+P930	Virar --> Marine Lines
+P931	Andheri --> Dahanu Road
+P932	Mahim --> Matunga
+P933	Grant Road --> Charni Road
+P934	Borivali --> Nala Sopara
+P935	Goregaon --> Mumbai Central
+P936	Malad --> Bandra
+P937	Umroli --> Vile Parle
+P938	Vasai Road --> Bandra
+P939	Mahalaxmi --> Mahim
+P940	Marine Lines --> Bhayandar
+P941	Umroli --> Marine Lines
+P942	Goregaon --> Vangaon
+P943	Dadar --> Vasai Road
+P944	Palghar --> Jogeshwari
+P945	Vaitarna --> Vangaon
+P946	Khar Road --> Boisar
+P947	Kandivali --> Palghar
+P948	Matunga --> Kelve Road
+P949	Naigaon --> Mumbai Central
+P950	Bandra --> Santacruz
+P951	Saphale --> Goregaon
+P952	Nala Sopara --> Matunga
+P953	Charni Road --> Mahim
+P954	Vile Parle --> Nala Sopara
+P955	Grant Road --> Matunga
+P956	Bhayandar --> Mira Road
+P957	Bandra --> Naigaon
+P958	Palghar --> Kelve Road
+P959	Elphinstone Road --> Mumbai Central
+P960	Bandra --> Marine Lines
+P961	Saphale --> Vasai Road
+P962	Virar --> Boisar
+P963	Palghar --> Naigaon
+P964	Malad --> Elphinstone Road
+P965	Mahalaxmi --> Saphale
+P966	Borivali --> Dadar
+P967	Matunga --> Boisar
+P968	Kandivali --> Borivali
+P969	Borivali --> Bandra
+P970	Boisar --> Andheri
+P971	Nala Sopara --> Churchgate
+P972	Matunga --> Naigaon
+P973	Umroli --> Dahisar
+P974	Virar --> Naigaon
+P975	Palghar --> Saphale
+P976	Saphale --> Umroli
+P977	Mahim --> Santacruz
+P978	Vaitarna --> Dahanu Road
+P979	Santacruz --> Khar Road
+P980	Palghar --> Dahanu Road
+P981	Grant Road --> Mahalaxmi
+P982	Goregaon --> Bhayandar
+P983	Vasai Road --> Saphale
+P984	Vasai Road --> Elphinstone Road
+P985	Borivali --> Mahalaxmi
+P986	Malad --> Matunga
+P987	Vangaon --> Vaitarna
+P988	Matunga --> Grant Road
+P989	Vasai Road --> Mumbai Central
+P990	Mahalaxmi --> Matunga
+P991	Borivali --> Mahalaxmi
+P992	Churchgate --> Charni Road
+P993	Santacruz --> Lower Parel
+P994	Vaitarna --> Grant Road
+P995	Boisar --> Grant Road
+P996	Bhayandar --> Bandra
+P997	Boisar --> Mahim
+P998	Mahalaxmi --> Andheri
+P999	Vangaon --> Charni Road
+P1000	Saphale --> Dahisar
+P1001	Ghatkopar --> Nahur
+P1002	Byculla --> Kalyan
+P1003	Bhandup --> Chinchpokli
+P1004	Masjid --> Bhandup
+P1005	Vidyavihar --> Sion
+P1006	Currey Road --> Mumbra
+P1007	Currey Road --> Thane
+P1008	Dombivli --> Kurla
+P1009	Parel --> Kalwa
+P1010	Dadar --> Nahur
+P1011	Dombivli --> Sandhurst Road
+P1012	Kalwa --> Chhatrapati Shivaji Terminus
+P1013	Nahur --> Mumbra
+P1014	Kalyan --> Chinchpokli
+P1015	Byculla --> Mumbra
+P1016	Dombivli --> Bhandup
+P1017	Dombivli --> Vidyavihar
+P1018	Kalwa --> Mulund
+P1019	Kopar --> Bhandup
+P1020	Sandhurst Road --> Vikhroli
+P1021	Kalwa --> Sion
+P1022	Masjid --> Sion
+P1023	Nahur --> Parel
+P1024	Vidyavihar --> Kalwa
+P1025	Kopar --> Sion
+P1026	Parel --> Kurla
+P1027	Kopar --> Kurla
+P1028	Chhatrapati Shivaji Terminus --> Kalwa
+P1029	Diva --> Sion
+P1030	Sandhurst Road --> Kanjurmarg
+P1031	Chhatrapati Shivaji Terminus --> Dombivli
+P1032	Kalwa --> Chinchpokli
+P1033	Thakurli --> Kanjurmarg
+P1034	Ghatkopar --> Mumbra
+P1035	Dadar --> Mumbra
+P1036	Mumbra --> Diva
+P1037	Kopar --> Dadar
+P1038	Kopar --> Nahur
+P1039	Dadar --> Chinchpokli
+P1040	Mulund --> Kanjurmarg
+P1041	Thakurli --> Kalyan
+P1042	Vidyavihar --> Dombivli
+P1043	Kalwa --> Chinchpokli
+P1044	Kanjurmarg --> Matunga
+P1045	Chhatrapati Shivaji Terminus --> Mulund
+P1046	Kopar --> Bhandup
+P1047	Sandhurst Road --> Diva
+P1048	Parel --> Sandhurst Road
+P1049	Mumbra --> Mulund
+P1050	Thane --> Kalyan
+P1051	Sandhurst Road --> Chinchpokli
+P1052	Kopar --> Masjid
+P1053	Currey Road --> Mumbra
+P1054	Kalwa --> Dadar
+P1055	Sion --> Sandhurst Road
+P1056	Bhandup --> Masjid
+P1057	Diva --> Kanjurmarg
+P1058	Currey Road --> Thakurli
+P1059	Parel --> Byculla
+P1060	Sandhurst Road --> Dombivli
+P1061	Diva --> Vikhroli
+P1062	Matunga --> Nahur
+P1063	Chhatrapati Shivaji Terminus --> Currey Road
+P1064	Sandhurst Road --> Matunga
+P1065	Kanjurmarg --> Chhatrapati Shivaji Terminus
+P1066	Mumbra --> Vidyavihar
+P1067	Nahur --> Vidyavihar
+P1068	Kopar --> Dombivli
+P1069	Chhatrapati Shivaji Terminus --> Mulund
+P1070	Byculla --> Thakurli
+P1071	Dombivli --> Diva
+P1072	Kanjurmarg --> Parel
+P1073	Sion --> Masjid
+P1074	Kalyan --> Nahur
+P1075	Dombivli --> Kanjurmarg
+P1076	Byculla --> Nahur
+P1077	Sion --> Chinchpokli
+P1078	Chhatrapati Shivaji Terminus --> Ghatkopar
+P1079	Kopar --> Masjid
+P1080	Bhandup --> Sion
+P1081	Chhatrapati Shivaji Terminus --> Chinchpokli
+P1082	Nahur --> Kurla
+P1083	Dombivli --> Nahur
+P1084	Chhatrapati Shivaji Terminus --> Kurla
+P1085	Byculla --> Kopar
+P1086	Nahur --> Kanjurmarg
+P1087	Chinchpokli --> Nahur
+P1088	Bhandup --> Kanjurmarg
+P1089	Parel --> Chinchpokli
+P1090	Bhandup --> Chhatrapati Shivaji Terminus
+P1091	Kanjurmarg --> Currey Road
+P1092	Masjid --> Byculla
+P1093	Sion --> Kopar
+P1094	Parel --> Ghatkopar
+P1095	Mulund --> Dombivli
+P1096	Vidyavihar --> Thane
+P1097	Vikhroli --> Kopar
+P1098	Dadar --> Bhandup
+P1099	Masjid --> Chhatrapati Shivaji Terminus
+P1100	Ghatkopar --> Thane
+P1101	Kopar --> Kurla
+P1102	Kanjurmarg --> Masjid
+P1103	Ghatkopar --> Bhandup
+P1104	Ghatkopar --> Chinchpokli
+P1105	Bhandup --> Sandhurst Road
+P1106	Chinchpokli --> Bhandup
+P1107	Parel --> Kanjurmarg
+P1108	Kurla --> Dombivli
+P1109	Sion --> Byculla
+P1110	Kopar --> Currey Road
+P1111	Parel --> Nahur
+P1112	Mulund --> Chinchpokli
+P1113	Kurla --> Ghatkopar
+P1114	Kalyan --> Ghatkopar
+P1115	Dadar --> Thane
+P1116	Dombivli --> Vidyavihar
+P1117	Vidyavihar --> Thakurli
+P1118	Thane --> Sion
+P1119	Kalwa --> Chhatrapati Shivaji Terminus
+P1120	Sandhurst Road --> Kalyan
+P1121	Vidyavihar --> Kopar
+P1122	Thakurli --> Dombivli
+P1123	Diva --> Sion
+P1124	Mulund --> Thane
+P1125	Kalwa --> Mumbra
+P1126	Chinchpokli --> Kanjurmarg
+P1127	Vidyavihar --> Kurla
+P1128	Thakurli --> Vikhroli
+P1129	Masjid --> Matunga
+P1130	Matunga --> Thane
+P1131	Currey Road --> Parel
+P1132	Thakurli --> Masjid
+P1133	Diva --> Nahur
+P1134	Parel --> Chhatrapati Shivaji Terminus
+P1135	Thane --> Kopar
+P1136	Chinchpokli --> Dadar
+P1137	Chhatrapati Shivaji Terminus --> Currey Road
+P1138	Byculla --> Ghatkopar
+P1139	Byculla --> Kanjurmarg
+P1140	Dombivli --> Kalyan
+P1141	Kanjurmarg --> Kalyan
+P1142	Kalyan --> Dombivli
+P1143	Kalwa --> Thakurli
+P1144	Dadar --> Kanjurmarg
+P1145	Nahur --> Chinchpokli
+P1146	Kanjurmarg --> Byculla
+P1147	Kanjurmarg --> Currey Road
+P1148	Kopar --> Kalyan
+P1149	Byculla --> Ghatkopar
+P1150	Vidyavihar --> Matunga
+P1151	Kanjurmarg --> Mulund
+P1152	Matunga --> Kopar
+P1153	Mumbra --> Byculla
+P1154	Chhatrapati Shivaji Terminus --> Vikhroli
+P1155	Chinchpokli --> Bhandup
+P1156	Thakurli --> Diva
+P1157	Kanjurmarg --> Dombivli
+P1158	Kanjurmarg --> Kalwa
+P1159	Chhatrapati Shivaji Terminus --> Dadar
+P1160	Nahur --> Vikhroli
+P1161	Kanjurmarg --> Parel
+P1162	Sandhurst Road --> Dadar
+P1163	Thakurli --> Thane
+P1164	Masjid --> Diva
+P1165	Mulund --> Matunga
+P1166	Currey Road --> Chhatrapati Shivaji Terminus
+P1167	Kalwa --> Currey Road
+P1168	Matunga --> Currey Road
+P1169	Ghatkopar --> Mulund
+P1170	Chinchpokli --> Kalyan
+P1171	Masjid --> Kalwa
+P1172	Matunga --> Thakurli
+P1173	Currey Road --> Byculla
+P1174	Thakurli --> Kanjurmarg
+P1175	Byculla --> Matunga
+P1176	Matunga --> Kanjurmarg
+P1177	Chhatrapati Shivaji Terminus --> Kanjurmarg
+P1178	Dadar --> Sion
+P1179	Sion --> Dadar
+P1180	Sandhurst Road --> Thakurli
+P1181	Sion --> Dadar
+P1182	Kalwa --> Byculla
+P1183	Parel --> Kalwa
+P1184	Vikhroli --> Kurla
+P1185	Sandhurst Road --> Kalyan
+P1186	Kanjurmarg --> Thane
+P1187	Sandhurst Road --> Mulund
+P1188	Dombivli --> Kanjurmarg
+P1189	Thane --> Mulund
+P1190	Parel --> Currey Road
+P1191	Ghatkopar --> Masjid
+P1192	Byculla --> Mulund
+P1193	Vidyavihar --> Diva
+P1194	Thakurli --> Matunga
+P1195	Kurla --> Ghatkopar
+P1196	Dombivli --> Kurla
+P1197	Nahur --> Mumbra
+P1198	Matunga --> Bhandup
+P1199	Thane --> Ghatkopar
+P1200	Currey Road --> Matunga
+P1201	Byculla --> Kurla
+P1202	Bhandup --> Thakurli
+P1203	Kalyan --> Mumbra
+P1204	Parel --> Mulund
+P1205	Bhandup --> Sandhurst Road
+P1206	Ghatkopar --> Nahur
+P1207	Chhatrapati Shivaji Terminus --> Mumbra
+P1208	Ghatkopar --> Thane
+P1209	Chinchpokli --> Vidyavihar
+P1210	Kalyan --> Dadar
+P1211	Kurla --> Thane
+P1212	Mulund --> Vikhroli
+P1213	Kalwa --> Chinchpokli
+P1214	Dadar --> Vikhroli
+P1215	Bhandup --> Thane
+P1216	Dombivli --> Mumbra
+P1217	Kalyan --> Parel
+P1218	Kalyan --> Kurla
+P1219	Mulund --> Thane
+P1220	Masjid --> Kalyan
+P1221	Matunga --> Byculla
+P1222	Thakurli --> Mumbra
+P1223	Vidyavihar --> Mulund
+P1224	Thane --> Kalwa
+P1225	Kalwa --> Kalyan
+P1226	Kurla --> Sion
+P1227	Kalyan --> Thane
+P1228	Dombivli --> Kopar
+P1229	Kopar --> Kurla
+P1230	Kalyan --> Vikhroli
+P1231	Sion --> Kopar
+P1232	Parel --> Nahur
+P1233	Nahur --> Byculla
+P1234	Kalwa --> Kopar
+P1235	Currey Road --> Bhandup
+P1236	Ghatkopar --> Dombivli
+P1237	Mulund --> Nahur
+P1238	Matunga --> Kanjurmarg
+P1239	Vikhroli --> Matunga
+P1240	Mulund --> Masjid
+P1241	Thane --> Parel
+P1242	Mumbra --> Sandhurst Road
+P1243	Kalwa --> Kanjurmarg
+P1244	Kalwa --> Mumbra
+P1245	Currey Road --> Kalyan
+P1246	Mumbra --> Thane
+P1247	Byculla --> Mulund
+P1248	Sandhurst Road --> Nahur
+P1249	Vidyavihar --> Kalwa
+P1250	Mumbra --> Currey Road
+P1251	Nahur --> Byculla
+P1252	Kalyan --> Sandhurst Road
+P1253	Kanjurmarg --> Chhatrapati Shivaji Terminus
+P1254	Sion --> Dombivli
+P1255	Bhandup --> Kalwa
+P1256	Chinchpokli --> Mulund
+P1257	Kurla --> Byculla
+P1258	Thakurli --> Chhatrapati Shivaji Terminus
+P1259	Currey Road --> Vidyavihar
+P1260	Bhandup --> Matunga
+P1261	Kalyan --> Mulund
+P1262	Byculla --> Kanjurmarg
+P1263	Parel --> Vikhroli
+P1264	Byculla --> Kurla
+P1265	Masjid --> Thakurli
+P1266	Ghatkopar --> Dadar
+P1267	Dombivli --> Masjid
+P1268	Bhandup --> Thakurli
+P1269	Sion --> Dadar
+P1270	Chhatrapati Shivaji Terminus --> Diva
+P1271	Vidyavihar --> Dombivli
+P1272	Kurla --> Mulund
+P1273	Kanjurmarg --> Byculla
+P1274	Dombivli --> Vidyavihar
+P1275	Byculla --> Vidyavihar
+P1276	Kalyan --> Dombivli
+P1277	Chinchpokli --> Dombivli
+P1278	Kanjurmarg --> Bhandup
+P1279	Sandhurst Road --> Ghatkopar
+P1280	Kopar --> Dombivli
+P1281	Mumbra --> Kanjurmarg
+P1282	Diva --> Ghatkopar
+P1283	Nahur --> Sion
+P1284	Thane --> Sion
+P1285	Mumbra --> Nahur
+P1286	Masjid --> Thakurli
+P1287	Vikhroli --> Currey Road
+P1288	Masjid --> Vidyavihar
+P1289	Kalyan --> Ghatkopar
+P1290	Sandhurst Road --> Diva
+P1291	Ghatkopar --> Bhandup
+P1292	Dadar --> Mumbra
+P1293	Kanjurmarg --> Kopar
+P1294	Chinchpokli --> Matunga
+P1295	Mulund --> Dombivli
+P1296	Mulund --> Ghatkopar
+P1297	Kopar --> Mulund
+P1298	Sion --> Currey Road
+P1299	Sion --> Nahur
+P1300	Dombivli --> Sandhurst Road
+P1301	Nahur --> Sandhurst Road
+P1302	Sandhurst Road --> Matunga
+P1303	Nahur --> Kalwa
+P1304	Chhatrapati Shivaji Terminus --> Chinchpokli
+P1305	Kalwa --> Sion
+P1306	Kurla --> Matunga
+P1307	Dadar --> Vidyavihar
+P1308	Kalyan --> Kalwa
+P1309	Vikhroli --> Nahur
+P1310	Dadar --> Matunga
+P1311	Kanjurmarg --> Vidyavihar
+P1312	Matunga --> Kalyan
+P1313	Thakurli --> Ghatkopar
+P1314	Nahur --> Kalyan
+P1315	Kalwa --> Vidyavihar
+P1316	Kalyan --> Byculla
+P1317	Sandhurst Road --> Dombivli
+P1318	Kurla --> Mumbra
+P1319	Nahur --> Kurla
+P1320	Thane --> Chhatrapati Shivaji Terminus
+P1321	Chinchpokli --> Chhatrapati Shivaji Terminus
+P1322	Chinchpokli --> Thane
+P1323	Kurla --> Mulund
+P1324	Byculla --> Currey Road
+P1325	Byculla --> Diva
+P1326	Thakurli --> Parel
+P1327	Mulund --> Thakurli
+P1328	Ghatkopar --> Byculla
+P1329	Chinchpokli --> Mulund
+P1330	Byculla --> Kopar
+P1331	Mumbra --> Vikhroli
+P1332	Vikhroli --> Chhatrapati Shivaji Terminus
+P1333	Masjid --> Diva
+P1334	Sion --> Parel
+P1335	Masjid --> Vidyavihar
+P1336	Vidyavihar --> Sandhurst Road
+P1337	Byculla --> Chinchpokli
+P1338	Vidyavihar --> Kurla
+P1339	Thakurli --> Kalyan
+P1340	Chinchpokli --> Kalwa
+P1341	Parel --> Kurla
+P1342	Dadar --> Vidyavihar
+P1343	Ghatkopar --> Kurla
+P1344	Diva --> Kalyan
+P1345	Matunga --> Mumbra
+P1346	Chhatrapati Shivaji Terminus --> Nahur
+P1347	Chhatrapati Shivaji Terminus --> Nahur
+P1348	Sandhurst Road --> Dadar
+P1349	Parel --> Dadar
+P1350	Chhatrapati Shivaji Terminus --> Ghatkopar
+P1351	Matunga --> Parel
+P1352	Diva --> Kalyan
+P1353	Masjid --> Matunga
+P1354	Kanjurmarg --> Kurla
+P1355	Byculla --> Sandhurst Road
+P1356	Mulund --> Sandhurst Road
+P1357	Sandhurst Road --> Chhatrapati Shivaji Terminus
+P1358	Thane --> Kurla
+P1359	Vikhroli --> Sion
+P1360	Nahur --> Thane
+P1361	Bhandup --> Kalyan
+P1362	Chhatrapati Shivaji Terminus --> Vikhroli
+P1363	Vikhroli --> Parel
+P1364	Thane --> Kalwa
+P1365	Diva --> Vikhroli
+P1366	Sion --> Chinchpokli
+P1367	Diva --> Masjid
+P1368	Dadar --> Byculla
+P1369	Masjid --> Vikhroli
+P1370	Chinchpokli --> Kalyan
+P1371	Thane --> Kanjurmarg
+P1372	Kalyan --> Vidyavihar
+P1373	Dombivli --> Kurla
+P1374	Thane --> Parel
+P1375	Nahur --> Currey Road
+P1376	Kanjurmarg --> Thakurli
+P1377	Currey Road --> Kanjurmarg
+P1378	Ghatkopar --> Byculla
+P1379	Matunga --> Bhandup
+P1380	Sion --> Kanjurmarg
+P1381	Bhandup --> Matunga
+P1382	Nahur --> Parel
+P1383	Bhandup --> Vikhroli
+P1384	Vidyavihar --> Kopar
+P1385	Sion --> Byculla
+P1386	Thane --> Byculla
+P1387	Bhandup --> Kanjurmarg
+P1388	Thane --> Kanjurmarg
+P1389	Currey Road --> Chinchpokli
+P1390	Nahur --> Kurla
+P1391	Diva --> Ghatkopar
+P1392	Masjid --> Kalyan
+P1393	Kanjurmarg --> Kalyan
+P1394	Masjid --> Vikhroli
+P1395	Dombivli --> Dadar
+P1396	Dadar --> Matunga
+P1397	Bhandup --> Masjid
+P1398	Dadar --> Thane
+P1399	Ghatkopar --> Sandhurst Road
+P1400	Bhandup --> Kanjurmarg
+P1401	Mumbra --> Sion
+P1402	Currey Road --> Byculla
+P1403	Dombivli --> Mulund
+P1404	Kurla --> Ghatkopar
+P1405	Kanjurmarg --> Sandhurst Road
+P1406	Byculla --> Dadar
+P1407	Mumbra --> Dombivli
+P1408	Vikhroli --> Sandhurst Road
+P1409	Parel --> Nahur
+P1410	Vikhroli --> Sandhurst Road
+P1411	Vidyavihar --> Sion
+P1412	Vikhroli --> Chhatrapati Shivaji Terminus
+P1413	Vikhroli --> Thane
+P1414	Sandhurst Road --> Thane
+P1415	Dombivli --> Chhatrapati Shivaji Terminus
+P1416	Dombivli --> Parel
+P1417	Dadar --> Vidyavihar
+P1418	Kalyan --> Sion
+P1419	Matunga --> Currey Road
+P1420	Chhatrapati Shivaji Terminus --> Thane
+P1421	Kalyan --> Currey Road
+P1422	Kalwa --> Chinchpokli
+P1423	Mumbra --> Kurla
+P1424	Currey Road --> Sandhurst Road
+P1425	Thakurli --> Kalwa
+P1426	Dombivli --> Ghatkopar
+P1427	Dadar --> Vidyavihar
+P1428	Bhandup --> Diva
+P1429	Kalyan --> Thane
+P1430	Currey Road --> Byculla
+P1431	Kalwa --> Mumbra
+P1432	Diva --> Vikhroli
+P1433	Parel --> Vikhroli
+P1434	Kanjurmarg --> Mulund
+P1435	Kalwa --> Sion
+P1436	Ghatkopar --> Currey Road
+P1437	Masjid --> Bhandup
+P1438	Kopar --> Ghatkopar
+P1439	Dombivli --> Kurla
+P1440	Mulund --> Matunga
+P1441	Kurla --> Diva
+P1442	Dombivli --> Kanjurmarg
+P1443	Ghatkopar --> Thane
+P1444	Vidyavihar --> Sion
+P1445	Bhandup --> Dadar
+P1446	Diva --> Sandhurst Road
+P1447	Thakurli --> Mumbra
+P1448	Chinchpokli --> Dombivli
+P1449	Dadar --> Sion
+P1450	Mumbra --> Parel
+P1451	Byculla --> Mumbra
+P1452	Kalyan --> Kurla
+P1453	Vidyavihar --> Vikhroli
+P1454	Masjid --> Vidyavihar
+P1455	Nahur --> Matunga
+P1456	Nahur --> Diva
+P1457	Kanjurmarg --> Parel
+P1458	Currey Road --> Kalwa
+P1459	Byculla --> Kurla
+P1460	Sion --> Sandhurst Road
+P1461	Chinchpokli --> Mulund
+P1462	Vidyavihar --> Mumbra
+P1463	Byculla --> Dadar
+P1464	Chinchpokli --> Sandhurst Road
+P1465	Ghatkopar --> Kanjurmarg
+P1466	Byculla --> Kopar
+P1467	Mulund --> Currey Road
+P1468	Mulund --> Chhatrapati Shivaji Terminus
+P1469	Thane --> Chinchpokli
+P1470	Currey Road --> Byculla
+P1471	Sion --> Kanjurmarg
+P1472	Ghatkopar --> Thakurli
+P1473	Thakurli --> Currey Road
+P1474	Kalyan --> Parel
+P1475	Vikhroli --> Thakurli
+P1476	Kanjurmarg --> Thane
+P1477	Mumbra --> Vidyavihar
+P1478	Matunga --> Thane
+P1479	Masjid --> Chhatrapati Shivaji Terminus
+P1480	Ghatkopar --> Kanjurmarg
+P1481	Dombivli --> Thakurli
+P1482	Mulund --> Kurla
+P1483	Kurla --> Sandhurst Road
+P1484	Kurla --> Kopar
+P1485	Dadar --> Sandhurst Road
+P1486	Bhandup --> Kalyan
+P1487	Dadar --> Ghatkopar
+P1488	Matunga --> Parel
+P1489	Masjid --> Ghatkopar
+P1490	Mulund --> Sandhurst Road
+P1491	Diva --> Kanjurmarg
+P1492	Thane --> Sion
+P1493	Vidyavihar --> Masjid
+P1494	Thane --> Bhandup
+P1495	Chinchpokli --> Sandhurst Road
+P1496	Kanjurmarg --> Kalwa
+P1497	Nahur --> Kurla
+P1498	Dadar --> Kalyan
+P1499	Nahur --> Vidyavihar
+P1500	Dadar --> Diva
+P1501	Thane --> Kalwa
+P1502	Nahur --> Thakurli
+P1503	Thakurli --> Thane
+P1504	Dombivli --> Kurla
+P1505	Masjid --> Dadar
+P1506	Kopar --> Mulund
+P1507	Mulund --> Byculla
+P1508	Byculla --> Vidyavihar
+P1509	Chhatrapati Shivaji Terminus --> Dadar
+P1510	Kalyan --> Matunga
+P1511	Matunga --> Kurla
+P1512	Currey Road --> Dadar
+P1513	Thane --> Parel
+P1514	Bhandup --> Vikhroli
+P1515	Byculla --> Thane
+P1516	Thane --> Chhatrapati Shivaji Terminus
+P1517	Thakurli --> Sandhurst Road
+P1518	Matunga --> Byculla
+P1519	Vidyavihar --> Sandhurst Road
+P1520	Nahur --> Vikhroli
+P1521	Byculla --> Mumbra
+P1522	Mulund --> Parel
+P1523	Chinchpokli --> Kalyan
+P1524	Mumbra --> Sion
+P1525	Kalwa --> Thane
+P1526	Ghatkopar --> Chhatrapati Shivaji Terminus
+P1527	Kanjurmarg --> Diva
+P1528	Kalyan --> Diva
+P1529	Diva --> Chhatrapati Shivaji Terminus
+P1530	Diva --> Sion
+P1531	Ghatkopar --> Diva
+P1532	Dombivli --> Currey Road
+P1533	Vidyavihar --> Ghatkopar
+P1534	Sion --> Mumbra
+P1535	Thakurli --> Bhandup
+P1536	Kalyan --> Mulund
+P1537	Kalyan --> Parel
+P1538	Dadar --> Dombivli
+P1539	Kalwa --> Thakurli
+P1540	Masjid --> Vikhroli
+P1541	Kopar --> Thakurli
+P1542	Vikhroli --> Chhatrapati Shivaji Terminus
+P1543	Dadar --> Sandhurst Road
+P1544	Kurla --> Dadar
+P1545	Parel --> Kalyan
+P1546	Masjid --> Vidyavihar
+P1547	Thakurli --> Kopar
+P1548	Nahur --> Masjid
+P1549	Nahur --> Thakurli
+P1550	Kalyan --> Vikhroli
+P1551	Masjid --> Sandhurst Road
+P1552	Vikhroli --> Dombivli
+P1553	Vikhroli --> Byculla
+P1554	Kanjurmarg --> Vidyavihar
+P1555	Thakurli --> Dombivli
+P1556	Sion --> Nahur
+P1557	Ghatkopar --> Nahur
+P1558	Kopar --> Dadar
+P1559	Kalyan --> Chinchpokli
+P1560	Currey Road --> Kalwa
+P1561	Nahur --> Mumbra
+P1562	Masjid --> Nahur
+P1563	Chinchpokli --> Dombivli
+P1564	Mumbra --> Dadar
+P1565	Chinchpokli --> Diva
+P1566	Mulund --> Kalyan
+P1567	Chinchpokli --> Ghatkopar
+P1568	Kalwa --> Currey Road
+P1569	Mulund --> Byculla
+P1570	Bhandup --> Currey Road
+P1571	Thane --> Kalyan
+P1572	Masjid --> Parel
+P1573	Mulund --> Sion
+P1574	Nahur --> Kopar
+P1575	Currey Road --> Chhatrapati Shivaji Terminus
+P1576	Chinchpokli --> Kalwa
+P1577	Chhatrapati Shivaji Terminus --> Vidyavihar
+P1578	Ghatkopar --> Kalwa
+P1579	Bhandup --> Kalyan
+P1580	Mulund --> Dadar
+P1581	Diva --> Vidyavihar
+P1582	Mulund --> Vikhroli
+P1583	Nahur --> Chhatrapati Shivaji Terminus
+P1584	Parel --> Thane
+P1585	Kalyan --> Masjid
+P1586	Diva --> Matunga
+P1587	Diva --> Currey Road
+P1588	Chhatrapati Shivaji Terminus --> Byculla
+P1589	Kurla --> Mulund
+P1590	Dombivli --> Parel
+P1591	Parel --> Chhatrapati Shivaji Terminus
+P1592	Byculla --> Parel
+P1593	Sion --> Dadar
+P1594	Vidyavihar --> Mumbra
+P1595	Parel --> Kopar
+P1596	Vidyavihar --> Kalwa
+P1597	Thakurli --> Kopar
+P1598	Mulund --> Diva
+P1599	Vidyavihar --> Diva
+P1600	Thane --> Currey Road
+P1601	Mulund --> Kanjurmarg
+P1602	Kurla --> Sandhurst Road
+P1603	Dombivli --> Kalwa
+P1604	Kalyan --> Ghatkopar
+P1605	Bhandup --> Kalwa
+P1606	Thane --> Currey Road
+P1607	Matunga --> Thakurli
+P1608	Byculla --> Kanjurmarg
+P1609	Ghatkopar --> Mumbra
+P1610	Dombivli --> Mumbra
+P1611	Diva --> Masjid
+P1612	Bhandup --> Matunga
+P1613	Kalyan --> Chinchpokli
+P1614	Byculla --> Dombivli
+P1615	Thane --> Kurla
+P1616	Currey Road --> Kalyan
+P1617	Masjid --> Kopar
+P1618	Chhatrapati Shivaji Terminus --> Vidyavihar
+P1619	Vikhroli --> Mumbra
+P1620	Currey Road --> Sandhurst Road
+P1621	Currey Road --> Diva
+P1622	Chinchpokli --> Mulund
+P1623	Kopar --> Thakurli
+P1624	Byculla --> Nahur
+P1625	Sion --> Parel
+P1626	Matunga --> Diva
+P1627	Kopar --> Matunga
+P1628	Kurla --> Masjid
+P1629	Nahur --> Mulund
+P1630	Kalyan --> Chinchpokli
+P1631	Masjid --> Kopar
+P1632	Kanjurmarg --> Sion
+P1633	Thakurli --> Matunga
+P1634	Thakurli --> Sandhurst Road
+P1635	Mulund --> Kalwa
+P1636	Bhandup --> Dombivli
+P1637	Chinchpokli --> Dadar
+P1638	Sion --> Kopar
+P1639	Mumbra --> Chhatrapati Shivaji Terminus
+P1640	Bhandup --> Mulund
+P1641	Thakurli --> Matunga
+P1642	Sandhurst Road --> Dadar
+P1643	Diva --> Thane
+P1644	Diva --> Kopar
+P1645	Mulund --> Matunga
+P1646	Vikhroli --> Kalyan
+P1647	Diva --> Currey Road
+P1648	Bhandup --> Parel
+P1649	Mulund --> Bhandup
+P1650	Chhatrapati Shivaji Terminus --> Dadar
+P1651	Vidyavihar --> Vikhroli
+P1652	Dadar --> Currey Road
+P1653	Kalyan --> Sandhurst Road
+P1654	Chhatrapati Shivaji Terminus --> Mumbra
+P1655	Chinchpokli --> Parel
+P1656	Mulund --> Byculla
+P1657	Kalwa --> Kalyan
+P1658	Matunga --> Masjid
+P1659	Chinchpokli --> Diva
+P1660	Matunga --> Mumbra
+P1661	Vikhroli --> Dombivli
+P1662	Chhatrapati Shivaji Terminus --> Parel
+P1663	Dombivli --> Mulund
+P1664	Nahur --> Diva
+P1665	Diva --> Dadar
+P1666	Bhandup --> Parel
+P1667	Masjid --> Byculla
+P1668	Ghatkopar --> Sandhurst Road
+P1669	Kalwa --> Dadar
+P1670	Parel --> Vidyavihar
+P1671	Kanjurmarg --> Kurla
+P1672	Vikhroli --> Ghatkopar
+P1673	Sandhurst Road --> Vikhroli
+P1674	Sion --> Kalyan
+P1675	Ghatkopar --> Mulund
+P1676	Chinchpokli --> Mumbra
+P1677	Kalwa --> Thakurli
+P1678	Kalwa --> Thakurli
+P1679	Chinchpokli --> Vidyavihar
+P1680	Parel --> Kalyan
+P1681	Thane --> Kalwa
+P1682	Parel --> Sandhurst Road
+P1683	Byculla --> Dombivli
+P1684	Masjid --> Ghatkopar
+P1685	Parel --> Mulund
+P1686	Matunga --> Sandhurst Road
+P1687	Diva --> Mulund
+P1688	Chinchpokli --> Bhandup
+P1689	Thane --> Dadar
+P1690	Mumbra --> Kalyan
+P1691	Mulund --> Thane
+P1692	Thane --> Masjid
+P1693	Chhatrapati Shivaji Terminus --> Thane
+P1694	Nahur --> Matunga
+P1695	Dombivli --> Kopar
+P1696	Chinchpokli --> Sandhurst Road
+P1697	Thane --> Kalyan
+P1698	Dombivli --> Chinchpokli
+P1699	Nahur --> Vidyavihar
+P1700	Sion --> Dombivli
+P1701	Thakurli --> Sion
+P1702	Dadar --> Kalyan
+P1703	Sion --> Chinchpokli
+P1704	Sandhurst Road --> Currey Road
+P1705	Vikhroli --> Vidyavihar
+P1706	Thakurli --> Kopar
+P1707	Vikhroli --> Byculla
+P1708	Mulund --> Chhatrapati Shivaji Terminus
+P1709	Mulund --> Byculla
+P1710	Nahur --> Masjid
+P1711	Kurla --> Chhatrapati Shivaji Terminus
+P1712	Kalyan --> Mulund
+P1713	Chinchpokli --> Mulund
+P1714	Currey Road --> Vidyavihar
+P1715	Kopar --> Thakurli
+P1716	Vidyavihar --> Currey Road
+P1717	Bhandup --> Chhatrapati Shivaji Terminus
+P1718	Currey Road --> Mulund
+P1719	Byculla --> Nahur
+P1720	Ghatkopar --> Dombivli
+P1721	Masjid --> Sion
+P1722	Byculla --> Thakurli
+P1723	Dombivli --> Kopar
+P1724	Chinchpokli --> Masjid
+P1725	Masjid --> Kalwa
+P1726	Dadar --> Chinchpokli
+P1727	Sion --> Bhandup
+P1728	Diva --> Masjid
+P1729	Kurla --> Sandhurst Road
+P1730	Sion --> Parel
+P1731	Kanjurmarg --> Dombivli
+P1732	Parel --> Chhatrapati Shivaji Terminus
+P1733	Ghatkopar --> Masjid
+P1734	Sandhurst Road --> Sion
+P1735	Mumbra --> Parel
+P1736	Thakurli --> Vidyavihar
+P1737	Kalyan --> Mumbra
+P1738	Parel --> Kanjurmarg
+P1739	Bhandup --> Vidyavihar
+P1740	Mulund --> Masjid
+P1741	Vikhroli --> Thakurli
+P1742	Parel --> Thakurli
+P1743	Nahur --> Byculla
+P1744	Vikhroli --> Dadar
+P1745	Masjid --> Kurla
+P1746	Chinchpokli --> Parel
+P1747	Parel --> Kalyan
+P1748	Dombivli --> Thakurli
+P1749	Matunga --> Byculla
+P1750	Mulund --> Kurla
+P1751	Vidyavihar --> Chinchpokli
+P1752	Kopar --> Sandhurst Road
+P1753	Sandhurst Road --> Sion
+P1754	Byculla --> Mulund
+P1755	Nahur --> Mumbra
+P1756	Kurla --> Chinchpokli
+P1757	Byculla --> Mulund
+P1758	Masjid --> Bhandup
+P1759	Kanjurmarg --> Byculla
+P1760	Byculla --> Nahur
+P1761	Currey Road --> Chhatrapati Shivaji Terminus
+P1762	Diva --> Kalwa
+P1763	Dadar --> Vikhroli
+P1764	Thakurli --> Vikhroli
+P1765	Kanjurmarg --> Vikhroli
+P1766	Kalwa --> Sandhurst Road
+P1767	Chhatrapati Shivaji Terminus --> Matunga
+P1768	Currey Road --> Sion
+P1769	Diva --> Kopar
+P1770	Sandhurst Road --> Diva
+P1771	Kopar --> Thakurli
+P1772	Sion --> Kurla
+P1773	Byculla --> Kalwa
+P1774	Matunga --> Ghatkopar
+P1775	Currey Road --> Ghatkopar
+P1776	Masjid --> Sion
+P1777	Mumbra --> Parel
+P1778	Vikhroli --> Currey Road
+P1779	Byculla --> Vikhroli
+P1780	Chinchpokli --> Matunga
+P1781	Sandhurst Road --> Mulund
+P1782	Matunga --> Kalyan
+P1783	Chhatrapati Shivaji Terminus --> Chinchpokli
+P1784	Vidyavihar --> Kanjurmarg
+P1785	Kalwa --> Chinchpokli
+P1786	Vidyavihar --> Mulund
+P1787	Ghatkopar --> Bhandup
+P1788	Mulund --> Diva
+P1789	Currey Road --> Mulund
+P1790	Kopar --> Mumbra
+P1791	Kopar --> Parel
+P1792	Chhatrapati Shivaji Terminus --> Kalwa
+P1793	Nahur --> Chinchpokli
+P1794	Thane --> Kalyan
+P1795	Currey Road --> Kalyan
+P1796	Dadar --> Chhatrapati Shivaji Terminus
+P1797	Kalyan --> Chhatrapati Shivaji Terminus
+P1798	Byculla --> Masjid
+P1799	Diva --> Kalyan
+P1800	Masjid --> Matunga
+P1801	Dadar --> Nahur
+P1802	Byculla --> Mulund
+P1803	Parel --> Dadar
+P1804	Matunga --> Dadar
+P1805	Matunga --> Vikhroli
+P1806	Masjid --> Nahur
+P1807	Parel --> Matunga
+P1808	Kalyan --> Dombivli
+P1809	Chhatrapati Shivaji Terminus --> Matunga
+P1810	Chinchpokli --> Thakurli
+P1811	Parel --> Currey Road
+P1812	Thakurli --> Kalyan
+P1813	Bhandup --> Kurla
+P1814	Sion --> Masjid
+P1815	Dombivli --> Vidyavihar
+P1816	Mumbra --> Ghatkopar
+P1817	Kurla --> Masjid
+P1818	Ghatkopar --> Dadar
+P1819	Thakurli --> Thane
+P1820	Matunga --> Masjid
+P1821	Kopar --> Kalyan
+P1822	Chinchpokli --> Kurla
+P1823	Dombivli --> Nahur
+P1824	Vidyavihar --> Kopar
+P1825	Dombivli --> Ghatkopar
+P1826	Kanjurmarg --> Mulund
+P1827	Parel --> Vikhroli
+P1828	Thakurli --> Bhandup
+P1829	Chhatrapati Shivaji Terminus --> Kanjurmarg
+P1830	Kurla --> Mumbra
+P1831	Masjid --> Kalwa
+P1832	Mumbra --> Masjid
+P1833	Kalyan --> Chhatrapati Shivaji Terminus
+P1834	Kalyan --> Chhatrapati Shivaji Terminus
+P1835	Ghatkopar --> Kopar
+P1836	Ghatkopar --> Nahur
+P1837	Mulund --> Mumbra
+P1838	Dombivli --> Kurla
+P1839	Chhatrapati Shivaji Terminus --> Kurla
+P1840	Dadar --> Kanjurmarg
+P1841	Kanjurmarg --> Kopar
+P1842	Sandhurst Road --> Mumbra
+P1843	Kopar --> Bhandup
+P1844	Chinchpokli --> Vidyavihar
+P1845	Byculla --> Sandhurst Road
+P1846	Bhandup --> Kalwa
+P1847	Diva --> Kurla
+P1848	Sandhurst Road --> Sion
+P1849	Vidyavihar --> Thakurli
+P1850	Kopar --> Nahur
+P1851	Kalyan --> Sion
+P1852	Diva --> Parel
+P1853	Chinchpokli --> Masjid
+P1854	Vikhroli --> Sion
+P1855	Vikhroli --> Nahur
+P1856	Nahur --> Kalyan
+P1857	Diva --> Vidyavihar
+P1858	Kalyan --> Vikhroli
+P1859	Thane --> Matunga
+P1860	Kanjurmarg --> Currey Road
+P1861	Mulund --> Vikhroli
+P1862	Ghatkopar --> Kalwa
+P1863	Dombivli --> Chinchpokli
+P1864	Sion --> Chinchpokli
+P1865	Dadar --> Sion
+P1866	Dombivli --> Dadar
+P1867	Kalyan --> Sion
+P1868	Parel --> Kalyan
+P1869	Bhandup --> Currey Road
+P1870	Dombivli --> Diva
+P1871	Kurla --> Chinchpokli
+P1872	Kanjurmarg --> Matunga
+P1873	Nahur --> Sandhurst Road
+P1874	Nahur --> Parel
+P1875	Vidyavihar --> Matunga
+P1876	Nahur --> Kalyan
+P1877	Thane --> Vikhroli
+P1878	Kanjurmarg --> Byculla
+P1879	Dombivli --> Dadar
+P1880	Vidyavihar --> Kanjurmarg
+P1881	Nahur --> Thane
+P1882	Sandhurst Road --> Kopar
+P1883	Parel --> Chinchpokli
+P1884	Chinchpokli --> Masjid
+P1885	Parel --> Sandhurst Road
+P1886	Kanjurmarg --> Parel
+P1887	Thane --> Kurla
+P1888	Nahur --> Masjid
+P1889	Byculla --> Sion
+P1890	Parel --> Sion
+P1891	Kurla --> Currey Road
+P1892	Vikhroli --> Mulund
+P1893	Dombivli --> Chinchpokli
+P1894	Masjid --> Dombivli
+P1895	Byculla --> Thakurli
+P1896	Vikhroli --> Kurla
+P1897	Vidyavihar --> Mumbra
+P1898	Currey Road --> Nahur
+P1899	Byculla --> Sandhurst Road
+P1900	Sandhurst Road --> Thakurli
+P1901	Dadar --> Mumbra
+P1902	Sandhurst Road --> Sion
+P1903	Thakurli --> Chhatrapati Shivaji Terminus
+P1904	Kalyan --> Sion
+P1905	Masjid --> Nahur
+P1906	Bhandup --> Kalwa
+P1907	Chinchpokli --> Nahur
+P1908	Kalyan --> Diva
+P1909	Ghatkopar --> Thane
+P1910	Kurla --> Chhatrapati Shivaji Terminus
+P1911	Masjid --> Kalyan
+P1912	Kalwa --> Dadar
+P1913	Diva --> Parel
+P1914	Dombivli --> Kalyan
+P1915	Dombivli --> Chhatrapati Shivaji Terminus
+P1916	Ghatkopar --> Chinchpokli
+P1917	Mulund --> Parel
+P1918	Kurla --> Masjid
+P1919	Vidyavihar --> Sandhurst Road
+P1920	Matunga --> Diva
+P1921	Dombivli --> Chhatrapati Shivaji Terminus
+P1922	Vidyavihar --> Bhandup
+P1923	Vikhroli --> Chinchpokli
+P1924	Thane --> Dombivli
+P1925	Kalyan --> Thakurli
+P1926	Vikhroli --> Mumbra
+P1927	Sion --> Mumbra
+P1928	Currey Road --> Dadar
+P1929	Currey Road --> Sandhurst Road
+P1930	Byculla --> Mulund
+P1931	Masjid --> Kopar
+P1932	Sion --> Thakurli
+P1933	Ghatkopar --> Dombivli
+P1934	Mumbra --> Masjid
+P1935	Sandhurst Road --> Sion
+P1936	Chhatrapati Shivaji Terminus --> Masjid
+P1937	Chinchpokli --> Dombivli
+P1938	Bhandup --> Byculla
+P1939	Parel --> Chinchpokli
+P1940	Ghatkopar --> Vikhroli
+P1941	Thakurli --> Nahur
+P1942	Thakurli --> Vidyavihar
+P1943	Thane --> Byculla
+P1944	Bhandup --> Thakurli
+P1945	Sion --> Parel
+P1946	Masjid --> Bhandup
+P1947	Parel --> Byculla
+P1948	Kalyan --> Ghatkopar
+P1949	Dadar --> Currey Road
+P1950	Kurla --> Mulund
+P1951	Byculla --> Bhandup
+P1952	Byculla --> Kurla
+P1953	Kalyan --> Kurla
+P1954	Vidyavihar --> Currey Road
+P1955	Kalyan --> Mulund
+P1956	Thakurli --> Dombivli
+P1957	Dadar --> Sion
+P1958	Mumbra --> Currey Road
+P1959	Sandhurst Road --> Thane
+P1960	Vidyavihar --> Chinchpokli
+P1961	Nahur --> Chhatrapati Shivaji Terminus
+P1962	Chhatrapati Shivaji Terminus --> Matunga
+P1963	Currey Road --> Kurla
+P1964	Chhatrapati Shivaji Terminus --> Kanjurmarg
+P1965	Parel --> Vikhroli
+P1966	Kalyan --> Chhatrapati Shivaji Terminus
+P1967	Mumbra --> Vikhroli
+P1968	Kalyan --> Matunga
+P1969	Sandhurst Road --> Dombivli
+P1970	Mulund --> Vidyavihar
+P1971	Vikhroli --> Diva
+P1972	Kalyan --> Nahur
+P1973	Chinchpokli --> Parel
+P1974	Vidyavihar --> Dadar
+P1975	Sandhurst Road --> Vikhroli
+P1976	Thakurli --> Nahur
+P1977	Thakurli --> Kurla
+P1978	Kopar --> Nahur
+P1979	Bhandup --> Chhatrapati Shivaji Terminus
+P1980	Matunga --> Vikhroli
+P1981	Kopar --> Kanjurmarg
+P1982	Chhatrapati Shivaji Terminus --> Chinchpokli
+P1983	Chhatrapati Shivaji Terminus --> Diva
+P1984	Diva --> Matunga
+P1985	Currey Road --> Parel
+P1986	Dadar --> Matunga
+P1987	Mulund --> Vidyavihar
+P1988	Kurla --> Byculla
+P1989	Mulund --> Sandhurst Road
+P1990	Diva --> Currey Road
+P1991	Chhatrapati Shivaji Terminus --> Kalyan
+P1992	Kalwa --> Vikhroli
+P1993	Chinchpokli --> Dadar
+P1994	Matunga --> Chhatrapati Shivaji Terminus
+P1995	Parel --> Nahur
+P1996	Thakurli --> Thane
+P1997	Chhatrapati Shivaji Terminus --> Matunga
+P1998	Kanjurmarg --> Sandhurst Road
+P1999	Matunga --> Mumbra
+P2000	Kopar --> Sion
+P2001	Chembur --> Sandhurst Road
+P2002	Wadala Road --> Mansarovar
+P2003	Chembur --> CBD Belapur
+P2004	Tilak Nagar --> Juinagar
+P2005	Mansarovar --> Vashi
+P2006	Sandhurst Road --> Kharghar
+P2007	Sandhurst Road --> Seawoods-Darave
+P2008	Mansarovar --> Juinagar
+P2009	Chembur --> Vashi
+P2010	Chembur --> Chunabhatti
+P2011	Cotton Green --> Juinagar
+P2012	Mansarovar --> Nerul
+P2013	Sandhurst Road --> Guru Tegh Bahadur Nagar
+P2014	Chembur --> CBD Belapur
+P2015	Kharghar --> Vashi
+P2016	Cotton Green --> Chembur
+P2017	Chunabhatti --> Wadala Road
+P2018	Khandeshwar --> Govandi
+P2019	Chembur --> Sanpada
+P2020	Mansarovar --> Seawoods-Darave
+P2021	Cotton Green --> Seawoods-Darave
+P2022	Chunabhatti --> CBD Belapur
+P2023	Reay Road --> Sewri
+P2024	Guru Tegh Bahadur Nagar --> Kurla
+P2025	Juinagar --> Govandi
+P2026	Kurla --> Chhatrapati Shivaji Terminus
+P2027	CBD Belapur --> Chhatrapati Shivaji Terminus
+P2028	Tilak Nagar --> Kurla
+P2029	Tilak Nagar --> Sanpada
+P2030	Nerul --> Sandhurst Road
+P2031	Seawoods-Darave --> Kurla
+P2032	Panvel --> Nerul
+P2033	Sewri --> Seawoods-Darave
+P2034	Reay Road --> Seawoods-Darave
+P2035	Tilak Nagar --> Chhatrapati Shivaji Terminus
+P2036	Chembur --> Govandi
+P2037	Dockyard Road --> CBD Belapur
+P2038	Mansarovar --> Cotton Green
+P2039	Mankhurd --> Chembur
+P2040	Cotton Green --> Juinagar
+P2041	Mansarovar --> CBD Belapur
+P2042	Wadala Road --> Juinagar
+P2043	Reay Road --> Nerul
+P2044	Tilak Nagar --> Chembur
+P2045	Vashi --> Khandeshwar
+P2046	Panvel --> CBD Belapur
+P2047	Seawoods-Darave --> Juinagar
+P2048	Sanpada --> Wadala Road
+P2049	Govandi --> Sandhurst Road
+P2050	Govandi --> Cotton Green
+P2051	Sanpada --> Govandi
+P2052	CBD Belapur --> Cotton Green
+P2053	Mansarovar --> Cotton Green
+P2054	Kharghar --> Nerul
+P2055	Chhatrapati Shivaji Terminus --> Nerul
+P2056	Panvel --> Chunabhatti
+P2057	Chunabhatti --> Mansarovar
+P2058	Chhatrapati Shivaji Terminus --> Mansarovar
+P2059	CBD Belapur --> Cotton Green
+P2060	Vashi --> Juinagar
+P2061	Tilak Nagar --> Panvel
+P2062	Chunabhatti --> Sandhurst Road
+P2063	Juinagar --> Guru Tegh Bahadur Nagar
+P2064	Dockyard Road --> Kurla
+P2065	Sanpada --> Chhatrapati Shivaji Terminus
+P2066	Mansarovar --> Panvel
+P2067	Mankhurd --> Kharghar
+P2068	Govandi --> Chembur
+P2069	Cotton Green --> Chhatrapati Shivaji Terminus
+P2070	Juinagar --> Panvel
+P2071	Tilak Nagar --> Guru Tegh Bahadur Nagar
+P2072	Sandhurst Road --> Nerul
+P2073	Khandeshwar --> Seawoods-Darave
+P2074	Kurla --> Chhatrapati Shivaji Terminus
+P2075	Mansarovar --> Panvel
+P2076	Chunabhatti --> Sanpada
+P2077	Panvel --> Chunabhatti
+P2078	Dockyard Road --> Govandi
+P2079	Mankhurd --> Chunabhatti
+P2080	Sandhurst Road --> Chembur
+P2081	Tilak Nagar --> Chhatrapati Shivaji Terminus
+P2082	Sandhurst Road --> Seawoods-Darave
+P2083	Khandeshwar --> Reay Road
+P2084	Sewri --> Chembur
+P2085	Khandeshwar --> Guru Tegh Bahadur Nagar
+P2086	Kurla --> Cotton Green
+P2087	Khandeshwar --> Tilak Nagar
+P2088	Nerul --> Kharghar
+P2089	Sewri --> Dockyard Road
+P2090	Juinagar --> Cotton Green
+P2091	Vashi --> Nerul
+P2092	Wadala Road --> Panvel
+P2093	Guru Tegh Bahadur Nagar --> Govandi
+P2094	Sandhurst Road --> Chunabhatti
+P2095	Tilak Nagar --> Vashi
+P2096	Kharghar --> Panvel
+P2097	Nerul --> Mankhurd
+P2098	Sewri --> Sanpada
+P2099	Vashi --> Nerul
+P2100	Panvel --> Sanpada
+P2101	Juinagar --> Cotton Green
+P2102	Chunabhatti --> Reay Road
+P2103	Seawoods-Darave --> Reay Road
+P2104	Mansarovar --> Wadala Road
+P2105	Khandeshwar --> Chhatrapati Shivaji Terminus
+P2106	Dockyard Road --> Vashi
+P2107	Sanpada --> Chhatrapati Shivaji Terminus
+P2108	Vashi --> Govandi
+P2109	Govandi --> Chhatrapati Shivaji Terminus
+P2110	Dockyard Road --> Panvel
+P2111	Juinagar --> Panvel
+P2112	Dockyard Road --> Kharghar
+P2113	Vashi --> Panvel
+P2114	Nerul --> Vashi
+P2115	Vashi --> Tilak Nagar
+P2116	Tilak Nagar --> Kharghar
+P2117	Cotton Green --> Panvel
+P2118	Chembur --> Chunabhatti
+P2119	Sanpada --> Govandi
+P2120	Chhatrapati Shivaji Terminus --> Reay Road
+P2121	Nerul --> Chembur
+P2122	Mansarovar --> Juinagar
+P2123	Cotton Green --> CBD Belapur
+P2124	Tilak Nagar --> Sanpada
+P2125	Tilak Nagar --> Vashi
+P2126	Govandi --> Mankhurd
+P2127	Guru Tegh Bahadur Nagar --> Chhatrapati Shivaji Terminus
+P2128	Mankhurd --> Tilak Nagar
+P2129	Chembur --> Wadala Road
+P2130	Chembur --> Wadala Road
+P2131	Cotton Green --> Sandhurst Road
+P2132	Vashi --> Juinagar
+P2133	Kurla --> Khandeshwar
+P2134	CBD Belapur --> Sewri
+P2135	Sandhurst Road --> Chembur
+P2136	Khandeshwar --> Tilak Nagar
+P2137	Sandhurst Road --> Chunabhatti
+P2138	Govandi --> Wadala Road
+P2139	Cotton Green --> Panvel
+P2140	Wadala Road --> Vashi
+P2141	Mankhurd --> Sandhurst Road
+P2142	Seawoods-Darave --> Vashi
+P2143	Chhatrapati Shivaji Terminus --> Guru Tegh Bahadur Nagar
+P2144	Chembur --> Kurla
+P2145	Vashi --> Dockyard Road
+P2146	Chhatrapati Shivaji Terminus --> Khandeshwar
+P2147	Sanpada --> Guru Tegh Bahadur Nagar
+P2148	Tilak Nagar --> Panvel
+P2149	Tilak Nagar --> Dockyard Road
+P2150	Sanpada --> Vashi
+P2151	Chhatrapati Shivaji Terminus --> Wadala Road
+P2152	Cotton Green --> Panvel
+P2153	Chunabhatti --> Govandi
+P2154	Tilak Nagar --> Cotton Green
+P2155	CBD Belapur --> Nerul
+P2156	Wadala Road --> Cotton Green
+P2157	Mansarovar --> Sewri
+P2158	Panvel --> Govandi
+P2159	Reay Road --> Kurla
+P2160	Chhatrapati Shivaji Terminus --> Dockyard Road
+P2161	Govandi --> Chhatrapati Shivaji Terminus
+P2162	Seawoods-Darave --> Kurla
+P2163	Kurla --> Chembur
+P2164	Kharghar --> Kurla
+P2165	Chembur --> Juinagar
+P2166	Juinagar --> Seawoods-Darave
+P2167	Panvel --> Wadala Road
+P2168	Khandeshwar --> Mansarovar
+P2169	Kharghar --> Chunabhatti
+P2170	Tilak Nagar --> Panvel
+P2171	Wadala Road --> Chembur
+P2172	Sandhurst Road --> Reay Road
+P2173	Seawoods-Darave --> Wadala Road
+P2174	Nerul --> Reay Road
+P2175	Kurla --> Mankhurd
+P2176	Khandeshwar --> CBD Belapur
+P2177	Tilak Nagar --> Seawoods-Darave
+P2178	Chhatrapati Shivaji Terminus --> Dockyard Road
+P2179	Chhatrapati Shivaji Terminus --> Kurla
+P2180	Seawoods-Darave --> Mankhurd
+P2181	Reay Road --> Wadala Road
+P2182	Vashi --> Tilak Nagar
+P2183	Dockyard Road --> Mankhurd
+P2184	Chembur --> Vashi
+P2185	Khandeshwar --> Mankhurd
+P2186	Nerul --> CBD Belapur
+P2187	Nerul --> Dockyard Road
+P2188	CBD Belapur --> Tilak Nagar
+P2189	Mankhurd --> Sewri
+P2190	Reay Road --> Chunabhatti
+P2191	Seawoods-Darave --> Reay Road
+P2192	CBD Belapur --> Chunabhatti
+P2193	Sanpada --> Wadala Road
+P2194	Tilak Nagar --> Govandi
+P2195	Nerul --> Chembur
+P2196	Seawoods-Darave --> CBD Belapur
+P2197	Cotton Green --> Tilak Nagar
+P2198	Kurla --> Wadala Road
+P2199	Seawoods-Darave --> Mankhurd
+P2200	Juinagar --> Panvel
+P2201	Kurla --> Mankhurd
+P2202	Dockyard Road --> Sanpada
+P2203	Chunabhatti --> Cotton Green
+P2204	Dockyard Road --> Sanpada
+P2205	Guru Tegh Bahadur Nagar --> Sandhurst Road
+P2206	Sandhurst Road --> Govandi
+P2207	Govandi --> Guru Tegh Bahadur Nagar
+P2208	Guru Tegh Bahadur Nagar --> CBD Belapur
+P2209	Dockyard Road --> Tilak Nagar
+P2210	Reay Road --> Kurla
+P2211	Govandi --> Guru Tegh Bahadur Nagar
+P2212	Mankhurd --> Sewri
+P2213	Chunabhatti --> Panvel
+P2214	Kurla --> Sewri
+P2215	Vashi --> Chhatrapati Shivaji Terminus
+P2216	Khandeshwar --> Tilak Nagar
+P2217	Guru Tegh Bahadur Nagar --> Juinagar
+P2218	Kharghar --> Nerul
+P2219	Chembur --> Sanpada
+P2220	Mansarovar --> Vashi
+P2221	Seawoods-Darave --> Panvel
+P2222	Seawoods-Darave --> Sanpada
+P2223	Kharghar --> Chembur
+P2224	Wadala Road --> Tilak Nagar
+P2225	Mansarovar --> Kurla
+P2226	Guru Tegh Bahadur Nagar --> Cotton Green
+P2227	Juinagar --> Mansarovar
+P2228	Chunabhatti --> Sanpada
+P2229	Kharghar --> Cotton Green
+P2230	Cotton Green --> Juinagar
+P2231	Cotton Green --> Tilak Nagar
+P2232	Khandeshwar --> Dockyard Road
+P2233	Guru Tegh Bahadur Nagar --> Chunabhatti
+P2234	Cotton Green --> Tilak Nagar
+P2235	Juinagar --> Sewri
+P2236	Kurla --> Juinagar
+P2237	Kurla --> Chunabhatti
+P2238	Sandhurst Road --> Vashi
+P2239	Chhatrapati Shivaji Terminus --> Sanpada
+P2240	Guru Tegh Bahadur Nagar --> Chhatrapati Shivaji Terminus
+P2241	Kharghar --> Chhatrapati Shivaji Terminus
+P2242	CBD Belapur --> Nerul
+P2243	Juinagar --> Sandhurst Road
+P2244	Sanpada --> Wadala Road
+P2245	Panvel --> Vashi
+P2246	Seawoods-Darave --> Govandi
+P2247	Vashi --> Dockyard Road
+P2248	Kharghar --> Panvel
+P2249	Govandi --> Kharghar
+P2250	Chembur --> Chunabhatti
+P2251	Vashi --> Sanpada
+P2252	Reay Road --> Vashi
+P2253	Cotton Green --> Sandhurst Road
+P2254	Guru Tegh Bahadur Nagar --> Seawoods-Darave
+P2255	Nerul --> CBD Belapur
+P2256	Kurla --> Panvel
+P2257	Khandeshwar --> Govandi
+P2258	Chhatrapati Shivaji Terminus --> Sanpada
+P2259	Kurla --> Kharghar
+P2260	Chembur --> Dockyard Road
+P2261	Sanpada --> Seawoods-Darave
+P2262	Wadala Road --> Nerul
+P2263	Tilak Nagar --> Reay Road
+P2264	Reay Road --> Wadala Road
+P2265	Guru Tegh Bahadur Nagar --> Dockyard Road
+P2266	Sanpada --> Nerul
+P2267	CBD Belapur --> Tilak Nagar
+P2268	Dockyard Road --> Reay Road
+P2269	Seawoods-Darave --> Chembur
+P2270	Mankhurd --> Reay Road
+P2271	Chhatrapati Shivaji Terminus --> Wadala Road
+P2272	Khandeshwar --> Chembur
+P2273	Juinagar --> Panvel
+P2274	Sanpada --> Khandeshwar
+P2275	Kurla --> Wadala Road
+P2276	Khandeshwar --> Chhatrapati Shivaji Terminus
+P2277	Kurla --> Tilak Nagar
+P2278	Mankhurd --> Tilak Nagar
+P2279	Dockyard Road --> Chembur
+P2280	Sandhurst Road --> Tilak Nagar
+P2281	Khandeshwar --> Kurla
+P2282	Sewri --> Sanpada
+P2283	Nerul --> CBD Belapur
+P2284	Kharghar --> Sanpada
+P2285	Chhatrapati Shivaji Terminus --> Juinagar
+P2286	Sandhurst Road --> Chhatrapati Shivaji Terminus
+P2287	Cotton Green --> Kurla
+P2288	Dockyard Road --> Tilak Nagar
+P2289	Chhatrapati Shivaji Terminus --> Mankhurd
+P2290	Vashi --> Reay Road
+P2291	Sandhurst Road --> Mankhurd
+P2292	Govandi --> Panvel
+P2293	Mankhurd --> Chunabhatti
+P2294	Wadala Road --> CBD Belapur
+P2295	Juinagar --> Vashi
+P2296	Nerul --> Reay Road
+P2297	Mansarovar --> Sandhurst Road
+P2298	Nerul --> Tilak Nagar
+P2299	Guru Tegh Bahadur Nagar --> Cotton Green
+P2300	Dockyard Road --> Chembur
+P2301	Sanpada --> Kharghar
+P2302	Chhatrapati Shivaji Terminus --> Juinagar
+P2303	Mankhurd --> Chunabhatti
+P2304	Reay Road --> Guru Tegh Bahadur Nagar
+P2305	Tilak Nagar --> Wadala Road
+P2306	Chembur --> Mansarovar
+P2307	Reay Road --> Guru Tegh Bahadur Nagar
+P2308	Cotton Green --> Khandeshwar
+P2309	Vashi --> Cotton Green
+P2310	Vashi --> Sewri
+P2311	Dockyard Road --> Kharghar
+P2312	Chunabhatti --> CBD Belapur
+P2313	Cotton Green --> Juinagar
+P2314	Cotton Green --> Juinagar
+P2315	Wadala Road --> Govandi
+P2316	Khandeshwar --> CBD Belapur
+P2317	Dockyard Road --> Seawoods-Darave
+P2318	Wadala Road --> Chhatrapati Shivaji Terminus
+P2319	Cotton Green --> Reay Road
+P2320	Sewri --> Mankhurd
+P2321	Kharghar --> Chunabhatti
+P2322	Govandi --> Kharghar
+P2323	Panvel --> Nerul
+P2324	Sanpada --> Khandeshwar
+P2325	Kurla --> Sanpada
+P2326	Panvel --> Chunabhatti
+P2327	Kurla --> Seawoods-Darave
+P2328	Nerul --> Khandeshwar
+P2329	Seawoods-Darave --> Mankhurd
+P2330	Nerul --> Chembur
+P2331	Sandhurst Road --> Wadala Road
+P2332	Nerul --> Mankhurd
+P2333	Guru Tegh Bahadur Nagar --> Chembur
+P2334	Juinagar --> Chembur
+P2335	Khandeshwar --> Tilak Nagar
+P2336	Vashi --> Sanpada
+P2337	Kurla --> Mansarovar
+P2338	Govandi --> Chhatrapati Shivaji Terminus
+P2339	Khandeshwar --> Juinagar
+P2340	Dockyard Road --> Chunabhatti
+P2341	Chembur --> Kurla
+P2342	Mankhurd --> Tilak Nagar
+P2343	Vashi --> Nerul
+P2344	Panvel --> Mansarovar
+P2345	Govandi --> Sewri
+P2346	Guru Tegh Bahadur Nagar --> Vashi
+P2347	Dockyard Road --> Seawoods-Darave
+P2348	Chunabhatti --> Wadala Road
+P2349	Cotton Green --> Kharghar
+P2350	Kharghar --> Dockyard Road
+P2351	Sanpada --> Panvel
+P2352	Reay Road --> Vashi
+P2353	Sewri --> Wadala Road
+P2354	Chhatrapati Shivaji Terminus --> Vashi
+P2355	Cotton Green --> Reay Road
+P2356	Sandhurst Road --> Khandeshwar
+P2357	Vashi --> Panvel
+P2358	Khandeshwar --> Mansarovar
+P2359	Guru Tegh Bahadur Nagar --> Mansarovar
+P2360	CBD Belapur --> Panvel
+P2361	Mansarovar --> Sanpada
+P2362	Vashi --> Sewri
+P2363	Sewri --> Vashi
+P2364	Khandeshwar --> Sandhurst Road
+P2365	Reay Road --> Chhatrapati Shivaji Terminus
+P2366	Panvel --> Reay Road
+P2367	Dockyard Road --> CBD Belapur
+P2368	Chunabhatti --> Chhatrapati Shivaji Terminus
+P2369	Chunabhatti --> Kharghar
+P2370	Sewri --> Cotton Green
+P2371	Guru Tegh Bahadur Nagar --> Juinagar
+P2372	Dockyard Road --> Cotton Green
+P2373	Wadala Road --> Mansarovar
+P2374	Mankhurd --> Juinagar
+P2375	Tilak Nagar --> Govandi
+P2376	Vashi --> Guru Tegh Bahadur Nagar
+P2377	Seawoods-Darave --> Sewri
+P2378	Nerul --> Wadala Road
+P2379	Mankhurd --> Kurla
+P2380	Chunabhatti --> Vashi
+P2381	Govandi --> Kurla
+P2382	Tilak Nagar --> Mankhurd
+P2383	Chunabhatti --> Tilak Nagar
+P2384	CBD Belapur --> Mankhurd
+P2385	Panvel --> Guru Tegh Bahadur Nagar
+P2386	Chunabhatti --> Mankhurd
+P2387	Govandi --> Mankhurd
+P2388	Nerul --> Guru Tegh Bahadur Nagar
+P2389	Guru Tegh Bahadur Nagar --> Seawoods-Darave
+P2390	Mankhurd --> Sandhurst Road
+P2391	Guru Tegh Bahadur Nagar --> Chunabhatti
+P2392	Mankhurd --> Vashi
+P2393	CBD Belapur --> Nerul
+P2394	Nerul --> Juinagar
+P2395	Chhatrapati Shivaji Terminus --> Chunabhatti
+P2396	Khandeshwar --> Govandi
+P2397	Mankhurd --> Seawoods-Darave
+P2398	Kurla --> Nerul
+P2399	Dockyard Road --> Guru Tegh Bahadur Nagar
+P2400	Sewri --> Wadala Road
+P2401	Panvel --> Sandhurst Road
+P2402	Sandhurst Road --> Chhatrapati Shivaji Terminus
+P2403	Cotton Green --> Wadala Road
+P2404	Kurla --> Nerul
+P2405	Dockyard Road --> Vashi
+P2406	Guru Tegh Bahadur Nagar --> Seawoods-Darave
+P2407	Chembur --> Sewri
+P2408	Kurla --> Dockyard Road
+P2409	Sanpada --> Seawoods-Darave
+P2410	Wadala Road --> Chunabhatti
+P2411	Sewri --> Chunabhatti
+P2412	Nerul --> Reay Road
+P2413	Nerul --> Cotton Green
+P2414	Nerul --> Cotton Green
+P2415	Nerul --> Govandi
+P2416	Dockyard Road --> Vashi
+P2417	Kharghar --> Panvel
+P2418	Seawoods-Darave --> Sewri
+P2419	Tilak Nagar --> CBD Belapur
+P2420	Chunabhatti --> Chhatrapati Shivaji Terminus
+P2421	Mansarovar --> Sanpada
+P2422	Vashi --> Mankhurd
+P2423	Guru Tegh Bahadur Nagar --> Mansarovar
+P2424	Sanpada --> Juinagar
+P2425	Sanpada --> Chembur
+P2426	Reay Road --> Panvel
+P2427	CBD Belapur --> Guru Tegh Bahadur Nagar
+P2428	Chunabhatti --> Sewri
+P2429	Sandhurst Road --> Sewri
+P2430	Reay Road --> Nerul
+P2431	Chhatrapati Shivaji Terminus --> Vashi
+P2432	Cotton Green --> Tilak Nagar
+P2433	Kurla --> Khandeshwar
+P2434	Juinagar --> Dockyard Road
+P2435	CBD Belapur --> Tilak Nagar
+P2436	Guru Tegh Bahadur Nagar --> CBD Belapur
+P2437	Kharghar --> Mankhurd
+P2438	Mansarovar --> Dockyard Road
+P2439	Chembur --> Khandeshwar
+P2440	Vashi --> Guru Tegh Bahadur Nagar
+P2441	Seawoods-Darave --> Panvel
+P2442	Seawoods-Darave --> Vashi
+P2443	Seawoods-Darave --> Govandi
+P2444	Nerul --> Mansarovar
+P2445	Wadala Road --> Sewri
+P2446	Juinagar --> Tilak Nagar
+P2447	Sandhurst Road --> Dockyard Road
+P2448	Kharghar --> Chembur
+P2449	Kurla --> Panvel
+P2450	Chhatrapati Shivaji Terminus --> Nerul
+P2451	Seawoods-Darave --> Wadala Road
+P2452	Nerul --> Cotton Green
+P2453	Sandhurst Road --> Mansarovar
+P2454	Chembur --> Tilak Nagar
+P2455	Vashi --> Sandhurst Road
+P2456	Sewri --> Kurla
+P2457	Chunabhatti --> Sanpada
+P2458	Mankhurd --> Sandhurst Road
+P2459	Govandi --> Reay Road
+P2460	Kurla --> Kharghar
+P2461	Mankhurd --> Wadala Road
+P2462	Dockyard Road --> Chhatrapati Shivaji Terminus
+P2463	Seawoods-Darave --> Sandhurst Road
+P2464	Chembur --> CBD Belapur
+P2465	Vashi --> CBD Belapur
+P2466	Seawoods-Darave --> Tilak Nagar
+P2467	Mankhurd --> Nerul
+P2468	Seawoods-Darave --> Guru Tegh Bahadur Nagar
+P2469	Sanpada --> Khandeshwar
+P2470	Vashi --> Wadala Road
+P2471	Mankhurd --> Sanpada
+P2472	Nerul --> Kharghar
+P2473	Sandhurst Road --> Vashi
+P2474	Sandhurst Road --> Mansarovar
+P2475	Dockyard Road --> Chunabhatti
+P2476	Kurla --> Chunabhatti
+P2477	Cotton Green --> Sewri
+P2478	Mansarovar --> Nerul
+P2479	Khandeshwar --> Cotton Green
+P2480	Nerul --> Govandi
+P2481	Sewri --> Chunabhatti
+P2482	Seawoods-Darave --> Chhatrapati Shivaji Terminus
+P2483	Wadala Road --> Cotton Green
+P2484	Wadala Road --> Chhatrapati Shivaji Terminus
+P2485	Sandhurst Road --> Khandeshwar
+P2486	Guru Tegh Bahadur Nagar --> Nerul
+P2487	Sandhurst Road --> Seawoods-Darave
+P2488	Dockyard Road --> Juinagar
+P2489	Guru Tegh Bahadur Nagar --> Vashi
+P2490	Vashi --> Cotton Green
+P2491	Khandeshwar --> Mansarovar
+P2492	Juinagar --> Chembur
+P2493	Dockyard Road --> CBD Belapur
+P2494	Dockyard Road --> Govandi
+P2495	Mansarovar --> Chhatrapati Shivaji Terminus
+P2496	Govandi --> Kurla
+P2497	Sewri --> Mansarovar
+P2498	Sanpada --> Chunabhatti
+P2499	Sandhurst Road --> Chhatrapati Shivaji Terminus
+P2500	Cotton Green --> Wadala Road
+P2501	Kharghar --> Panvel
+P2502	Wadala Road --> Kharghar
+P2503	Cotton Green --> Nerul
+P2504	Chhatrapati Shivaji Terminus --> Kharghar
+P2505	Kurla --> Reay Road
+P2506	Sandhurst Road --> Panvel
+P2507	Chembur --> CBD Belapur
+P2508	Chunabhatti --> Seawoods-Darave
+P2509	Nerul --> Sewri
+P2510	Mansarovar --> Reay Road
+P2511	Chunabhatti --> Nerul
+P2512	Juinagar --> Reay Road
+P2513	Mankhurd --> Seawoods-Darave
+P2514	Juinagar --> Vashi
+P2515	Kharghar --> CBD Belapur
+P2516	Nerul --> Kharghar
+P2517	Nerul --> Sandhurst Road
+P2518	Dockyard Road --> Reay Road
+P2519	Guru Tegh Bahadur Nagar --> CBD Belapur
+P2520	Govandi --> Mankhurd
+P2521	Chembur --> Guru Tegh Bahadur Nagar
+P2522	Guru Tegh Bahadur Nagar --> Dockyard Road
+P2523	Reay Road --> Seawoods-Darave
+P2524	Guru Tegh Bahadur Nagar --> Dockyard Road
+P2525	Chhatrapati Shivaji Terminus --> Chembur
+P2526	Chembur --> Sandhurst Road
+P2527	CBD Belapur --> Govandi
+P2528	Vashi --> Sanpada
+P2529	Cotton Green --> Vashi
+P2530	Khandeshwar --> Reay Road
+P2531	Mansarovar --> Kurla
+P2532	Tilak Nagar --> Chembur
+P2533	Sandhurst Road --> Reay Road
+P2534	Juinagar --> Guru Tegh Bahadur Nagar
+P2535	Sewri --> Sanpada
+P2536	Kharghar --> CBD Belapur
+P2537	Wadala Road --> Reay Road
+P2538	Kharghar --> Vashi
+P2539	Chembur --> Nerul
+P2540	Cotton Green --> Sanpada
+P2541	Reay Road --> Sanpada
+P2542	Reay Road --> Sewri
+P2543	Panvel --> Juinagar
+P2544	Nerul --> Cotton Green
+P2545	CBD Belapur --> Dockyard Road
+P2546	Cotton Green --> Sandhurst Road
+P2547	Wadala Road --> CBD Belapur
+P2548	Mansarovar --> Reay Road
+P2549	Panvel --> Mankhurd
+P2550	Chunabhatti --> Mankhurd
+P2551	Dockyard Road --> Juinagar
+P2552	Mankhurd --> Seawoods-Darave
+P2553	Chhatrapati Shivaji Terminus --> Dockyard Road
+P2554	CBD Belapur --> Reay Road
+P2555	Govandi --> Panvel
+P2556	Dockyard Road --> Sewri
+P2557	Cotton Green --> Chunabhatti
+P2558	Seawoods-Darave --> Govandi
+P2559	Chembur --> Wadala Road
+P2560	Seawoods-Darave --> Govandi
+P2561	Tilak Nagar --> Dockyard Road
+P2562	Seawoods-Darave --> Nerul
+P2563	Seawoods-Darave --> Kurla
+P2564	Chunabhatti --> Sandhurst Road
+P2565	Panvel --> Chembur
+P2566	Govandi --> Juinagar
+P2567	Govandi --> Panvel
+P2568	Mankhurd --> Govandi
+P2569	Sandhurst Road --> Mankhurd
+P2570	Seawoods-Darave --> Tilak Nagar
+P2571	Panvel --> Guru Tegh Bahadur Nagar
+P2572	Sewri --> Reay Road
+P2573	Chembur --> Mankhurd
+P2574	Dockyard Road --> Khandeshwar
+P2575	Kurla --> Reay Road
+P2576	Vashi --> CBD Belapur
+P2577	Chunabhatti --> Dockyard Road
+P2578	Chembur --> Nerul
+P2579	CBD Belapur --> Chhatrapati Shivaji Terminus
+P2580	Panvel --> Mankhurd
+P2581	Chhatrapati Shivaji Terminus --> Kharghar
+P2582	Chembur --> Nerul
+P2583	Kurla --> Seawoods-Darave
+P2584	Kurla --> Govandi
+P2585	Chunabhatti --> Sanpada
+P2586	Panvel --> CBD Belapur
+P2587	Chunabhatti --> Dockyard Road
+P2588	Sandhurst Road --> Kharghar
+P2589	Wadala Road --> Sanpada
+P2590	Reay Road --> Dockyard Road
+P2591	Panvel --> Kurla
+P2592	Chembur --> Seawoods-Darave
+P2593	Seawoods-Darave --> Cotton Green
+P2594	Mansarovar --> Nerul
+P2595	Khandeshwar --> Govandi
+P2596	Chhatrapati Shivaji Terminus --> Juinagar
+P2597	Vashi --> Mankhurd
+P2598	Wadala Road --> Mankhurd
+P2599	Nerul --> Chunabhatti
+P2600	Sandhurst Road --> Sanpada
+P2601	Sanpada --> Khandeshwar
+P2602	Chhatrapati Shivaji Terminus --> Mankhurd
+P2603	Kharghar --> Govandi
+P2604	Nerul --> Kharghar
+P2605	Kurla --> Reay Road
+P2606	Juinagar --> Kharghar
+P2607	Chhatrapati Shivaji Terminus --> CBD Belapur
+P2608	Vashi --> Mansarovar
+P2609	Mankhurd --> Govandi
+P2610	Sewri --> Chembur
+P2611	Sewri --> Kurla
+P2612	Sanpada --> Chembur
+P2613	Wadala Road --> Kurla
+P2614	Panvel --> Kurla
+P2615	Sewri --> Reay Road
+P2616	Guru Tegh Bahadur Nagar --> Chhatrapati Shivaji Terminus
+P2617	Guru Tegh Bahadur Nagar --> Mansarovar
+P2618	Chunabhatti --> Mansarovar
+P2619	Sanpada --> Nerul
+P2620	Chhatrapati Shivaji Terminus --> Chunabhatti
+P2621	Wadala Road --> Mankhurd
+P2622	Vashi --> Panvel
+P2623	Kurla --> Wadala Road
+P2624	Nerul --> Sandhurst Road
+P2625	Govandi --> Chhatrapati Shivaji Terminus
+P2626	Khandeshwar --> Govandi
+P2627	Mansarovar --> Reay Road
+P2628	Juinagar --> Govandi
+P2629	CBD Belapur --> Vashi
+P2630	Dockyard Road --> Kurla
+P2631	Cotton Green --> Sandhurst Road
+P2632	Chhatrapati Shivaji Terminus --> CBD Belapur
+P2633	Vashi --> Tilak Nagar
+P2634	Kharghar --> Mansarovar
+P2635	Mankhurd --> Wadala Road
+P2636	Cotton Green --> CBD Belapur
+P2637	Chembur --> Sandhurst Road
+P2638	Juinagar --> Nerul
+P2639	Khandeshwar --> Govandi
+P2640	Govandi --> Tilak Nagar
+P2641	Sewri --> Juinagar
+P2642	Nerul --> Guru Tegh Bahadur Nagar
+P2643	Sanpada --> Vashi
+P2644	Nerul --> Sewri
+P2645	Kharghar --> Kurla
+P2646	Kurla --> Mankhurd
+P2647	Chunabhatti --> Sewri
+P2648	Sanpada --> Khandeshwar
+P2649	Sanpada --> Tilak Nagar
+P2650	Dockyard Road --> Sewri
+P2651	Sanpada --> Kurla
+P2652	Chembur --> Seawoods-Darave
+P2653	CBD Belapur --> Govandi
+P2654	Reay Road --> Tilak Nagar
+P2655	Tilak Nagar --> Dockyard Road
+P2656	Sanpada --> Khandeshwar
+P2657	Khandeshwar --> Reay Road
+P2658	Panvel --> Chhatrapati Shivaji Terminus
+P2659	Nerul --> Wadala Road
+P2660	Kharghar --> Mansarovar
+P2661	Juinagar --> Mansarovar
+P2662	Sanpada --> CBD Belapur
+P2663	Govandi --> Sandhurst Road
+P2664	Vashi --> Chhatrapati Shivaji Terminus
+P2665	Khandeshwar --> Chunabhatti
+P2666	Nerul --> Cotton Green
+P2667	Chembur --> Mankhurd
+P2668	Tilak Nagar --> Mankhurd
+P2669	Cotton Green --> Mankhurd
+P2670	Nerul --> Sanpada
+P2671	Reay Road --> Dockyard Road
+P2672	Chembur --> Kurla
+P2673	Nerul --> Sandhurst Road
+P2674	Chhatrapati Shivaji Terminus --> Guru Tegh Bahadur Nagar
+P2675	Kurla --> Juinagar
+P2676	Chembur --> Nerul
+P2677	Chembur --> Panvel
+P2678	Wadala Road --> Kharghar
+P2679	Guru Tegh Bahadur Nagar --> Tilak Nagar
+P2680	Kharghar --> Reay Road
+P2681	Sanpada --> Khandeshwar
+P2682	Panvel --> Kurla
+P2683	Vashi --> Mansarovar
+P2684	Dockyard Road --> Sandhurst Road
+P2685	Kharghar --> Chhatrapati Shivaji Terminus
+P2686	Chhatrapati Shivaji Terminus --> Kharghar
+P2687	CBD Belapur --> Chunabhatti
+P2688	CBD Belapur --> Vashi
+P2689	Kharghar --> Juinagar
+P2690	Kurla --> Wadala Road
+P2691	Nerul --> Chunabhatti
+P2692	Sandhurst Road --> Wadala Road
+P2693	Reay Road --> Nerul
+P2694	Guru Tegh Bahadur Nagar --> Sandhurst Road
+P2695	Wadala Road --> Khandeshwar
+P2696	Juinagar --> Panvel
+P2697	Reay Road --> Dockyard Road
+P2698	Chhatrapati Shivaji Terminus --> Guru Tegh Bahadur Nagar
+P2699	Wadala Road --> Dockyard Road
+P2700	Nerul --> Sanpada
+P2701	Kharghar --> Wadala Road
+P2702	Cotton Green --> Govandi
+P2703	Chhatrapati Shivaji Terminus --> Khandeshwar
+P2704	Govandi --> Sandhurst Road
+P2705	Chhatrapati Shivaji Terminus --> Vashi
+P2706	Vashi --> Sandhurst Road
+P2707	Mankhurd --> Chhatrapati Shivaji Terminus
+P2708	Cotton Green --> Tilak Nagar
+P2709	Chhatrapati Shivaji Terminus --> Mansarovar
+P2710	Kurla --> Chunabhatti
+P2711	Guru Tegh Bahadur Nagar --> Sanpada
+P2712	Chunabhatti --> Reay Road
+P2713	Sewri --> Panvel
+P2714	CBD Belapur --> Mansarovar
+P2715	Mankhurd --> Khandeshwar
+P2716	Seawoods-Darave --> Juinagar
+P2717	Kurla --> Govandi
+P2718	Panvel --> Cotton Green
+P2719	Cotton Green --> Vashi
+P2720	Tilak Nagar --> Chembur
+P2721	Khandeshwar --> Sanpada
+P2722	Tilak Nagar --> Kurla
+P2723	Guru Tegh Bahadur Nagar --> Dockyard Road
+P2724	Seawoods-Darave --> Sewri
+P2725	Cotton Green --> Kurla
+P2726	Tilak Nagar --> Guru Tegh Bahadur Nagar
+P2727	Vashi --> Nerul
+P2728	Tilak Nagar --> Chhatrapati Shivaji Terminus
+P2729	Govandi --> Khandeshwar
+P2730	Govandi --> Nerul
+P2731	Kharghar --> Guru Tegh Bahadur Nagar
+P2732	Wadala Road --> Dockyard Road
+P2733	Chembur --> Khandeshwar
+P2734	Seawoods-Darave --> Govandi
+P2735	Sandhurst Road --> Dockyard Road
+P2736	Juinagar --> Sandhurst Road
+P2737	Kurla --> Panvel
+P2738	Mansarovar --> Wadala Road
+P2739	Khandeshwar --> Sanpada
+P2740	Kharghar --> Nerul
+P2741	Chhatrapati Shivaji Terminus --> Sanpada
+P2742	Chembur --> Mankhurd
+P2743	Khandeshwar --> Chunabhatti
+P2744	Nerul --> Sanpada
+P2745	Wadala Road --> Sandhurst Road
+P2746	Kharghar --> Mankhurd
+P2747	Juinagar --> Wadala Road
+P2748	Panvel --> Tilak Nagar
+P2749	Chunabhatti --> Khandeshwar
+P2750	Chhatrapati Shivaji Terminus --> Juinagar
+P2751	Dockyard Road --> Wadala Road
+P2752	Panvel --> Tilak Nagar
+P2753	Chunabhatti --> Vashi
+P2754	Dockyard Road --> Mansarovar
+P2755	Sanpada --> Sewri
+P2756	Sewri --> Reay Road
+P2757	Chhatrapati Shivaji Terminus --> Panvel
+P2758	Sanpada --> Reay Road
+P2759	Seawoods-Darave --> Panvel
+P2760	Kurla --> Juinagar
+P2761	Cotton Green --> Sandhurst Road
+P2762	Guru Tegh Bahadur Nagar --> Govandi
+P2763	Chhatrapati Shivaji Terminus --> Nerul
+P2764	Chhatrapati Shivaji Terminus --> Nerul
+P2765	Kharghar --> Seawoods-Darave
+P2766	CBD Belapur --> Mansarovar
+P2767	Tilak Nagar --> Cotton Green
+P2768	Khandeshwar --> Mankhurd
+P2769	Sewri --> Seawoods-Darave
+P2770	Juinagar --> Tilak Nagar
+P2771	Sandhurst Road --> Mankhurd
+P2772	Guru Tegh Bahadur Nagar --> Chembur
+P2773	Tilak Nagar --> Cotton Green
+P2774	Wadala Road --> Sandhurst Road
+P2775	CBD Belapur --> Sanpada
+P2776	Chembur --> Cotton Green
+P2777	Dockyard Road --> Govandi
+P2778	Dockyard Road --> Mankhurd
+P2779	Vashi --> Chembur
+P2780	Chhatrapati Shivaji Terminus --> Cotton Green
+P2781	Khandeshwar --> Guru Tegh Bahadur Nagar
+P2782	CBD Belapur --> Sanpada
+P2783	Mankhurd --> Cotton Green
+P2784	Sanpada --> Chhatrapati Shivaji Terminus
+P2785	Chembur --> Seawoods-Darave
+P2786	Seawoods-Darave --> Kharghar
+P2787	Seawoods-Darave --> Chhatrapati Shivaji Terminus
+P2788	Juinagar --> Cotton Green
+P2789	Wadala Road --> Dockyard Road
+P2790	Mansarovar --> Sanpada
+P2791	Panvel --> Sewri
+P2792	Nerul --> Juinagar
+P2793	Juinagar --> Mansarovar
+P2794	Chembur --> Sandhurst Road
+P2795	Panvel --> Dockyard Road
+P2796	Reay Road --> CBD Belapur
+P2797	Cotton Green --> Sewri
+P2798	Wadala Road --> CBD Belapur
+P2799	CBD Belapur --> Sanpada
+P2800	Wadala Road --> Chunabhatti
+P2801	Wadala Road --> Reay Road
+P2802	Sewri --> Tilak Nagar
+P2803	Govandi --> Sanpada
+P2804	Khandeshwar --> Wadala Road
+P2805	Dockyard Road --> Govandi
+P2806	Reay Road --> Guru Tegh Bahadur Nagar
+P2807	Chunabhatti --> Kharghar
+P2808	Chunabhatti --> Khandeshwar
+P2809	Guru Tegh Bahadur Nagar --> Sanpada
+P2810	Vashi --> Mankhurd
+P2811	Juinagar --> Dockyard Road
+P2812	Kharghar --> Sewri
+P2813	Chunabhatti --> Sewri
+P2814	Juinagar --> Dockyard Road
+P2815	Guru Tegh Bahadur Nagar --> Wadala Road
+P2816	Reay Road --> Juinagar
+P2817	Juinagar --> Guru Tegh Bahadur Nagar
+P2818	CBD Belapur --> Mankhurd
+P2819	Reay Road --> Kurla
+P2820	Tilak Nagar --> Chembur
+P2821	Vashi --> Govandi
+P2822	Reay Road --> Sanpada
+P2823	Dockyard Road --> Govandi
+P2824	Sewri --> CBD Belapur
+P2825	Seawoods-Darave --> Kurla
+P2826	Juinagar --> Govandi
+P2827	Khandeshwar --> Reay Road
+P2828	Govandi --> Kurla
+P2829	Sewri --> Chhatrapati Shivaji Terminus
+P2830	Chunabhatti --> Nerul
+P2831	Sandhurst Road --> Kharghar
+P2832	Juinagar --> Panvel
+P2833	Cotton Green --> Govandi
+P2834	Sandhurst Road --> Sewri
+P2835	Sandhurst Road --> Panvel
+P2836	Vashi --> Tilak Nagar
+P2837	Sewri --> Sandhurst Road
+P2838	Govandi --> Seawoods-Darave
+P2839	Tilak Nagar --> Chhatrapati Shivaji Terminus
+P2840	Kurla --> Vashi
+P2841	Tilak Nagar --> Dockyard Road
+P2842	Sewri --> Seawoods-Darave
+P2843	Mansarovar --> Kurla
+P2844	Juinagar --> Cotton Green
+P2845	Reay Road --> Govandi
+P2846	Sewri --> Govandi
+P2847	Panvel --> Mansarovar
+P2848	Seawoods-Darave --> Wadala Road
+P2849	Seawoods-Darave --> Chembur
+P2850	Vashi --> Nerul
+P2851	Kharghar --> Sanpada
+P2852	Dockyard Road --> Seawoods-Darave
+P2853	CBD Belapur --> Kurla
+P2854	Mankhurd --> Dockyard Road
+P2855	Chunabhatti --> Kurla
+P2856	CBD Belapur --> Chembur
+P2857	Chunabhatti --> Sandhurst Road
+P2858	Sewri --> Chembur
+P2859	Cotton Green --> Reay Road
+P2860	Mankhurd --> Khandeshwar
+P2861	Khandeshwar --> Seawoods-Darave
+P2862	Sanpada --> Juinagar
+P2863	Govandi --> Panvel
+P2864	Dockyard Road --> Cotton Green
+P2865	Sandhurst Road --> CBD Belapur
+P2866	Vashi --> Reay Road
+P2867	Khandeshwar --> Cotton Green
+P2868	Chunabhatti --> Govandi
+P2869	Chhatrapati Shivaji Terminus --> Vashi
+P2870	Sandhurst Road --> Cotton Green
+P2871	Reay Road --> Guru Tegh Bahadur Nagar
+P2872	Mankhurd --> CBD Belapur
+P2873	Mankhurd --> Vashi
+P2874	Khandeshwar --> CBD Belapur
+P2875	Sewri --> Nerul
+P2876	Sandhurst Road --> Mankhurd
+P2877	Sandhurst Road --> Seawoods-Darave
+P2878	Juinagar --> Dockyard Road
+P2879	Sanpada --> Wadala Road
+P2880	Wadala Road --> Dockyard Road
+P2881	Govandi --> Seawoods-Darave
+P2882	Seawoods-Darave --> Mansarovar
+P2883	Chhatrapati Shivaji Terminus --> Dockyard Road
+P2884	Reay Road --> Cotton Green
+P2885	Tilak Nagar --> Panvel
+P2886	Dockyard Road --> CBD Belapur
+P2887	Sanpada --> Chembur
+P2888	Govandi --> Mansarovar
+P2889	Vashi --> Govandi
+P2890	Khandeshwar --> Kharghar
+P2891	Sanpada --> Kharghar
+P2892	Chembur --> Reay Road
+P2893	Dockyard Road --> Sandhurst Road
+P2894	Sandhurst Road --> Seawoods-Darave
+P2895	Tilak Nagar --> Khandeshwar
+P2896	Sewri --> Cotton Green
+P2897	Vashi --> Dockyard Road
+P2898	Kharghar --> Sewri
+P2899	Reay Road --> Juinagar
+P2900	CBD Belapur --> Tilak Nagar
+P2901	Sanpada --> Seawoods-Darave
+P2902	Mansarovar --> Sanpada
+P2903	Chunabhatti --> Tilak Nagar
+P2904	Guru Tegh Bahadur Nagar --> Mansarovar
+P2905	Juinagar --> Khandeshwar
+P2906	Mankhurd --> Sandhurst Road
+P2907	Mankhurd --> Mansarovar
+P2908	Chunabhatti --> Nerul
+P2909	Kurla --> Tilak Nagar
+P2910	Chhatrapati Shivaji Terminus --> Sewri
+P2911	Panvel --> Wadala Road
+P2912	Chhatrapati Shivaji Terminus --> Chembur
+P2913	Nerul --> Mankhurd
+P2914	Dockyard Road --> Mansarovar
+P2915	Cotton Green --> Reay Road
+P2916	Panvel --> Cotton Green
+P2917	Guru Tegh Bahadur Nagar --> Dockyard Road
+P2918	Chunabhatti --> Chembur
+P2919	Reay Road --> Chunabhatti
+P2920	Khandeshwar --> Chunabhatti
+P2921	Chhatrapati Shivaji Terminus --> Vashi
+P2922	Vashi --> Khandeshwar
+P2923	Juinagar --> Govandi
+P2924	Reay Road --> Seawoods-Darave
+P2925	Panvel --> Wadala Road
+P2926	Chhatrapati Shivaji Terminus --> Vashi
+P2927	Khandeshwar --> Panvel
+P2928	Mansarovar --> Dockyard Road
+P2929	Dockyard Road --> Sandhurst Road
+P2930	Kharghar --> Nerul
+P2931	Govandi --> Vashi
+P2932	Wadala Road --> Sewri
+P2933	Nerul --> Guru Tegh Bahadur Nagar
+P2934	Sanpada --> Chunabhatti
+P2935	Dockyard Road --> Khandeshwar
+P2936	Chunabhatti --> Kurla
+P2937	Wadala Road --> Sandhurst Road
+P2938	Chembur --> Guru Tegh Bahadur Nagar
+P2939	Seawoods-Darave --> Khandeshwar
+P2940	Juinagar --> Sewri
+P2941	CBD Belapur --> Mansarovar
+P2942	Khandeshwar --> Seawoods-Darave
+P2943	Reay Road --> Sanpada
+P2944	Wadala Road --> Cotton Green
+P2945	Sanpada --> Sandhurst Road
+P2946	Nerul --> Juinagar
+P2947	Sandhurst Road --> Mankhurd
+P2948	Seawoods-Darave --> Chunabhatti
+P2949	Sandhurst Road --> Mansarovar
+P2950	Vashi --> Kurla
+P2951	Wadala Road --> Kharghar
+P2952	Juinagar --> Chhatrapati Shivaji Terminus
+P2953	CBD Belapur --> Reay Road
+P2954	Nerul --> Kurla
+P2955	Govandi --> Sewri
+P2956	Mansarovar --> Kharghar
+P2957	Panvel --> Juinagar
+P2958	Juinagar --> Kharghar
+P2959	Chhatrapati Shivaji Terminus --> Kurla
+P2960	Sanpada --> Mankhurd
+P2961	Mansarovar --> Dockyard Road
+P2962	CBD Belapur --> Dockyard Road
+P2963	Juinagar --> Dockyard Road
+P2964	Guru Tegh Bahadur Nagar --> Chhatrapati Shivaji Terminus
+P2965	Reay Road --> Kurla
+P2966	CBD Belapur --> Tilak Nagar
+P2967	Mansarovar --> Wadala Road
+P2968	Dockyard Road --> Kurla
+P2969	Dockyard Road --> Chunabhatti
+P2970	Vashi --> Juinagar
+P2971	Tilak Nagar --> Mankhurd
+P2972	Govandi --> Dockyard Road
+P2973	Juinagar --> Seawoods-Darave
+P2974	Nerul --> Chunabhatti
+P2975	Dockyard Road --> Juinagar
+P2976	Chembur --> CBD Belapur
+P2977	Chunabhatti --> Guru Tegh Bahadur Nagar
+P2978	Cotton Green --> Seawoods-Darave
+P2979	Mansarovar --> Dockyard Road
+P2980	Kurla --> Nerul
+P2981	Reay Road --> Vashi
+P2982	Dockyard Road --> Khandeshwar
+P2983	Chembur --> Juinagar
+P2984	Dockyard Road --> Nerul
+P2985	Kurla --> Tilak Nagar
+P2986	Mankhurd --> Panvel
+P2987	Vashi --> Tilak Nagar
+P2988	Nerul --> CBD Belapur
+P2989	Chunabhatti --> Juinagar
+P2990	Sewri --> Dockyard Road
+P2991	Govandi --> Sandhurst Road
+P2992	Sanpada --> Nerul
+P2993	Govandi --> Mankhurd
+P2994	Dockyard Road --> Mankhurd
+P2995	CBD Belapur --> Kurla
+P2996	Cotton Green --> Panvel
+P2997	Govandi --> Nerul
+P2998	Mankhurd --> Tilak Nagar
+P2999	Reay Road --> Wadala Road
+P3000	Chembur --> Dockyard Road
+P3001	Khar Road --> Andheri
+P3002	Khar Road --> King's Circle
+P3003	King's Circle --> Mahim
+P3004	Mahim --> Vile Parle
+P3005	Vile Parle --> Wadala Road
+P3006	Vile Parle --> Mahim
+P3007	Santacruz --> Wadala Road
+P3008	Wadala Road --> Bandra
+P3009	Andheri --> Khar Road
+P3010	Andheri --> Bandra
+P3011	Bandra --> Vile Parle
+P3012	Khar Road --> King's Circle
+P3013	Mahim --> Andheri
+P3014	King's Circle --> Vile Parle
+P3015	Bandra --> Wadala Road
+P3016	Wadala Road --> Vile Parle
+P3017	Wadala Road --> Vile Parle
+P3018	King's Circle --> Andheri
+P3019	Mahim --> Khar Road
+P3020	Bandra --> Santacruz
+P3021	Khar Road --> Bandra
+P3022	Santacruz --> Khar Road
+P3023	Wadala Road --> Khar Road
+P3024	Santacruz --> Mahim
+P3025	Khar Road --> Wadala Road
+P3026	King's Circle --> Bandra
+P3027	King's Circle --> Khar Road
+P3028	Santacruz --> Wadala Road
+P3029	King's Circle --> Wadala Road
+P3030	Santacruz --> Bandra
+P3031	Santacruz --> Khar Road
+P3032	Andheri --> Santacruz
+P3033	Bandra --> Vile Parle
+P3034	Mahim --> Bandra
+P3035	Andheri --> King's Circle
+P3036	Wadala Road --> Vile Parle
+P3037	King's Circle --> Santacruz
+P3038	Khar Road --> Andheri
+P3039	King's Circle --> Mahim
+P3040	Bandra --> Vile Parle
+P3041	Khar Road --> Vile Parle
+P3042	Mahim --> King's Circle
+P3043	Andheri --> Khar Road
+P3044	Santacruz --> Mahim
+P3045	Vile Parle --> Khar Road
+P3046	Santacruz --> Khar Road
+P3047	Vile Parle --> King's Circle
+P3048	Bandra --> Mahim
+P3049	Andheri --> Vile Parle
+P3050	Mahim --> Bandra
+P3051	Khar Road --> King's Circle
+P3052	Khar Road --> Vile Parle
+P3053	Khar Road --> Bandra
+P3054	Bandra --> Wadala Road
+P3055	Bandra --> Wadala Road
+P3056	Bandra --> King's Circle
+P3057	Santacruz --> Bandra
+P3058	Vile Parle --> King's Circle
+P3059	Vile Parle --> Khar Road
+P3060	Andheri --> Vile Parle
+P3061	Vile Parle --> Bandra
+P3062	Wadala Road --> Bandra
+P3063	Vile Parle --> Wadala Road
+P3064	Khar Road --> Santacruz
+P3065	Wadala Road --> Khar Road
+P3066	Andheri --> Wadala Road
+P3067	Khar Road --> King's Circle
+P3068	King's Circle --> Khar Road
+P3069	Wadala Road --> Santacruz
+P3070	Khar Road --> King's Circle
+P3071	Mahim --> Khar Road
+P3072	Khar Road --> Andheri
+P3073	Mahim --> King's Circle
+P3074	Andheri --> Mahim
+P3075	Wadala Road --> King's Circle
+P3076	Bandra --> Mahim
+P3077	King's Circle --> Bandra
+P3078	Santacruz --> Vile Parle
+P3079	Andheri --> Santacruz
+P3080	King's Circle --> Wadala Road
+P3081	King's Circle --> Wadala Road
+P3082	King's Circle --> Mahim
+P3083	Andheri --> King's Circle
+P3084	Khar Road --> Andheri
+P3085	Vile Parle --> Khar Road
+P3086	King's Circle --> Santacruz
+P3087	Wadala Road --> Santacruz
+P3088	Khar Road --> Wadala Road
+P3089	Andheri --> Bandra
+P3090	Andheri --> Khar Road
+P3091	King's Circle --> Bandra
+P3092	Khar Road --> King's Circle
+P3093	Andheri --> Santacruz
+P3094	Wadala Road --> Santacruz
+P3095	Wadala Road --> Vile Parle
+P3096	Khar Road --> Vile Parle
+P3097	Vile Parle --> Mahim
+P3098	Bandra --> Vile Parle
+P3099	Andheri --> Wadala Road
+P3100	Khar Road --> Vile Parle
+P3101	Mahim --> Khar Road
+P3102	King's Circle --> Bandra
+P3103	Mahim --> Andheri
+P3104	Khar Road --> Andheri
+P3105	Bandra --> Khar Road
+P3106	Santacruz --> Khar Road
+P3107	Khar Road --> Bandra
+P3108	Khar Road --> Bandra
+P3109	King's Circle --> Vile Parle
+P3110	Wadala Road --> Khar Road
+P3111	Andheri --> King's Circle
+P3112	Khar Road --> King's Circle
+P3113	Bandra --> Wadala Road
+P3114	Wadala Road --> Khar Road
+P3115	Andheri --> Khar Road
+P3116	Vile Parle --> Andheri
+P3117	Mahim --> Santacruz
+P3118	Khar Road --> Vile Parle
+P3119	Wadala Road --> Vile Parle
+P3120	Bandra --> Wadala Road
+P3121	Santacruz --> Vile Parle
+P3122	King's Circle --> Santacruz
+P3123	Mahim --> King's Circle
+P3124	Santacruz --> Vile Parle
+P3125	Mahim --> Bandra
+P3126	Wadala Road --> Vile Parle
+P3127	Mahim --> Wadala Road
+P3128	Khar Road --> Wadala Road
+P3129	Andheri --> Khar Road
+P3130	King's Circle --> Bandra
+P3131	Khar Road --> Santacruz
+P3132	Bandra --> King's Circle
+P3133	Khar Road --> Bandra
+P3134	Mahim --> Bandra
+P3135	Mahim --> Andheri
+P3136	Bandra --> Vile Parle
+P3137	Santacruz --> King's Circle
+P3138	Bandra --> Andheri
+P3139	King's Circle --> Khar Road
+P3140	Vile Parle --> Mahim
+P3141	Santacruz --> Khar Road
+P3142	Andheri --> Mahim
+P3143	Vile Parle --> Santacruz
+P3144	Santacruz --> Bandra
+P3145	King's Circle --> Mahim
+P3146	Wadala Road --> King's Circle
+P3147	Andheri --> King's Circle
+P3148	Andheri --> Santacruz
+P3149	Khar Road --> Andheri
+P3150	Wadala Road --> Khar Road
+P3151	Vile Parle --> Mahim
+P3152	Mahim --> King's Circle
+P3153	Wadala Road --> King's Circle
+P3154	Andheri --> Bandra
+P3155	Bandra --> Khar Road
+P3156	King's Circle --> Andheri
+P3157	Bandra --> Mahim
+P3158	Andheri --> Wadala Road
+P3159	Bandra --> Andheri
+P3160	Andheri --> Wadala Road
+P3161	Santacruz --> Andheri
+P3162	Khar Road --> Santacruz
+P3163	Wadala Road --> King's Circle
+P3164	Khar Road --> Andheri
+P3165	King's Circle --> Mahim
+P3166	Mahim --> Bandra
+P3167	Santacruz --> King's Circle
+P3168	Vile Parle --> Santacruz
+P3169	Santacruz --> Mahim
+P3170	Mahim --> Khar Road
+P3171	Mahim --> Khar Road
+P3172	Mahim --> Bandra
+P3173	Bandra --> Andheri
+P3174	Andheri --> Santacruz
+P3175	Khar Road --> Wadala Road
+P3176	Santacruz --> Andheri
+P3177	Bandra --> King's Circle
+P3178	Mahim --> Khar Road
+P3179	Andheri --> King's Circle
+P3180	Khar Road --> Wadala Road
+P3181	King's Circle --> Bandra
+P3182	Mahim --> Vile Parle
+P3183	Bandra --> Santacruz
+P3184	Wadala Road --> Andheri
+P3185	Mahim --> Vile Parle
+P3186	Andheri --> Bandra
+P3187	Vile Parle --> Santacruz
+P3188	Khar Road --> Santacruz
+P3189	King's Circle --> Bandra
+P3190	Wadala Road --> King's Circle
+P3191	Andheri --> Santacruz
+P3192	Santacruz --> Bandra
+P3193	King's Circle --> Khar Road
+P3194	King's Circle --> Bandra
+P3195	Bandra --> Wadala Road
+P3196	Andheri --> Mahim
+P3197	Andheri --> Khar Road
+P3198	Vile Parle --> Khar Road
+P3199	Santacruz --> King's Circle
+P3200	Vile Parle --> King's Circle
+P3201	Vile Parle --> Santacruz
+P3202	Mahim --> Bandra
+P3203	King's Circle --> Bandra
+P3204	Santacruz --> Bandra
+P3205	King's Circle --> Santacruz
+P3206	Bandra --> Wadala Road
+P3207	Bandra --> Andheri
+P3208	Mahim --> Khar Road
+P3209	Bandra --> Vile Parle
+P3210	Andheri --> Wadala Road
+P3211	Santacruz --> Vile Parle
+P3212	Mahim --> Wadala Road
+P3213	Andheri --> Bandra
+P3214	King's Circle --> Bandra
+P3215	Mahim --> Khar Road
+P3216	Santacruz --> Bandra
+P3217	Khar Road --> King's Circle
+P3218	Santacruz --> Bandra
+P3219	Khar Road --> Mahim
+P3220	Vile Parle --> Santacruz
+P3221	Bandra --> Santacruz
+P3222	Vile Parle --> Wadala Road
+P3223	Bandra --> Andheri
+P3224	Santacruz --> Vile Parle
+P3225	Andheri --> Vile Parle
+P3226	King's Circle --> Mahim
+P3227	Andheri --> Vile Parle
+P3228	Vile Parle --> Khar Road
+P3229	Andheri --> Khar Road
+P3230	Andheri --> Mahim
+P3231	Wadala Road --> King's Circle
+P3232	Santacruz --> Bandra
+P3233	Bandra --> Santacruz
+P3234	Khar Road --> Bandra
+P3235	Mahim --> Khar Road
+P3236	Andheri --> Bandra
+P3237	King's Circle --> Mahim
+P3238	Bandra --> Santacruz
+P3239	Andheri --> Vile Parle
+P3240	Bandra --> Wadala Road
+P3241	Bandra --> Santacruz
+P3242	Bandra --> Khar Road
+P3243	Wadala Road --> Bandra
+P3244	Santacruz --> Vile Parle
+P3245	Wadala Road --> King's Circle
+P3246	Wadala Road --> Mahim
+P3247	Bandra --> Khar Road
+P3248	Andheri --> Vile Parle
+P3249	Santacruz --> Mahim
+P3250	King's Circle --> Andheri
+P3251	Bandra --> King's Circle
+P3252	Vile Parle --> Santacruz
+P3253	Khar Road --> Bandra
+P3254	Santacruz --> Vile Parle
+P3255	Santacruz --> Bandra
+P3256	Vile Parle --> Mahim
+P3257	Santacruz --> Bandra
+P3258	Vile Parle --> Mahim
+P3259	Wadala Road --> Santacruz
+P3260	King's Circle --> Bandra
+P3261	Wadala Road --> King's Circle
+P3262	Andheri --> Mahim
+P3263	King's Circle --> Santacruz
+P3264	Bandra --> Vile Parle
+P3265	Santacruz --> Wadala Road
+P3266	Vile Parle --> Khar Road
+P3267	Wadala Road --> Mahim
+P3268	Vile Parle --> Santacruz
+P3269	King's Circle --> Wadala Road
+P3270	Bandra --> Vile Parle
+P3271	Khar Road --> Bandra
+P3272	Mahim --> Khar Road
+P3273	Santacruz --> King's Circle
+P3274	Wadala Road --> Bandra
+P3275	King's Circle --> Khar Road
+P3276	Wadala Road --> King's Circle
+P3277	King's Circle --> Santacruz
+P3278	Khar Road --> Andheri
+P3279	Mahim --> Bandra
+P3280	Santacruz --> Mahim
+P3281	Andheri --> Vile Parle
+P3282	Santacruz --> Vile Parle
+P3283	King's Circle --> Khar Road
+P3284	Vile Parle --> Wadala Road
+P3285	Andheri --> Wadala Road
+P3286	Khar Road --> Santacruz
+P3287	Wadala Road --> Santacruz
+P3288	Bandra --> King's Circle
+P3289	Vile Parle --> Bandra
+P3290	Khar Road --> Bandra
+P3291	Andheri --> King's Circle
+P3292	Vile Parle --> Khar Road
+P3293	Bandra --> Khar Road
+P3294	Andheri --> Santacruz
+P3295	King's Circle --> Mahim
+P3296	Santacruz --> Vile Parle
+P3297	Santacruz --> Andheri
+P3298	Andheri --> Bandra
+P3299	Santacruz --> Bandra
+P3300	Khar Road --> Wadala Road
+P3301	Santacruz --> King's Circle
+P3302	Vile Parle --> Andheri
+P3303	King's Circle --> Mahim
+P3304	Mahim --> Vile Parle
+P3305	King's Circle --> Wadala Road
+P3306	Santacruz --> Bandra
+P3307	Andheri --> Santacruz
+P3308	Bandra --> Wadala Road
+P3309	Khar Road --> Santacruz
+P3310	Mahim --> Wadala Road
+P3311	Andheri --> Santacruz
+P3312	Mahim --> Vile Parle
+P3313	King's Circle --> Bandra
+P3314	Andheri --> Vile Parle
+P3315	Vile Parle --> Andheri
+P3316	Khar Road --> Mahim
+P3317	Khar Road --> Wadala Road
+P3318	Andheri --> Bandra
+P3319	Andheri --> Santacruz
+P3320	Khar Road --> Bandra
+P3321	King's Circle --> Andheri
+P3322	Bandra --> Santacruz
+P3323	Vile Parle --> Santacruz
+P3324	Santacruz --> Bandra
+P3325	Wadala Road --> Vile Parle
+P3326	Wadala Road --> Santacruz
+P3327	Bandra --> Khar Road
+P3328	King's Circle --> Bandra
+P3329	Wadala Road --> Khar Road
+P3330	Vile Parle --> King's Circle
+P3331	Bandra --> Mahim
+P3332	Santacruz --> Mahim
+P3333	Khar Road --> Wadala Road
+P3334	Mahim --> Santacruz
+P3335	King's Circle --> Mahim
+P3336	Santacruz --> Vile Parle
+P3337	Mahim --> Khar Road
+P3338	Wadala Road --> Khar Road
+P3339	Santacruz --> King's Circle
+P3340	King's Circle --> Khar Road
+P3341	Andheri --> Vile Parle
+P3342	Wadala Road --> Vile Parle
+P3343	Khar Road --> Bandra
+P3344	Mahim --> Bandra
+P3345	Vile Parle --> Andheri
+P3346	Bandra --> King's Circle
+P3347	Bandra --> Santacruz
+P3348	Khar Road --> Andheri
+P3349	Khar Road --> King's Circle
+P3350	Andheri --> King's Circle
+P3351	Mahim --> Santacruz
+P3352	Andheri --> King's Circle
+P3353	Vile Parle --> Mahim
+P3354	Wadala Road --> King's Circle
+P3355	Andheri --> Bandra
+P3356	Bandra --> Andheri
+P3357	Santacruz --> Vile Parle
+P3358	Khar Road --> King's Circle
+P3359	Khar Road --> Wadala Road
+P3360	Bandra --> Wadala Road
+P3361	Bandra --> Vile Parle
+P3362	King's Circle --> Mahim
+P3363	Mahim --> King's Circle
+P3364	Vile Parle --> Khar Road
+P3365	Vile Parle --> Wadala Road
+P3366	Khar Road --> Andheri
+P3367	Mahim --> Santacruz
+P3368	Mahim --> Vile Parle
+P3369	Khar Road --> Andheri
+P3370	Wadala Road --> Mahim
+P3371	Wadala Road --> Bandra
+P3372	Santacruz --> Mahim
+P3373	Wadala Road --> Andheri
+P3374	Vile Parle --> Andheri
+P3375	Wadala Road --> Khar Road
+P3376	Santacruz --> Wadala Road
+P3377	King's Circle --> Vile Parle
+P3378	King's Circle --> Bandra
+P3379	Andheri --> Wadala Road
+P3380	King's Circle --> Wadala Road
+P3381	Vile Parle --> Santacruz
+P3382	Wadala Road --> Mahim
+P3383	Mahim --> Vile Parle
+P3384	Vile Parle --> Bandra
+P3385	Andheri --> Santacruz
+P3386	Mahim --> Bandra
+P3387	King's Circle --> Bandra
+P3388	Wadala Road --> Andheri
+P3389	Mahim --> Khar Road
+P3390	Andheri --> Mahim
+P3391	Bandra --> King's Circle
+P3392	Santacruz --> King's Circle
+P3393	Vile Parle --> Mahim
+P3394	Andheri --> Vile Parle
+P3395	Khar Road --> Santacruz
+P3396	Khar Road --> King's Circle
+P3397	Andheri --> Khar Road
+P3398	Khar Road --> Vile Parle
+P3399	Andheri --> Bandra
+P3400	Bandra --> Wadala Road
+P3401	Bandra --> Vile Parle
+P3402	Khar Road --> Andheri
+P3403	Bandra --> Andheri
+P3404	Khar Road --> Vile Parle
+P3405	Andheri --> King's Circle
+P3406	Wadala Road --> Andheri
+P3407	Wadala Road --> King's Circle
+P3408	King's Circle --> Khar Road
+P3409	King's Circle --> Wadala Road
+P3410	Bandra --> Khar Road
+P3411	Vile Parle --> Bandra
+P3412	King's Circle --> Andheri
+P3413	Santacruz --> Mahim
+P3414	Vile Parle --> Andheri
+P3415	Santacruz --> Wadala Road
+P3416	Santacruz --> King's Circle
+P3417	Khar Road --> Bandra
+P3418	Bandra --> Mahim
+P3419	Bandra --> Andheri
+P3420	Andheri --> Vile Parle
+P3421	Khar Road --> Bandra
+P3422	Mahim --> Wadala Road
+P3423	Bandra --> Wadala Road
+P3424	Vile Parle --> Andheri
+P3425	Khar Road --> Andheri
+P3426	Vile Parle --> Bandra
+P3427	Andheri --> Khar Road
+P3428	Khar Road --> Wadala Road
+P3429	Khar Road --> Mahim
+P3430	Khar Road --> Wadala Road
+P3431	Mahim --> Vile Parle
+P3432	Vile Parle --> King's Circle
+P3433	Khar Road --> Santacruz
+P3434	Andheri --> Khar Road
+P3435	Bandra --> Santacruz
+P3436	Wadala Road --> Khar Road
+P3437	Khar Road --> Wadala Road
+P3438	Bandra --> King's Circle
+P3439	Mahim --> Andheri
+P3440	King's Circle --> Wadala Road
+P3441	Wadala Road --> Andheri
+P3442	Santacruz --> Wadala Road
+P3443	Mahim --> King's Circle
+P3444	King's Circle --> Khar Road
+P3445	Khar Road --> King's Circle
+P3446	Bandra --> Santacruz
+P3447	King's Circle --> Wadala Road
+P3448	Bandra --> Mahim
+P3449	Bandra --> Andheri
+P3450	Bandra --> Khar Road
+P3451	Khar Road --> Andheri
+P3452	King's Circle --> Mahim
+P3453	Bandra --> Andheri
+P3454	Mahim --> Andheri
+P3455	Santacruz --> King's Circle
+P3456	Vile Parle --> Bandra
+P3457	Santacruz --> Vile Parle
+P3458	Khar Road --> King's Circle
+P3459	Wadala Road --> Mahim
+P3460	Bandra --> Khar Road
+P3461	Santacruz --> Mahim
+P3462	Wadala Road --> Vile Parle
+P3463	Bandra --> Mahim
+P3464	Andheri --> Khar Road
+P3465	Andheri --> Santacruz
+P3466	Mahim --> Bandra
+P3467	Vile Parle --> Mahim
+P3468	Khar Road --> Bandra
+P3469	Wadala Road --> Santacruz
+P3470	Vile Parle --> King's Circle
+P3471	Vile Parle --> Santacruz
+P3472	Bandra --> Wadala Road
+P3473	Santacruz --> Mahim
+P3474	Vile Parle --> Wadala Road
+P3475	Bandra --> Vile Parle
+P3476	Andheri --> Bandra
+P3477	Bandra --> Andheri
+P3478	Mahim --> Andheri
+P3479	Bandra --> Wadala Road
+P3480	King's Circle --> Wadala Road
+P3481	Vile Parle --> Santacruz
+P3482	Vile Parle --> Andheri
+P3483	King's Circle --> Santacruz
+P3484	King's Circle --> Mahim
+P3485	King's Circle --> Andheri
+P3486	Bandra --> King's Circle
+P3487	Wadala Road --> Bandra
+P3488	Wadala Road --> Andheri
+P3489	King's Circle --> Andheri
+P3490	Khar Road --> Bandra
+P3491	Wadala Road --> Bandra
+P3492	Santacruz --> King's Circle
+P3493	Santacruz --> Vile Parle
+P3494	Vile Parle --> Wadala Road
+P3495	Bandra --> Mahim
+P3496	Santacruz --> Khar Road
+P3497	King's Circle --> Bandra
+P3498	Wadala Road --> Santacruz
+P3499	King's Circle --> Khar Road
+P3500	King's Circle --> Khar Road
+P3501	Bandra --> Wadala Road
+P3502	Vile Parle --> Bandra
+P3503	Khar Road --> Vile Parle
+P3504	Khar Road --> Bandra
+P3505	Vile Parle --> Santacruz
+P3506	Andheri --> Mahim
+P3507	Mahim --> Wadala Road
+P3508	King's Circle --> Santacruz
+P3509	Wadala Road --> Bandra
+P3510	Andheri --> Vile Parle
+P3511	Mahim --> Bandra
+P3512	Andheri --> Khar Road
+P3513	Bandra --> Santacruz
+P3514	Vile Parle --> Santacruz
+P3515	Vile Parle --> Santacruz
+P3516	Mahim --> Wadala Road
+P3517	King's Circle --> Mahim
+P3518	Andheri --> Khar Road
+P3519	Mahim --> Khar Road
+P3520	Bandra --> Andheri
+P3521	Vile Parle --> Mahim
+P3522	Santacruz --> Vile Parle
+P3523	Wadala Road --> Mahim
+P3524	Santacruz --> Wadala Road
+P3525	Bandra --> Vile Parle
+P3526	Wadala Road --> Mahim
+P3527	King's Circle --> Khar Road
+P3528	Khar Road --> Mahim
+P3529	Santacruz --> Khar Road
+P3530	Vile Parle --> Andheri
+P3531	Vile Parle --> Andheri
+P3532	Bandra --> Mahim
+P3533	Vile Parle --> King's Circle
+P3534	Vile Parle --> King's Circle
+P3535	Khar Road --> King's Circle
+P3536	Bandra --> Mahim
+P3537	Andheri --> King's Circle
+P3538	Andheri --> Wadala Road
+P3539	Khar Road --> Bandra
+P3540	Khar Road --> Andheri
+P3541	Bandra --> Khar Road
+P3542	Vile Parle --> Khar Road
+P3543	Wadala Road --> Khar Road
+P3544	Mahim --> Khar Road
+P3545	Santacruz --> King's Circle
+P3546	Vile Parle --> Santacruz
+P3547	Mahim --> Wadala Road
+P3548	Vile Parle --> Santacruz
+P3549	Bandra --> Khar Road
+P3550	Khar Road --> Vile Parle
+P3551	Bandra --> Khar Road
+P3552	Mahim --> Khar Road
+P3553	Bandra --> Mahim
+P3554	Bandra --> Khar Road
+P3555	Bandra --> Mahim
+P3556	Santacruz --> King's Circle
+P3557	Vile Parle --> Santacruz
+P3558	Vile Parle --> King's Circle
+P3559	Santacruz --> Andheri
+P3560	Santacruz --> Andheri
+P3561	Khar Road --> Mahim
+P3562	Vile Parle --> Bandra
+P3563	Andheri --> King's Circle
+P3564	Wadala Road --> Mahim
+P3565	Andheri --> Mahim
+P3566	Khar Road --> Bandra
+P3567	Khar Road --> Wadala Road
+P3568	Mahim --> Wadala Road
+P3569	Vile Parle --> King's Circle
+P3570	Khar Road --> Mahim
+P3571	Wadala Road --> King's Circle
+P3572	Andheri --> Bandra
+P3573	Andheri --> Bandra
+P3574	Wadala Road --> Mahim
+P3575	Vile Parle --> King's Circle
+P3576	Mahim --> Vile Parle
+P3577	Wadala Road --> Vile Parle
+P3578	Bandra --> Khar Road
+P3579	Bandra --> Khar Road
+P3580	Andheri --> Wadala Road
+P3581	Bandra --> Khar Road
+P3582	Wadala Road --> Mahim
+P3583	King's Circle --> Bandra
+P3584	King's Circle --> Bandra
+P3585	Mahim --> Bandra
+P3586	King's Circle --> Andheri
+P3587	Wadala Road --> Mahim
+P3588	Bandra --> Mahim
+P3589	King's Circle --> Vile Parle
+P3590	Andheri --> Mahim
+P3591	Khar Road --> Vile Parle
+P3592	Mahim --> Andheri
+P3593	Santacruz --> Khar Road
+P3594	King's Circle --> Andheri
+P3595	Mahim --> Vile Parle
+P3596	Mahim --> Wadala Road
+P3597	King's Circle --> Wadala Road
+P3598	Andheri --> Mahim
+P3599	King's Circle --> Andheri
+P3600	Khar Road --> Andheri
+P3601	Vile Parle --> Bandra
+P3602	Vile Parle --> Santacruz
+P3603	Andheri --> Santacruz
+P3604	Bandra --> Santacruz
+P3605	King's Circle --> Mahim
+P3606	Andheri --> Khar Road
+P3607	Vile Parle --> Andheri
+P3608	Andheri --> Vile Parle
+P3609	Santacruz --> Vile Parle
+P3610	Khar Road --> Mahim
+P3611	Bandra --> King's Circle
+P3612	Khar Road --> King's Circle
+P3613	Wadala Road --> Santacruz
+P3614	Bandra --> Andheri
+P3615	Vile Parle --> Khar Road
+P3616	Vile Parle --> Mahim
+P3617	Khar Road --> King's Circle
+P3618	Khar Road --> Mahim
+P3619	Bandra --> Mahim
+P3620	Wadala Road --> Andheri
+P3621	Khar Road --> Vile Parle
+P3622	Andheri --> Bandra
+P3623	Bandra --> King's Circle
+P3624	Khar Road --> Vile Parle
+P3625	Khar Road --> Andheri
+P3626	Andheri --> Bandra
+P3627	Mahim --> Santacruz
+P3628	Mahim --> Santacruz
+P3629	King's Circle --> Wadala Road
+P3630	King's Circle --> Vile Parle
+P3631	Vile Parle --> Bandra
+P3632	Mahim --> Andheri
+P3633	Khar Road --> Santacruz
+P3634	Bandra --> Santacruz
+P3635	Wadala Road --> Mahim
+P3636	Mahim --> Bandra
+P3637	King's Circle --> Vile Parle
+P3638	Vile Parle --> Andheri
+P3639	Wadala Road --> Mahim
+P3640	Mahim --> Andheri
+P3641	King's Circle --> Khar Road
+P3642	King's Circle --> Khar Road
+P3643	Santacruz --> Wadala Road
+P3644	Santacruz --> King's Circle
+P3645	Andheri --> King's Circle
+P3646	Mahim --> Santacruz
+P3647	Santacruz --> Vile Parle
+P3648	Wadala Road --> Santacruz
+P3649	Santacruz --> Mahim
+P3650	Santacruz --> King's Circle
+P3651	Bandra --> Khar Road
+P3652	King's Circle --> Andheri
+P3653	Vile Parle --> Wadala Road
+P3654	Vile Parle --> Bandra
+P3655	Mahim --> King's Circle
+P3656	Khar Road --> Bandra
+P3657	Wadala Road --> Santacruz
+P3658	King's Circle --> Bandra
+P3659	Andheri --> Khar Road
+P3660	Mahim --> Wadala Road
+P3661	Wadala Road --> Vile Parle
+P3662	Santacruz --> Vile Parle
+P3663	Andheri --> King's Circle
+P3664	Vile Parle --> Wadala Road
+P3665	Wadala Road --> Khar Road
+P3666	Santacruz --> Wadala Road
+P3667	Bandra --> Santacruz
+P3668	Khar Road --> Andheri
+P3669	Santacruz --> Mahim
+P3670	Mahim --> Santacruz
+P3671	Andheri --> Santacruz
+P3672	Vile Parle --> King's Circle
+P3673	Mahim --> Khar Road
+P3674	Bandra --> Vile Parle
+P3675	Santacruz --> Wadala Road
+P3676	Santacruz --> Vile Parle
+P3677	King's Circle --> Andheri
+P3678	Mahim --> King's Circle
+P3679	Vile Parle --> Mahim
+P3680	Andheri --> Bandra
+P3681	Mahim --> King's Circle
+P3682	Vile Parle --> King's Circle
+P3683	Vile Parle --> Andheri
+P3684	Bandra --> Khar Road
+P3685	Bandra --> Wadala Road
+P3686	King's Circle --> Wadala Road
+P3687	Vile Parle --> Khar Road
+P3688	Andheri --> Wadala Road
+P3689	Bandra --> Khar Road
+P3690	Khar Road --> Andheri
+P3691	Santacruz --> Wadala Road
+P3692	Khar Road --> Andheri
+P3693	Vile Parle --> Khar Road
+P3694	King's Circle --> Khar Road
+P3695	King's Circle --> Andheri
+P3696	Khar Road --> Bandra
+P3697	Santacruz --> Mahim
+P3698	King's Circle --> Vile Parle
+P3699	Khar Road --> Andheri
+P3700	Andheri --> Wadala Road
+P3701	Vile Parle --> Wadala Road
+P3702	Vile Parle --> Andheri
+P3703	Andheri --> Wadala Road
+P3704	Vile Parle --> Wadala Road
+P3705	Santacruz --> Andheri
+P3706	Bandra --> King's Circle
+P3707	Mahim --> Vile Parle
+P3708	Santacruz --> Khar Road
+P3709	Andheri --> Bandra
+P3710	Andheri --> King's Circle
+P3711	Mahim --> King's Circle
+P3712	Santacruz --> Vile Parle
+P3713	Wadala Road --> Andheri
+P3714	Khar Road --> Andheri
+P3715	Wadala Road --> King's Circle
+P3716	Khar Road --> Mahim
+P3717	Bandra --> King's Circle
+P3718	Andheri --> Mahim
+P3719	Khar Road --> Vile Parle
+P3720	Andheri --> King's Circle
+P3721	King's Circle --> Andheri
+P3722	Santacruz --> Vile Parle
+P3723	Vile Parle --> Wadala Road
+P3724	Khar Road --> Vile Parle
+P3725	Bandra --> Mahim
+P3726	Bandra --> Mahim
+P3727	King's Circle --> Vile Parle
+P3728	Khar Road --> Bandra
+P3729	King's Circle --> Andheri
+P3730	Vile Parle --> Santacruz
+P3731	Bandra --> Wadala Road
+P3732	Mahim --> Bandra
+P3733	Wadala Road --> Khar Road
+P3734	Mahim --> Khar Road
+P3735	Santacruz --> King's Circle
+P3736	Khar Road --> Andheri
+P3737	King's Circle --> Wadala Road
+P3738	Andheri --> Mahim
+P3739	Bandra --> Wadala Road
+P3740	Mahim --> King's Circle
+P3741	Bandra --> Wadala Road
+P3742	Bandra --> Andheri
+P3743	Vile Parle --> King's Circle
+P3744	King's Circle --> Wadala Road
+P3745	King's Circle --> Bandra
+P3746	Santacruz --> Vile Parle
+P3747	Santacruz --> Mahim
+P3748	Wadala Road --> Mahim
+P3749	Bandra --> Khar Road
+P3750	Vile Parle --> King's Circle
+P3751	Bandra --> Andheri
+P3752	Vile Parle --> Andheri
+P3753	King's Circle --> Santacruz
+P3754	Bandra --> Khar Road
+P3755	King's Circle --> Santacruz
+P3756	Vile Parle --> Mahim
+P3757	Wadala Road --> Bandra
+P3758	Mahim --> Santacruz
+P3759	King's Circle --> Khar Road
+P3760	Bandra --> Khar Road
+P3761	Andheri --> Khar Road
+P3762	Bandra --> Santacruz
+P3763	King's Circle --> Bandra
+P3764	Wadala Road --> Bandra
+P3765	Wadala Road --> Andheri
+P3766	Khar Road --> Mahim
+P3767	Vile Parle --> Bandra
+P3768	Khar Road --> Andheri
+P3769	Santacruz --> Andheri
+P3770	Mahim --> King's Circle
+P3771	Bandra --> Andheri
+P3772	Santacruz --> Andheri
+P3773	Khar Road --> Bandra
+P3774	Santacruz --> Wadala Road
+P3775	King's Circle --> Bandra
+P3776	Santacruz --> Khar Road
+P3777	Vile Parle --> Bandra
+P3778	Vile Parle --> Khar Road
+P3779	Bandra --> Mahim
+P3780	Bandra --> Vile Parle
+P3781	Bandra --> Mahim
+P3782	Wadala Road --> Vile Parle
+P3783	Santacruz --> Bandra
+P3784	Khar Road --> Bandra
+P3785	Wadala Road --> King's Circle
+P3786	Mahim --> Santacruz
+P3787	Andheri --> Wadala Road
+P3788	Khar Road --> Bandra
+P3789	Andheri --> King's Circle
+P3790	Mahim --> Wadala Road
+P3791	Mahim --> Khar Road
+P3792	Santacruz --> King's Circle
+P3793	Mahim --> Bandra
+P3794	Wadala Road --> Bandra
+P3795	Wadala Road --> Santacruz
+P3796	King's Circle --> Khar Road
+P3797	King's Circle --> Vile Parle
+P3798	Santacruz --> Bandra
+P3799	Andheri --> Bandra
+P3800	Vile Parle --> King's Circle
+P3801	Santacruz --> Andheri
+P3802	Mahim --> Santacruz
+P3803	Wadala Road --> Khar Road
+P3804	Mahim --> Santacruz
+P3805	Wadala Road --> Santacruz
+P3806	Santacruz --> Vile Parle
+P3807	Bandra --> Khar Road
+P3808	Santacruz --> Khar Road
+P3809	King's Circle --> Andheri
+P3810	Andheri --> Santacruz
+P3811	Santacruz --> Vile Parle
+P3812	King's Circle --> Wadala Road
+P3813	Andheri --> Mahim
+P3814	Khar Road --> Andheri
+P3815	King's Circle --> Wadala Road
+P3816	Wadala Road --> King's Circle
+P3817	Khar Road --> Andheri
+P3818	Santacruz --> Mahim
+P3819	Bandra --> King's Circle
+P3820	Santacruz --> Mahim
+P3821	Khar Road --> King's Circle
+P3822	Mahim --> Bandra
+P3823	Mahim --> Wadala Road
+P3824	Vile Parle --> Wadala Road
+P3825	Wadala Road --> King's Circle
+P3826	Mahim --> Andheri
+P3827	Bandra --> Andheri
+P3828	Bandra --> Vile Parle
+P3829	King's Circle --> Wadala Road
+P3830	Santacruz --> Vile Parle
+P3831	King's Circle --> Andheri
+P3832	Vile Parle --> Wadala Road
+P3833	Mahim --> King's Circle
+P3834	Khar Road --> Santacruz
+P3835	Khar Road --> Wadala Road
+P3836	Wadala Road --> Santacruz
+P3837	Bandra --> Vile Parle
+P3838	Santacruz --> King's Circle
+P3839	King's Circle --> Wadala Road
+P3840	Wadala Road --> Andheri
+P3841	Wadala Road --> King's Circle
+P3842	King's Circle --> Khar Road
+P3843	Andheri --> Santacruz
+P3844	Santacruz --> Mahim
+P3845	Santacruz --> Bandra
+P3846	Khar Road --> Santacruz
+P3847	Vile Parle --> Andheri
+P3848	King's Circle --> Vile Parle
+P3849	Santacruz --> Mahim
+P3850	Khar Road --> Mahim
+P3851	Bandra --> Mahim
+P3852	Santacruz --> Wadala Road
+P3853	Khar Road --> Andheri
+P3854	Khar Road --> King's Circle
+P3855	Khar Road --> King's Circle
+P3856	Khar Road --> Santacruz
+P3857	Bandra --> King's Circle
+P3858	King's Circle --> Wadala Road
+P3859	King's Circle --> Khar Road
+P3860	Andheri --> Mahim
+P3861	Santacruz --> Wadala Road
+P3862	Khar Road --> Bandra
+P3863	Bandra --> King's Circle
+P3864	Wadala Road --> Vile Parle
+P3865	Santacruz --> Mahim
+P3866	Khar Road --> Bandra
+P3867	King's Circle --> Andheri
+P3868	Santacruz --> Vile Parle
+P3869	Bandra --> Khar Road
+P3870	Bandra --> Mahim
+P3871	Vile Parle --> Khar Road
+P3872	Vile Parle --> Santacruz
+P3873	King's Circle --> Vile Parle
+P3874	Bandra --> King's Circle
+P3875	Santacruz --> Vile Parle
+P3876	Andheri --> Mahim
+P3877	Bandra --> King's Circle
+P3878	King's Circle --> Vile Parle
+P3879	Wadala Road --> Santacruz
+P3880	Khar Road --> Bandra
+P3881	Mahim --> Andheri
+P3882	Andheri --> Vile Parle
+P3883	Vile Parle --> Andheri
+P3884	Wadala Road --> Vile Parle
+P3885	King's Circle --> Andheri
+P3886	King's Circle --> Mahim
+P3887	Santacruz --> Andheri
+P3888	Khar Road --> Bandra
+P3889	Bandra --> Santacruz
+P3890	Santacruz --> Mahim
+P3891	Mahim --> Wadala Road
+P3892	Mahim --> Bandra
+P3893	King's Circle --> Mahim
+P3894	Khar Road --> Santacruz
+P3895	Bandra --> Wadala Road
+P3896	Andheri --> Vile Parle
+P3897	Wadala Road --> Vile Parle
+P3898	Vile Parle --> Santacruz
+P3899	King's Circle --> Wadala Road
+P3900	Andheri --> Khar Road
+P3901	Bandra --> Santacruz
+P3902	King's Circle --> Santacruz
+P3903	Santacruz --> Vile Parle
+P3904	Khar Road --> King's Circle
+P3905	Khar Road --> King's Circle
+P3906	Wadala Road --> King's Circle
+P3907	King's Circle --> Khar Road
+P3908	Wadala Road --> Mahim
+P3909	Santacruz --> Bandra
+P3910	Wadala Road --> King's Circle
+P3911	Vile Parle --> King's Circle
+P3912	King's Circle --> Santacruz
+P3913	Bandra --> Wadala Road
+P3914	Andheri --> Khar Road
+P3915	Vile Parle --> Bandra
+P3916	Wadala Road --> King's Circle
+P3917	Bandra --> Andheri
+P3918	Andheri --> Bandra
+P3919	Santacruz --> King's Circle
+P3920	Andheri --> Bandra
+P3921	Andheri --> King's Circle
+P3922	King's Circle --> Khar Road
+P3923	Santacruz --> Khar Road
+P3924	Mahim --> King's Circle
+P3925	Wadala Road --> Vile Parle
+P3926	Vile Parle --> Andheri
+P3927	Santacruz --> Vile Parle
+P3928	Khar Road --> Bandra
+P3929	Vile Parle --> King's Circle
+P3930	Khar Road --> Mahim
+P3931	Vile Parle --> Andheri
+P3932	Mahim --> Bandra
+P3933	Mahim --> Andheri
+P3934	Mahim --> Santacruz
+P3935	Wadala Road --> Mahim
+P3936	Wadala Road --> Vile Parle
+P3937	Wadala Road --> Mahim
+P3938	Wadala Road --> Andheri
+P3939	King's Circle --> Santacruz
+P3940	King's Circle --> Vile Parle
+P3941	Bandra --> Andheri
+P3942	Santacruz --> King's Circle
+P3943	Wadala Road --> Santacruz
+P3944	Vile Parle --> Santacruz
+P3945	Khar Road --> Santacruz
+P3946	Vile Parle --> Khar Road
+P3947	Khar Road --> Santacruz
+P3948	Santacruz --> Mahim
+P3949	King's Circle --> Vile Parle
+P3950	Wadala Road --> Andheri
+P3951	Bandra --> Khar Road
+P3952	Santacruz --> Andheri
+P3953	Andheri --> Bandra
+P3954	Mahim --> Bandra
+P3955	Wadala Road --> Vile Parle
+P3956	Santacruz --> King's Circle
+P3957	Wadala Road --> Mahim
+P3958	Khar Road --> Mahim
+P3959	King's Circle --> Vile Parle
+P3960	Bandra --> Vile Parle
+P3961	Mahim --> Andheri
+P3962	Khar Road --> Wadala Road
+P3963	Mahim --> Vile Parle
+P3964	Mahim --> King's Circle
+P3965	Khar Road --> King's Circle
+P3966	Khar Road --> Mahim
+P3967	King's Circle --> Bandra
+P3968	Mahim --> Wadala Road
+P3969	Bandra --> Vile Parle
+P3970	Santacruz --> King's Circle
+P3971	Wadala Road --> Vile Parle
+P3972	Andheri --> Khar Road
+P3973	Bandra --> Andheri
+P3974	Mahim --> Khar Road
+P3975	Santacruz --> Mahim
+P3976	Khar Road --> King's Circle
+P3977	Bandra --> Wadala Road
+P3978	King's Circle --> Khar Road
+P3979	Bandra --> Santacruz
+P3980	Vile Parle --> Santacruz
+P3981	Khar Road --> Bandra
+P3982	Santacruz --> Vile Parle
+P3983	Santacruz --> Khar Road
+P3984	Bandra --> Santacruz
+P3985	Andheri --> Khar Road
+P3986	King's Circle --> Santacruz
+P3987	Khar Road --> Santacruz
+P3988	Mahim --> Khar Road
+P3989	Bandra --> Vile Parle
+P3990	Mahim --> Santacruz
+P3991	King's Circle --> Andheri
+P3992	Wadala Road --> King's Circle
+P3993	Khar Road --> Mahim
+P3994	Mahim --> Andheri
+P3995	Bandra --> Mahim
+P3996	Wadala Road --> Andheri
+P3997	Wadala Road --> Vile Parle
+P3998	Bandra --> Vile Parle
+P3999	Andheri --> Khar Road
+P4000	Bandra --> Santacruz
