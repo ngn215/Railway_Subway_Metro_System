@@ -160,12 +160,11 @@ public class Station {
 	{
 		try
 		{
-			
 			return personsInPlatformSet.size();
 		}
 		finally
 		{
-			readUnlock(personsInPlatformSetLock);
+			
 		}
 	}
 	
