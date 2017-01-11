@@ -5,14 +5,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
-import Factory.LockFactory;
-import LockerClasses.ReentrantLockerUnlocker;
 
 
-public class Station extends ReentrantLockerUnlocker{
+public class Station {
 	
 	private final String name;
 	private final int numberOfPlatforms;
@@ -20,9 +17,6 @@ public class Station extends ReentrantLockerUnlocker{
 	private final Set<Integer> availablePlatformsSet;
 	private final Set<Person> personsInPlatformSet;
 	//static int counter = 0;
-	private final ReentrantReadWriteLock trainPlatformMapLock;
-	private final ReentrantReadWriteLock availablePlatformsSetLock;
-	private final ReentrantReadWriteLock personsInPlatformSetLock;
 	private final AsynchronousLogger asyncLogger;
 	
 	public Station(String name, int numberOfPlatforms)
@@ -32,10 +26,6 @@ public class Station extends ReentrantLockerUnlocker{
 		this.trainPlatformMap = new ConcurrentHashMap<Integer, Train>();
 		this.availablePlatformsSet = Collections.newSetFromMap(new ConcurrentHashMap<Integer, Boolean>());
 		this.personsInPlatformSet = Collections.newSetFromMap(new ConcurrentHashMap<Person, Boolean>());
-		
-		this.trainPlatformMapLock = LockFactory.getReentrantReadWriteLockInstance(true);
-		this.availablePlatformsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
-		this.personsInPlatformSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 		
@@ -58,17 +48,13 @@ public class Station extends ReentrantLockerUnlocker{
 	public void getStatus()
 	{
 		try
-		{
-			readLock(personsInPlatformSetLock);
-			readLock(trainPlatformMapLock);
-		
+		{		
 			System.out.println("STATION STATUS : " + this.name + ", Persons : " + this.personsInPlatformSet.size() + ", Trains : " + this.trainPlatformMap);
 			//System.out.println("Persons counter : " + counter);
 		}
 		finally
 		{
-			readUnlock(personsInPlatformSetLock);
-			readUnlock(trainPlatformMapLock);
+			
 		}
 	}
 	
@@ -78,15 +64,13 @@ public class Station extends ReentrantLockerUnlocker{
 		if (this.name != person.getDestinationStation().name)
 		{	
 			try
-			{
-				readLock(personsInPlatformSetLock);
-			
+			{		
 				asyncLogger.log("*** PERSON : " + person.getName() + " is entering " + name + " station. His destination is " + person.getDestinationStation().getName());
 				personsInPlatformSet.add(person);
 			}
 			finally
 			{
-				readUnlock(personsInPlatformSetLock);
+				
 			}
 		}
 		else //person has reached destination. remove him from set.
@@ -100,15 +84,13 @@ public class Station extends ReentrantLockerUnlocker{
 	public void exitStation(Person person)
 	{
 		try
-		{
-			readLock(personsInPlatformSetLock);
-			
+		{		
 			//asyncLogger.log("Person : " + person.getName() + " is exiting station : " + name);
 			personsInPlatformSet.remove(person);
 		}
 		finally
 		{
-			readUnlock(personsInPlatformSetLock);
+			
 		}
 	}
 	
@@ -116,20 +98,22 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		try
 		{
-			//get both write locks here. because this step needs to update both structures to enter the platform
-			readLock(availablePlatformsSetLock);
-			readLock(trainPlatformMapLock);
-			
 			asyncLogger.log("Train : " + train.getName() + " entering station : " + name + " at platform : " + platformNumber);
+			
+			//we dont need to perform below step because when train enters platform,
+			//method checkPlatformAvailabilty() has already allocated it a platform and remove it from set.
+			//availablePlatformsSet.remove(platformNumber);
 		
-			availablePlatformsSet.remove(platformNumber);
-		
-			trainPlatformMap.put(platformNumber, train);
+			if (trainPlatformMap.put(platformNumber, train) != null)
+			{
+				asyncLogger.log("Multiple trains entering platform : " + platformNumber + " Train : " + train.getName(), true);
+				
+				//throw new Exception("Multiple trains entering platform : " + platformNumber + " Train : " + train.getName());
+			}
 		}
 		finally
 		{
-			readUnlock(availablePlatformsSetLock);
-			readUnlock(trainPlatformMapLock);
+			//do nothing
 		}
 	}
 	
@@ -138,13 +122,6 @@ public class Station extends ReentrantLockerUnlocker{
 		int platformNumber = train.getCurrentPlatformNumber();
 		try
 		{
-			//get both write locks here. because this step needs to update both structures to free the platform
-			readLock(availablePlatformsSetLock);
-			readLock(trainPlatformMapLock);
-			//we also need persons in platform lock so that persons entering the train do not concurrently try to access set
-			//when we are trying to iterate through set and interrupt the person threads
-			writeLock(personsInPlatformSetLock);
-			
 			//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
 			
 			//Interrupting persons first
@@ -161,9 +138,7 @@ public class Station extends ReentrantLockerUnlocker{
 		}
 		finally
 		{
-			writeUnlock(personsInPlatformSetLock);
-			readUnlock(trainPlatformMapLock);
-			readUnlock(availablePlatformsSetLock);
+			
 		}
 	}
 	
@@ -185,7 +160,7 @@ public class Station extends ReentrantLockerUnlocker{
 	{
 		try
 		{
-			readLock(personsInPlatformSetLock);
+			
 			return personsInPlatformSet.size();
 		}
 		finally
@@ -201,36 +176,38 @@ public class Station extends ReentrantLockerUnlocker{
 		
 		try
 		{
-			readLock(availablePlatformsSetLock);
 			isEmpty = availablePlatformsSet.isEmpty();
 		}
 		finally
 		{
-			readUnlock(availablePlatformsSetLock);
+			//do nothing
 		}
 		
 		if(!isEmpty)
 		{
 			try
 			{
-				writeLock(availablePlatformsSetLock);
-				
-				//check here again because another could have modified set by the time we obtain the writelock
-				if (availablePlatformsSet.isEmpty())
+				//synchronizing below block on availablePlatformsSet because we dont want multiple train
+				//threads to enter this block and get the same free platform number
+				synchronized(availablePlatformsSet)
 				{
-					return -1;
-				}
+					//check here again because another could have modified set by the time we obtain the lock on object :availablePlatformsSet
+					if (availablePlatformsSet.isEmpty())
+					{
+						return -1;
+					}
+						
+					Iterator<Integer> iter = availablePlatformsSet.iterator();
+					platformNumber = iter.next();
+					iter.remove(); //removing platform from hashset
 					
-				Iterator<Integer> iter = availablePlatformsSet.iterator();
-				platformNumber = iter.next();
-				iter.remove(); //removing platform from hashset
+					return platformNumber;
+				}
 			}
 			finally
 			{
-				writeUnlock(availablePlatformsSetLock);
+				//do nothing
 			}
-			
-			return platformNumber;
 		}
 		
 		return -1;
@@ -241,9 +218,7 @@ public class Station extends ReentrantLockerUnlocker{
 		String str = "";
 		
 		try
-		{
-			readLock(trainPlatformMapLock);
-			
+		{		
 			str = "[";
 			if(!trainPlatformMap.isEmpty())
 			{
@@ -258,7 +233,7 @@ public class Station extends ReentrantLockerUnlocker{
 		}
 		finally
 		{
-			readUnlock(trainPlatformMapLock);
+			//do nothing
 		}
 		
 		return str + "]";
@@ -269,16 +244,13 @@ public class Station extends ReentrantLockerUnlocker{
 		ConcurrentHashMap<Integer, Train> trainPlatformMapClone;
 		
 		try
-		{
-			readLock(trainPlatformMapLock);
-		
-			trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone();
+		{	
+			trainPlatformMapClone = trainPlatformMap;//(HashMap<Integer, Train>) trainPlatformMap.clone(); //return clone
+			return trainPlatformMapClone;
 		}
 		finally
 		{
-			readUnlock(trainPlatformMapLock);
+			//do nothing
 		}
-		
-		return trainPlatformMapClone;
 	}
 }
