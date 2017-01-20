@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,6 +36,7 @@ public class StationFactory {
 
 	public static void initializeFactory()
 	{
+		
 		populateStationsMapAndList();
 	}
 	
@@ -44,11 +44,8 @@ public class StationFactory {
 	{
 		if (stationsMap.containsKey(stationName))
 			return stationsMap.get(stationName);
-		else
-		{
-			asyncLogger.log("ERROR : Station Name not in map", true);
-			return null;
-		}
+		
+		throw new RuntimeException("ERROR : StationName : " + stationName + " not available");
 	}
 	
 	private static Station createStationInstance(String stationName, int numberOfPlatforms)
@@ -101,15 +98,16 @@ public class StationFactory {
 				}
 		    }      
 		}
-		catch(InputMismatchException | IOException e)
+		catch(IOException e)
 		{
-			System.out.println(e);
 			e.printStackTrace();
 			asyncLogger.log(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException("Exception while getting Stations list from file.");
 		}
 		finally
 		{
-			scanner.close();
+			if (scanner != null)
+				scanner.close();
 		}
 		
 		return stationsList;
