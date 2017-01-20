@@ -2,6 +2,7 @@ package Concrete;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import Factory.CustomLoggerFactory;
@@ -23,19 +24,19 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private int currentPlatformNumber;
 	private int numberOfTripsCompleted;
 	private boolean doorsOpen;
-	private int noOfPeopleEnteringTrain;
-	private int noOfPeopleExitingTrain;
+	private AtomicInteger noOfPeopleInTrain; //we need this variable because concurrent set may not get us latest value.
+	private AtomicInteger noOfPeopleEnteringTrain;
+	private AtomicInteger noOfPeopleExitingTrain;
 	private final int speed;
 	private final int capacity;
-	//private final HashSet<Person> personsSet;
 	private final Set<Person> personsSet;
-	//private final ReentrantReadWriteLock personsSetLock;
 	private final ReentrantReadWriteLock doorsLock;
 	private final AsynchronousLogger asyncLogger;
 	private final int totalTrips;
 	private boolean shutDown;
 	private final Thread thread;
 	private final Stops stops;
+	//private final Semaphore semaphore;
 	
 	public Train(String name, Line line, boolean directionUp, int speed, Stops stops, int totalTrips)
 	{
@@ -51,8 +52,11 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		//this.personsSet = new HashSet<Person>();
 		this.personsSet = Collections.newSetFromMap(new ConcurrentHashMap<Person, Boolean>());
 		this.numberOfTripsCompleted = 0;
-		this.noOfPeopleEnteringTrain = 0;
-		this.noOfPeopleExitingTrain = 0;
+		this.noOfPeopleEnteringTrain = new AtomicInteger(0);
+		this.noOfPeopleExitingTrain = new AtomicInteger(0);
+		this.noOfPeopleInTrain = new AtomicInteger(0);
+		
+		//this.semaphore = new Semaphore(100, true);
 		
 		//this.personsSetLock = LockFactory.getReentrantReadWriteLockInstance(true);
 		this.doorsLock = LockFactory.getReentrantReadWriteLockInstance(true);
@@ -112,52 +116,18 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	}
 	
 	private boolean vacancyAvailable()
-	{
-		//readLock(personsSetLock);		
-		int noOfPersons = personsSet.size();
-		
-		//if (personsSetLock.isWriteLockedByCurrentThread())
-			//System.out.println("is write locked");
-		
-		//readUnlock(personsSetLock);
-		//if (noOfPersons >= capacity)
-			//System.out.println("vacancyAvailable() : " + noOfPersons + " " + (noOfPersons < capacity));
-		
-		return noOfPersons < capacity;
+	{	
+		return noOfPeopleInTrain.get() < capacity;
 	}
 	
 	public int noOfVacanciesAvailable()
-	{
-		int noOfPersons = 0;
-		
-		try
-		{
-			//readLock(personsSetLock);
-			noOfPersons = personsSet.size();
-		}
-		finally
-		{
-			//readUnlock(personsSetLock);
-		}		
-		
-		return capacity - noOfPersons;
+	{		
+		return capacity - noOfPeopleInTrain.get();
 	}
 	
 	public int getNumberOfPersons()
 	{
-		int noOfPersons = 0;
-		
-		try
-		{
-			//readLock(personsSetLock);
-			noOfPersons = personsSet.size();
-		}
-		finally
-		{
-			//readUnlock(personsSetLock);
-		}
-		
-		return noOfPersons;
+		return noOfPeopleInTrain.get();
 	}
 	
 	public void reverseDirection()
@@ -236,13 +206,13 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public boolean exitTrain(Person person)
 	{		
 		try
-		{						
+		{							
+			//semaphore.acquire();
 			readLock(doorsLock);
-			//writeLock(personsSetLock);
 			
 			if (!areDoorsOpen())
 			{
-				asyncLogger.log("Train : " + name + " doors are locked. " + " Person : " + person.getName() + " cannot enter at station : " + getCurrentStationName());
+				asyncLogger.log("Train : " + name + " doors are locked. " + " Person : " + person.getName() + " cannot exit at station : " + getCurrentStationName(), true);
 				return false;
 			}
 			
@@ -251,20 +221,23 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 				asyncLogger.log("ERR : Person is getting out at wrong station.", true);
 			}
 			
+			//decrement counter
+			noOfPeopleInTrain.decrementAndGet();
+			
 			//exit from train
 			personsSet.remove(person);
 			
 			//person exits train and enters destination station
 			currentStation.enterStation(person);
 			
-			noOfPeopleExitingTrain++;
+			noOfPeopleExitingTrain.incrementAndGet();
 			
 			asyncLogger.log("Person : " + person.getName() + " exiting train : " + this.name + " at station : " + getCurrentStationName());
 		}
 		finally
 		{
-			//writeUnlock(personsSetLock);
 			readUnlock(doorsLock);
+			//semaphore.release();
 		}
 		
 		return true;
@@ -273,15 +246,30 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	public boolean enterTrain(Person person)
 	{		
 		try
-		{			
-			readLock(doorsLock);
-			//writeLock(personsSetLock);
+		{							
+			//semaphore.acquire();
+			readLock(doorsLock); //this lock will prevent train doors from closing when person is entering
 			
-			if (!vacancyAvailable() || !areDoorsOpen()) //check if vacancy available and doors are open else break;
+			if (checkPersonThreadInterruption())
 			{
-				asyncLogger.log("Train : " + name + " doors are locked or No vacancy. " + " Person : " + person.getName() + " cannot enter at station : " + getCurrentStationName());
+				return false; //person thread is interrupted.
+			}
+			
+			//add check here to the train id here.........
+			
+			if (!vacancyAvailable()) //check if vacancy available and doors are open else break;
+			{
+				asyncLogger.log("Train : " + name + " has No Vacancy. " + " Person : " + person.getName() + " cannot enter train at station : " + person.getSourceStation().getName());
 				return false;
 			}
+			else if (!areDoorsOpen()) //what if we get to this point and train has moved to next station and opened doors. we need to prevent such cases using an id for train
+			{
+				asyncLogger.log("Train : " + name + " doors are Locked. " + " Person : " + person.getName() + " cannot enter train at station : " + person.getSourceStation().getName());
+				return false;
+			}
+			
+			//increment counter
+			noOfPeopleInTrain.incrementAndGet();
 			
 			//exit from station
 			currentStation.exitStation(person);
@@ -289,21 +277,28 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			//now enter train
 			personsSet.add(person);
 			
-			noOfPeopleEnteringTrain++;
+			noOfPeopleEnteringTrain.incrementAndGet();
 			
 			asyncLogger.log("Person : " + person.getName() + " entering train : " + this.name + " from station : " + getCurrentStationName());
 		}
 		finally
 		{
-			//writeUnlock(personsSetLock);
 			readUnlock(doorsLock);
+			//semaphore.release();
 		}
 		
 		return true;
 	}
+	
+	private boolean checkPersonThreadInterruption()
+	{		
+		return (Thread.currentThread().isInterrupted()); //the person thread trying to enter train.
+	}
 
 	public void exitCurrentStation()
 	{
+		//interruptPersonsInTrain();
+		
 		currentStation.exitStationPlatform(this);
 		
 		previousStation = currentStation;
@@ -312,7 +307,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		currentPlatformNumber = -1;
 	}
 	
-	public void moveToNextStation(Station nextStation, int platformNumber)
+	private void moveToNextStation(Station nextStation, int platformNumber)
 	{
 		//moving to platform
 		nextStation.enterStationPlatform(this, platformNumber);
@@ -324,22 +319,39 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		currentStation = nextStation;
 	}
 	
+	//tells us whether threads are still trying to exit train.
+	private boolean arePeopleExitingTrain()
+	{
+		for(Person person : personsSet)
+		{
+			if (person.isNotWaiting())
+				return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean areThereAnyPeopleInTrain()
+	{
+		return !personsSet.isEmpty();
+	}
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
 		numberOfTripsCompleted = 1;
 		
-		try
-		{
-			while(numberOfTripsCompleted <= totalTrips && !shutDown)
-			{		
+		while(numberOfTripsCompleted <= totalTrips && !shutDown)
+		{		
+			try
+			{
 				doWhileTrainIsRunning();
 			}
-		}
-		catch (InterruptedException e)
-		{
-			asyncLogger.log("Exception in Train : " + name + ". " + e, true);
+			catch (InterruptedException e)
+			{
+				asyncLogger.log("Exception in Train : " + name + ". " + e, true);
+			}
 		}
 		
 		//System.out.println("Train run complete");
@@ -379,8 +391,17 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			//open train doors
 			openDoors();
 			
-			//announcement for passengers in train
+			//announcement for passengers in train that train has reached station
 			announce();
+			
+			//check if people are still exiting the train. we wait till all persons have exited train.
+			while(areThereAnyPeopleInTrain() //while there are people in train 
+					&& arePeopleExitingTrain() //and while people are still trying to exit train
+					)
+			{
+				//sleep
+				Thread.sleep(5);
+			}
 			
 			//signal for station that train is ready for intake
 			readyForIntake();
@@ -391,13 +412,16 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 			//close train doors
 			closeDoors();
 			
+			//ask station to interrupt persons trying to enter this train
+			currentStation.stopPersonsFromEnteringTrain(this);
+			
 			asyncLogger.log("No Of People in train " + name + " : " + numberOfExistingPersonsInTrain 
 							+ " \t" + noOfPeopleEnteringTrain + "<- " + noOfPeopleExitingTrain + "-> " 
-							+ " at station " + getCurrentStationName());
+							+ " at station " + getCurrentStationName(), false);
 			
 			//reset values
-			noOfPeopleEnteringTrain = 0;
-			noOfPeopleExitingTrain = 0;
+			noOfPeopleEnteringTrain.set(0);
+			noOfPeopleExitingTrain.set(0);
 			
 			//System.out.println(this.getName() + " " + this.getDirection() + " "+ this.getCurrentStation());
 			
