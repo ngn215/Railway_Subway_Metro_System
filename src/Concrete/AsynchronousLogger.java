@@ -44,13 +44,32 @@ public class AsynchronousLogger implements Runnable, CustomExecutorServiceInterf
         
         String dateStr = getFormattedDate();
 		
-		try 
-		{
-            sharedQueue.put(dateStr + " \t " + message);
-        } 
-		catch (InterruptedException ex) {
-            Logger.getLogger(AsynchronousLogger.class.getName()).log(Level.SEVERE, Thread.currentThread().getName(), ex);
+        boolean putSuccessfull = false; //flag makes sure that message is added even if there is an interrupted exception
+        boolean threadInterrupted = false;
+        
+        //this loop makes sure that even if the thread was interrupted we make sure that the message is added to the queue
+        while(!putSuccessfull)
+        {
+			try 
+			{
+	            sharedQueue.put(dateStr + " \t " + message);
+	            putSuccessfull = true;
+	        } 
+			catch (InterruptedException e) {
+	            //Logger.getLogger(AsynchronousLogger.class.getName()).log(Level.SEVERE, Thread.currentThread().getName(), ex);
+				System.out.println(e + " Message at exception in async logger : " + message);
+	            
+	            message += " (Logger attempt 2)";
+	            
+	            //this catch block clears out the interruptflag. so we set threadInterruptedflag to true.
+	            //and in the following if block we make sure we interrupt the thread.
+	            //threadInterrupted = true;
+	        }
         }
+        
+        //if thread was interrupted during put then make sure we interrupt it once we have added it to queue
+        //if (threadInterrupted)
+        	//Thread.currentThread().interrupt();
 		
 	}
 	
