@@ -45,7 +45,7 @@ public class AsynchronousLogger implements Runnable, CustomExecutorServiceInterf
         String dateStr = getFormattedDate();
 		
         boolean putSuccessfull = false; //flag makes sure that message is added even if there is an interrupted exception
-        boolean threadInterrupted = false;
+        //boolean threadInterrupted = false;
         
         //this loop makes sure that even if the thread was interrupted we make sure that the message is added to the queue
         while(!putSuccessfull)
