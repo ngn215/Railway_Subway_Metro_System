@@ -29,6 +29,22 @@ public class PersonFactory {
 		return personsList;
 	}
 	
+	public static void generatePersonAtStationWithDestination(String sourceStationName, String destinationStationName)
+	{
+		int currentPersonsCount = personsList.size();
+		Station sourceStation = StationFactory.getStationInstance(sourceStationName);
+		Station destinationStation = StationFactory.getStationInstance(destinationStationName);
+		
+		Person person = new Person("P" + (currentPersonsCount + 1), sourceStation, destinationStation);
+		
+		writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
+		
+		personsList.add(person);
+		
+		person.startPersonThread();
+				
+	}
+	
 	public static void randomlyGeneratePersons(int personsCount, String lineName)
 	{
 		int i = 1;
@@ -69,6 +85,7 @@ public class PersonFactory {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			asyncLogger.log(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException("Exception while creating persons list file.");
 		}
 		
 		return writer;
