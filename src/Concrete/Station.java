@@ -100,16 +100,11 @@ public class Station {
 		{
 			asyncLogger.log("Train : " + train.getName() + " entering station : " + name + " at platform : " + platformNumber);
 			
-			//we dont need to perform below step because when train enters platform,
+			//we dont need to perform below step of removal from availablePlatformsSet because when train enters platform,
 			//method checkPlatformAvailabilty() has already allocated it a platform and remove it from set.
 			//availablePlatformsSet.remove(platformNumber);
-		
-			if (trainPlatformMap.put(platformNumber, train) != null)
-			{
-				asyncLogger.log("Multiple trains entering platform : " + platformNumber + " Train : " + train.getName(), true);
-				
-				//throw new Exception("Multiple trains entering platform : " + platformNumber + " Train : " + train.getName());
-			}
+			
+			trainPlatformMap.put(platformNumber, train);
 		}
 		finally
 		{
@@ -122,23 +117,32 @@ public class Station {
 		int platformNumber = train.getCurrentPlatformNumber();
 		try
 		{
-			//System.out.println("Train : " + train.getName() + " exiting station : " + name + " " + System.currentTimeMillis());
+			asyncLogger.log("Train : " + train.getName() + " is exiting station : " + name);
 			
-			//Interrupting persons first
-			for (Person person : personsInPlatformSet)
+			//we want below code in synchronized block because we need to get up to date info of available platforms
+			//this can be used to allocate platforms to other trains.
+			synchronized(availablePlatformsSet)
 			{
-				if (person.interruptThread())
-				{
-					asyncLogger.log("Station : " + this.name + " is " + "Interrupting person : " + person.getName() + " for train : " + train.getName());
-				}
+				availablePlatformsSet.add(platformNumber);
 			}
 			
-			availablePlatformsSet.add(platformNumber);
 			trainPlatformMap.remove(platformNumber);
 		}
 		finally
 		{
 			
+		}
+	}
+	
+	//train calls this method after closing doors to make sure person threads are interrupted.
+	public void stopPersonsFromEnteringTrain(Train train)
+	{
+		for (Person person : personsInPlatformSet)
+		{
+			if (person.interruptThread(train))
+			{
+				asyncLogger.log("Station : " + this.name + " is Interrupting person : " + person.getName() + " for train : " + train.getName());
+			}
 		}
 	}
 	
