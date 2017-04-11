@@ -9,11 +9,24 @@ public class Stops {
 	private final List<Station> stopsList;
 	private final HashMap<Station, Integer> stopsMap = new HashMap<Station, Integer>();
 	
-	public Stops(String name, List<Station> stopsList)
+	private Stops(String name, List<Station> stopsList)
 	{
 		this.name = name;
 		this.stopsList = stopsList;
 		populateStopsMap();
+	}
+	
+	public static Stops getInstance(String name, List<Station> stopsList)
+	{
+		//validate
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be " + (name == null ? "null" : "empty"));
+		
+		if (stopsList == null || stopsList.isEmpty())
+			throw new IllegalArgumentException("Argument : stopsList cannot be " + (stopsList == null ? "null" : "empty"));
+		
+		//return stops instance
+		return new Stops(name, stopsList);
 	}
 	
 	public String getName() {

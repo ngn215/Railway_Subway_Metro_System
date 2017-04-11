@@ -11,7 +11,7 @@ public class Line {
 	private final HashMap<Station, Integer> stationsHashMap;
 	private final HashMap<String, Stops> stopsMap;
 	
-	public Line(String name, List<Station> stationsList, HashMap<String, Stops> stopsMap)
+	private Line(String name, List<Station> stationsList, HashMap<String, Stops> stopsMap)
 	{
 		this.name = name;
 		this.stationsList = stationsList;
@@ -19,6 +19,22 @@ public class Line {
 		this.stopsMap = stopsMap;
 		
 		buildHashMap();
+	}
+	
+	public static Line getInstance(String name, List<Station> stationsList, HashMap<String, Stops> stopsMap)
+	{
+		//validate
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be " + (name == null ? "null" : "empty"));
+		
+		if (stationsList == null || stationsList.isEmpty())
+			throw new IllegalArgumentException("Argument : stationsList cannot be " + (stationsList == null ? "null" : "empty"));
+		
+		if (stopsMap == null || stopsMap.isEmpty())
+			throw new IllegalArgumentException("Argument : stopsMap cannot be " + (stopsMap == null ? "null" : "empty"));
+		
+		//return line instance
+		return new Line(name, stationsList, stopsMap);
 	}
 	
 	public String getName() {
@@ -104,22 +120,27 @@ public class Line {
 	
 	public boolean hasStation(Station stationName)
 	{
-		if (stationsHashMap.isEmpty())
-		{
-			System.out.println("ERROR : stationsHashMap not initialized !!");
-			return false;
-		}
-		
 		if (stationsHashMap.containsKey(stationName))
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean getDirection(Station sourceStationName, Station destinationStationName)
+	public boolean getDirection(Station sourceStation, Station destinationStation)
 	{		
-		int sourceStationPosition = stationsHashMap.get(sourceStationName);
-		int destinationStationPosition = stationsHashMap.get(destinationStationName);
+		int sourceStationPosition = stationsHashMap.get(sourceStation);
+		int destinationStationPosition = stationsHashMap.get(destinationStation);
+		
+		//we dont need below validation because station parameters are set on person by person factory while 
+		//creating persons. while creating persons we get station from stationfactory which validates if it
+		//is a valid station or not. if invalid station then we complain there itself.
+		/*if (sourceStationPosition == null)
+			throw new IllegalStateException("Couldnt find sourceStationPosition using passed in sourceStation : "  
+												+ (sourceStation == null ? "null" : sourceStation.getName()));
+		
+		if (destinationStationPosition == null)
+			throw new IllegalStateException("Couldnt find destinationStationPosition using passed in destinationStation : " 
+												+ (destinationStation == null ? "null" : destinationStation.getName()));*/
 		
 		if(sourceStationPosition < destinationStationPosition)
 			return true;

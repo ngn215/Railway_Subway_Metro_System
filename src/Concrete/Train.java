@@ -38,7 +38,7 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 	private final Stops stops;
 	//private final Semaphore semaphore;
 	
-	public Train(String name, Line line, boolean directionUp, int speed, Stops stops, int totalTrips)
+	private Train(String name, Line line, boolean directionUp, int speed, Stops stops, int totalTrips)
 	{
 		this.name = name;
 		this.line = line;
@@ -67,6 +67,28 @@ public class Train extends ReentrantLockerUnlocker implements Runnable {
 		//gets first stop
 		this.nextStop = stops.getFirstStop(directionUp);
 
+	}
+	
+	public static Train getInstance(String name, Line line, boolean directionUp, int speed, Stops stops, int totalTrips)
+	{
+		//validate
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be null or empty");
+		
+		if (line == null)
+			throw new IllegalArgumentException("Argument : lineName cannot be null");
+		
+		if (speed < 0)
+			throw new IllegalArgumentException("Argument : speed should be greater than zero");
+		
+		if (stops == null)
+			throw new IllegalArgumentException("Argument : stopsName cannot be null");
+		
+		if (totalTrips <= 0)
+			throw new IllegalArgumentException("Argument : totalTrips should be greater than zero");
+		
+		//return train instance
+		return new Train(name, line, directionUp, speed, stops, totalTrips);
 	}
 	
 	public String getName() {

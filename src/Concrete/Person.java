@@ -27,7 +27,7 @@ public class Person implements Runnable {
 	private volatile Train checkingForTrain;
 	private final Set<Train> checkedTrainsSet;
 	
-	public Person(String name, Station sourceStation, Station destinationStation)
+	private Person(String name, Station sourceStation, Station destinationStation)
 	{
 		this.name = name;
 		this.sourceStation = sourceStation;
@@ -43,6 +43,22 @@ public class Person implements Runnable {
 		this.checkedTrainsSet = new HashSet<Train>();
 		
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+	}
+	
+	public static Person getInstance(String name, Station sourceStation, Station destinationStation)
+	{
+		//validate
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be " + (name == null ? "null" : "empty"));
+		
+		if (sourceStation == null)
+			throw new IllegalArgumentException("Argument : sourceStation cannot be null");
+		
+		if (destinationStation == null)
+			throw new IllegalArgumentException("Argument : destinationStation cannot be null");
+		
+		//return person instance
+		return new Person(name, sourceStation, destinationStation);
 	}
 	
 	public String getTrainLineName() {

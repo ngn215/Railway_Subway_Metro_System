@@ -19,7 +19,7 @@ public class Station {
 	//static int counter = 0;
 	private final AsynchronousLogger asyncLogger;
 	
-	public Station(String name, int numberOfPlatforms)
+	private Station(String name, int numberOfPlatforms)
 	{
 		this.name = name;
 		this.numberOfPlatforms = numberOfPlatforms;
@@ -30,6 +30,19 @@ public class Station {
 		this.asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 		
 		initializeAvailablePlatformsHashMap();
+	}
+	
+	public static Station getInstance(String name, int numberOfPlatforms)
+	{
+		//validate
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be " + (name == null ? "null" : "empty"));
+		
+		if (numberOfPlatforms <= 0)
+			throw new IllegalArgumentException("Argument : numberOfPlatforms should be greater than zero");
+		
+		//return station instance
+		return new Station(name, numberOfPlatforms); 
 	}
 	
 	private void initializeAvailablePlatformsHashMap()
