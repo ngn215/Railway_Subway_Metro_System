@@ -27,6 +27,9 @@ public class ExecutorServiceFactory {
 	
 	public static synchronized void createAndExecuteSingleThreadExecutor(CustomExecutorServiceInterface runnable)
 	{
+		if (runnable == null)
+			throw new IllegalArgumentException("Argument : runnable cannot be null");
+		
 		ExecutorService executorService = createSingleThreadExecutorInstance();
 		executorServicesSingleThreadMap.put(executorService, runnable);
 		executorService.execute((Runnable) runnable);
@@ -34,6 +37,9 @@ public class ExecutorServiceFactory {
 	
 	public static synchronized void createAndExecuteSingleThreadExecutorForAsyncLogger(CustomExecutorServiceInterface runnable)
 	{
+		if (runnable == null)
+			throw new IllegalArgumentException("Argument : runnable cannot be null");
+		
 		ExecutorService executorService = createSingleThreadExecutorInstance();
 		executorServicesForAsyncLoggersMap.put(executorService, runnable);
 		executorService.execute((Runnable) runnable);
@@ -46,6 +52,9 @@ public class ExecutorServiceFactory {
 	
 	public static synchronized ExecutorService createFixedThreadPoolExecutor(int numberOfThreads)
 	{
+		if (numberOfThreads <= 0)
+			throw new IllegalArgumentException("Argument : numberOfThreads should be greater than zero");
+		
 		ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
 		executorServicesThreadPoolMap.put(executorService, new ArrayList<CustomExecutorServiceInterface>());
 		
@@ -54,6 +63,12 @@ public class ExecutorServiceFactory {
 	
 	public static synchronized void executeThreadInPool(ExecutorService executorService, CustomExecutorServiceInterface runnable)
 	{
+		if (executorService == null)
+			throw new IllegalArgumentException("Argument : executorService cannot be null");
+		
+		if (runnable == null)
+			throw new IllegalArgumentException("Argument : runnable cannot be null");
+		
 		executorService.execute((Runnable) runnable);
 	}
 	

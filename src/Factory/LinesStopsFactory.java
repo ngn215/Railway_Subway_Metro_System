@@ -1,5 +1,6 @@
 package Factory;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -15,28 +16,40 @@ public class LinesStopsFactory {
 	private final static String LINESSTOPSLISTINPUTFILE = "InputFiles/LinesStops.txt";
 	private final static String DELIMITER = ",";
 	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+	private static boolean factoryInitialized = false;
 	
 	private LinesStopsFactory()
 	{
 		//do nothing
 	}
 	
-	public static void initializeFactory()
+	public static synchronized boolean initializeFactory()
 	{
-		populateLinesStopsMap();
+		//makes sure we only initialize factory once
+		if (!factoryInitialized)
+		{
+			factoryInitialized = true;
+			populateLinesStopsMap();
+			return true;
+		}
+		
+		return false;
 	}
 	
 	private static void populateLinesStopsMap()
 	{
-		getLinesStopsListFromInputFile();
+		getLinesStopsFromInputFile();
 	}
 	
 	public static HashMap<String, Stops> getStopsMap(String lineName)
-	{
-		return lineStopsMap.get(lineName);
+	{		
+		if (lineStopsMap.containsKey(lineName))
+			return lineStopsMap.get(lineName);
+		
+		throw new IllegalStateException("StopsMap could not be found using provided lineName : " + (lineName == null ? "null":lineName));
 	}
 	
-	private static void getLinesStopsListFromInputFile()
+	private static void getLinesStopsFromInputFile()
 	{
 		Path path = null;
 		Scanner scanner = null;
@@ -80,15 +93,16 @@ public class LinesStopsFactory {
 				}
 		    }      
 		}
-		catch(Exception e)
+		catch(IOException e)
 		{
-			System.out.println(e);
 			e.printStackTrace();
 			asyncLogger.log(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException("Exception while getting Stops list from file.");
 		}
 		finally
 		{
-			scanner.close();
+			if (scanner != null)
+				scanner.close();
 		}
 	}
 }

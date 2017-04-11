@@ -1,5 +1,6 @@
 package Factory;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -19,33 +20,37 @@ public class StopsFactory {
 	private final static String STOPSLISTINPUTFILE = "InputFiles/StopsList.txt";
 	private final static String DELIMITER = ",";
 	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+	private static boolean factoryInitialized = false;
 	
 	private StopsFactory()
 	{
 		//do nothing
 	}
 	
-	public static void initializeFactory()
+	public static synchronized boolean initializeFactory()
 	{
-		populateStopsMap();
+		//makes sure we only initialize factory once
+		if (!factoryInitialized)
+		{
+			factoryInitialized = true;
+			populateStopsMapAndList();
+			return true;
+		}
+		
+		return false;
 	}
 	
-	private static void populateStopsMap()
+	private static void populateStopsMapAndList()
 	{
-		getStopsListFromInputFile();
+		getStopsFromInputFile();
 	}
 	
 	public static Stops getStopsInstance(String stopsName)
-	{
+	{	
 		if (stopsMap.containsKey(stopsName))
-		{
 			return stopsMap.get(stopsName);
-		}
-		else
-		{
-			asyncLogger.log("ERROR : " + stopsName + " not initialized !!", true);
-			return null;
-		}
+
+		throw new IllegalStateException("Stops could not be found using provided stopsName : " + (stopsName == null ? "null":stopsName));
 	}
 	
 	public static List<Stops> getStopsList()
@@ -53,7 +58,7 @@ public class StopsFactory {
 		return stopsList;
 	}
 	
-	private static void getStopsListFromInputFile()
+	private static void getStopsFromInputFile()
 	{
 		Path path = null;
 		Scanner scanner = null;
@@ -77,32 +82,35 @@ public class StopsFactory {
 						if (i==0)
 						{
 							stopsName = tokensFromLine[i];
-							//System.out.println("Line name : " + lineName);
 						}
 						else
 						{
 							Station stationInstance = StationFactory.getStationInstance(tokensFromLine[i]);
 							stoppingStationsList.add(stationInstance);
-							//System.out.println(tokensFromLine[i]);
 						}
 					}
 					
-					Stops stops = new Stops(stopsName, stoppingStationsList);
+					Stops stops = createStopInstance(stopsName, stoppingStationsList);
 					stopsMap.put(stopsName, stops);
 					stopsList.add(stops);
-					//line.printStationsList();
 				}
 		    }      
 		}
-		catch(Exception e)
+		catch(IOException e)
 		{
-			System.out.println(e);
 			e.printStackTrace();
 			asyncLogger.log(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException("Exception while getting Stops list from file.");
 		}
 		finally
 		{
-			scanner.close();
+			if (scanner != null)
+				scanner.close();
 		}
+	}
+	
+	private static Stops createStopInstance(String stopsName, List<Station> stoppingStationsList)
+	{	
+		return Stops.getInstance(stopsName, stoppingStationsList);
 	}
 }

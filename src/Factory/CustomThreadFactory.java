@@ -22,6 +22,15 @@ public class CustomThreadFactory {
 	
 	public static Thread getThread(Runnable runnable, String name, String entity)
 	{
+		if (runnable == null)
+			throw new IllegalArgumentException("Argument : runnable cannot be null");
+		
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Argument : name cannot be null or empty");
+		
+		if (entity == null || entity.isEmpty())
+			throw new IllegalArgumentException("Argument : entity cannot be null or empty");
+		
 		Thread thread = new Thread(runnable, name);
 		
 		addToEntityThreadMap(entity, thread);
@@ -32,6 +41,8 @@ public class CustomThreadFactory {
 	
 	public static Thread getThread(Runnable runnable, String name)
 	{
+		//parameters are verified in above method
+		
 		return getThread(runnable, name, "Others");
 	}
 	
@@ -47,6 +58,10 @@ public class CustomThreadFactory {
 		
 	private static synchronized void addToEntityThreadMap(String entity, Thread thread)
 	{
+		assert entity != null;
+		assert !entity.isEmpty();
+		assert thread != null;
+		
 		if (entityThreadMap.containsKey(entity))
 		{
 			List<Thread> threadList = entityThreadMap.get(entity);

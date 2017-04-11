@@ -18,10 +18,24 @@ public class StationFactory {
 	private final static List<Station> stationsList = new ArrayList<Station>();
 	private final static String STATIONSLISTINPUTFILE = "InputFiles/StationsList.txt";
 	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
+	private static boolean factoryInitialized = false;
 	
 	private StationFactory()
 	{
 		//do nothing
+	}
+	
+	public static synchronized boolean initializeFactory()
+	{
+		//makes sure we only initialize factory once
+		if (!factoryInitialized)
+		{
+			factoryInitialized = true;
+			populateStationsMapAndList();
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public static HashMap<String, Station> getStationsMap() 
@@ -34,53 +48,21 @@ public class StationFactory {
 		return stationsList;
 	}
 
-	public static void initializeFactory()
+	private static void populateStationsMapAndList()
 	{
-		
-		populateStationsMapAndList();
+		getStationsListFromInputFile();
 	}
 	
 	public static Station getStationInstance(String stationName)
-	{
+	{				
 		if (stationsMap.containsKey(stationName))
 			return stationsMap.get(stationName);
 		
-		throw new RuntimeException("ERROR : StationName : " + stationName + " not available");
+		throw new IllegalStateException("Station could not be found using provided stationName : " + (stationName == null ? "null":stationName));
 	}
 	
-	private static Station createStationInstance(String stationName, int numberOfPlatforms)
+	private static void getStationsListFromInputFile()
 	{
-		return new Station(stationName, numberOfPlatforms);
-	}
-	
-	private static void populateStationsMapAndList()
-	{
-		List<String> stations = getStationsListFromInputFile();
-		
-		for(String stationName : stations)
-		{
-			Station station;
-			if(stationName.equals("Dadar") || stationName.equals("Matunga"))
-			{
-				station = createStationInstance(stationName, 5);
-			}
-			else if(stationName.equals("Churchgate") || stationName.equals("Chhatrapati Shivaji Terminus") 
-					|| stationName.equals("Kalyan"))
-			{
-				station = createStationInstance(stationName, 3);
-			}
-			else
-			{
-				station = createStationInstance(stationName, 2);
-			}
-			stationsMap.put(stationName, station);
-			stationsList.add(station);
-		}
-	}
-	
-	private static List<String> getStationsListFromInputFile()
-	{
-		List<String> stationsList = new ArrayList<String>();
 		Path path = null;
 		Scanner scanner = null;
 		
@@ -90,11 +72,27 @@ public class StationFactory {
 			scanner =  new Scanner(path);
 			while (scanner.hasNextLine())
 		    {
-				String stationLine = scanner.nextLine();
-				if (!stationLine.equals("") && !stationLine.startsWith("-"))
-				{
-					stationsList.add(stationLine);
-					//System.out.println(line);
+				String stationName = scanner.nextLine();
+				Station station = null;
+				
+				if (!stationName.equals("") && !stationName.startsWith("-"))
+				{					
+					if(stationName.equals("Dadar") || stationName.equals("Matunga"))
+					{
+						station = createStationInstance(stationName, 5);
+					}
+					else if(stationName.equals("Churchgate") || stationName.equals("Chhatrapati Shivaji Terminus") 
+							|| stationName.equals("Kalyan"))
+					{
+						station = createStationInstance(stationName, 3);
+					}
+					else
+					{
+						station = createStationInstance(stationName, 2);
+					}
+					
+					stationsMap.put(stationName, station);
+					stationsList.add(station);
 				}
 		    }      
 		}
@@ -109,7 +107,11 @@ public class StationFactory {
 			if (scanner != null)
 				scanner.close();
 		}
-		
-		return stationsList;
 	}
+	
+	private static Station createStationInstance(String stationName, int numberOfPlatforms)
+	{	
+		return Station.getInstance(stationName, numberOfPlatforms);
+	}
+
 }

@@ -25,12 +25,12 @@ public class TrainFactory {
 	}
 	
 	public static Train createTrainInstance(String name, String lineName, String direction, int speed, String stopsName, int totalTrips)
-	{
-		Line line = LineFactory.getLineInstance(lineName);
-		boolean directionUp = direction.equals("Up") ? true : false;
+	{	
+		Line line = LineFactory.getLineInstance(lineName);				
 		Stops stops = line.getStops(stopsName);
+		boolean directionUp = direction.equals("Up") ? true : false;
 		
-		Train train = new Train(name, line, directionUp, speed, stops, totalTrips);        
+		Train train = Train.getInstance(name, line, directionUp, speed, stops, totalTrips);        
 		trainsList.add(train);
 		
 		train.startTrain();
@@ -39,7 +39,7 @@ public class TrainFactory {
 	}
 	
 	public static Train createTrainInstance(String name, String lineName, String direction, int speed, String stopsName)
-	{
+	{		
 		return createTrainInstance(name, lineName, direction, speed, stopsName, TOTALTRIPSDEFAULT);
 	}
 	

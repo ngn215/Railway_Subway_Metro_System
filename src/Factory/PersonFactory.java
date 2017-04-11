@@ -1,10 +1,6 @@
 package Factory;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -15,9 +11,9 @@ import Concrete.Station;
 public class PersonFactory {
 
 	private final static List<Person> personsList= new ArrayList<Person>();
-	private final static String PERSONSLISTFILE = "Logs/PersonsList.txt";
-	private final static String ENCODINGFILE = "UTF-8";
-	private final static PrintWriter writer = createPersonsListFile(PERSONSLISTFILE, ENCODINGFILE);
+	//private final static String PERSONSLISTFILE = "Logs/PersonsList.txt";
+	//private final static String ENCODINGFILE = "UTF-8";
+	//private final static PrintWriter writer = createPersonsListFile(PERSONSLISTFILE, ENCODINGFILE);
 	private final static AsynchronousLogger asyncLogger = CustomLoggerFactory.getAsynchronousLoggerInstance();
 	
 	private PersonFactory()
@@ -29,24 +25,11 @@ public class PersonFactory {
 		return personsList;
 	}
 	
-	public static void generatePersonAtStationWithDestination(String sourceStationName, String destinationStationName)
-	{
-		int currentPersonsCount = personsList.size();
-		Station sourceStation = StationFactory.getStationInstance(sourceStationName);
-		Station destinationStation = StationFactory.getStationInstance(destinationStationName);
-		
-		Person person = new Person("P" + (currentPersonsCount + 1), sourceStation, destinationStation);
-		
-		writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
-		
-		personsList.add(person);
-		
-		person.startPersonThread();
-				
-	}
-	
 	public static void randomlyGeneratePersons(int personsCount, String lineName)
 	{
+		if (personsCount <= 0)
+			throw new IllegalArgumentException("Argument : personsCount should be greater than zero");
+		
 		int i = 1;
 		int currentPersonsCount = personsList.size();
 		Random rn = new Random();
@@ -63,9 +46,9 @@ public class PersonFactory {
 				Station sourceStation = stationsList.get(index1);
 				Station destinationStation = stationsList.get(index2);
 				
-				Person person = new Person("P" + (i + currentPersonsCount), sourceStation, destinationStation);
+				Person person = createPersonInstance("P" + (i + currentPersonsCount), sourceStation, destinationStation);
 				
-				writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
+				//writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
 				
 				personsList.add(person);
 				
@@ -76,8 +59,33 @@ public class PersonFactory {
 		}
 	}
 	
-	private static PrintWriter createPersonsListFile(String file, String encoding)
+	public static void generatePersonAtStationWithDestination(String sourceStationName, String destinationStationName)
+	{	
+		int currentPersonsCount = personsList.size();
+		Station sourceStation = StationFactory.getStationInstance(sourceStationName);
+		Station destinationStation = StationFactory.getStationInstance(destinationStationName);
+		
+		Person person = createPersonInstance("P" + (currentPersonsCount + 1), sourceStation, destinationStation);
+		
+		//writer.println(person.getName() + "\t" + sourceStation.getName() + " --> " + destinationStation.getName());
+		
+		personsList.add(person);
+		
+		person.startPersonThread();
+	}
+	
+	private static Person createPersonInstance(String name, Station sourceStation, Station destinationStation)
+	{		
+		return Person.getInstance(name, sourceStation, destinationStation);
+	}
+	
+	/*private static PrintWriter createPersonsListFile(String file, String encoding)
 	{
+		assert file != null;
+		assert !file.isEmpty();
+		assert encoding != null;
+		assert !encoding.isEmpty();		
+		
 		PrintWriter writer = null;
 		try {
 			writer = new PrintWriter(file, encoding);
@@ -89,13 +97,13 @@ public class PersonFactory {
 		}
 		
 		return writer;
-	}
+	}*/
 	
-	public static void closePersonsListFile()
+	/*public static void closePersonsListFile()
 	{
 		if (writer != null)
 			writer.close();
-	}
+	}*/
 	
 	public static int numberOfPeopleYetToReachDestination()
 	{
