@@ -1,7 +1,6 @@
 # Railway_Subway_Metro_System
 
 **Simulates a real life Railway / Subway / Metro system and the entities involved using multithreading.** 
-
 **Just set the number of persons, trains and their speeds, list of stations, lines and see this system _come_ _alive_ using the power of threads.**
 
 ## Entities :
@@ -26,7 +25,7 @@ Station lets person know that train has arrived. Station tells train whether vac
 Abstracts a real life Railway / Subway / Metro Line.
 Line contains multiple stations. Train goes to the stations in the order defined by the line. Lines can be used to represent slow / express trains or different routes altogether.
 
-## ----- End of Entities ---------
+## 
 
 ## Asynchronous Logger
 
