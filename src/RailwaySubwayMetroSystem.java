@@ -28,7 +28,7 @@ public class RailwaySubwayMetroSystem {
 			//initialize single thread executor service
 			ExecutorServiceFactory.createAndExecuteSingleThreadExecutor(asyncLogger);
 			
-			//initialize station, line and person factory.
+			//initialize station, line, linesStops and person factory.
 			StationFactory.initializeFactory();
 			StopsFactory.initializeFactory();
 			LinesStopsFactory.initializeFactory();
@@ -46,7 +46,7 @@ public class RailwaySubwayMetroSystem {
 				PersonFactory.generatePersonAtStationWithDestination("Vile Parle", "Santacruz");
 			}
 			*/
-			PersonFactory.closePersonsListFile();
+			//PersonFactory.closePersonsListFile();
 			
 			TrainFactory.createTrainInstance("VirarFast", "Western", "Up", 500, "Western-VIRCCGT-Fast");
 			TrainFactory.createTrainInstance("WS1", "Western", "Up", 1000, "Western-Slow");
