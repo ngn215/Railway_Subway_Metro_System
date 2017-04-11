@@ -1,7 +1,6 @@
 # Railway_Subway_Metro_System
 
-Simulates a real life Railway / Subway / Metro system and the entities involved using multithreading.
-**Just set the number of persons, trains and their speeds, list of stations, lines and see this system _come_ _alive_ using the power of threads.**
+**Simulates a real life Railway / Subway / Metro system and the entities involved using multithreading. Just set the number of persons, trains and their speeds, list of stations, lines and see this system _come_ _alive_ using the power of threads.**
 
 ## Entities :
 
